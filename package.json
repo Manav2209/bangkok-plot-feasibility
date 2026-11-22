@@ -1,0 +1,26 @@
+{
+  "name": "bangkok-feasibility",
+  "private": true,
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=10"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "check": "pnpm typecheck && pnpm test && pnpm build",
+    "test:e2e": "playwright test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1",
+    "prettier": "3.6.2",
+    "turbo": "2.11.13",
+    "typescript": "5.9.3",
+    "vitest": "5.1.1"
+  }
+}

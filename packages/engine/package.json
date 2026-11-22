@@ -1,0 +1,21 @@
+{
+  "name": "@bangkok/engine",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@bangkok/domain": "workspace:*",
+    "@bangkok/geometry": "workspace:*",
+    "@bangkok/rules": "workspace:*"
+  },
+  "devDependencies": {
+    "@bangkok/typescript-config": "workspace:*"
+  }
+}

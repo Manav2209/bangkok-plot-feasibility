@@ -1,0 +1,22 @@
+{
+  "name": "@bangkok/geometry",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@bangkok/domain": "workspace:*",
+    "clipper-lib": "6.4.2",
+    "proj4": "2.23.0"
+  },
+  "devDependencies": {
+    "@bangkok/typescript-config": "workspace:*",
+    "@types/clipper-lib": "6.4.0"
+  }
+}
