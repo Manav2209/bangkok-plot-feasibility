@@ -13,7 +13,6 @@ export function MapWorkspace({ study }: { study: StudyController }) {
     updatePlot,
     setControls,
     siteData,
-    mappedRoads,
     frontage,
     toggleFrontage,
     overlay,
@@ -42,7 +41,6 @@ export function MapWorkspace({ study }: { study: StudyController }) {
           onPlot={updatePlot}
           onReady={setControls}
           context={siteData.context}
-          mappedRoads={mappedRoads}
           contextBounds={siteData.contextBounds}
           zone={siteData.zone}
           frontage={frontage}

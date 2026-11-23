@@ -520,24 +520,24 @@ test('shows known parking-programme failures without fabricating a valid candida
   ).toBeVisible();
 });
 
-test('explains mapped roads without presenting centrelines as legal frontage', async ({ page }) => {
+test('keeps road names off the map while retaining nearby-road information', async ({ page }) => {
   await page.getByText('Nearby mapped roads · 6', { exact: true }).click();
   await expect(page.locator('.nearby-roads li')).toHaveCount(6);
   await expect(page.locator('.nearby-roads')).toContainText(
     'Proximity does not establish frontage',
   );
-  const label = page.locator('.road-map-label').first();
-  await expect(label).toBeVisible();
-  await label.click();
-  await expect(page.locator('.context-detail')).toContainText(
-    'Legal right-of-way and access rights are unverified',
-  );
-  await expect(page.locator('.context-detail a')).toHaveAttribute(
+  await expect(page.locator('.road-map-label')).toHaveCount(0);
+  await expect(page.locator('.nearby-roads a').first()).toHaveAttribute(
     'href',
     /openstreetmap.org\/way\//,
   );
-  await page.getByRole('button', { name: 'Close road details', exact: true }).click();
-  await expect(page.locator('.context-detail')).toHaveCount(0);
+  await page.getByRole('button', { name: '3D', exact: true }).click();
+  await expect(page.getByRole('button', { name: '3D', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await expect(page.locator('.road-map-label')).toHaveCount(0);
+  await page.screenshot({ path: 'test-results/map-without-road-labels.png' });
 });
 
 test('renders a selectable parking floor plan and keeps legal layout review unknown', async ({

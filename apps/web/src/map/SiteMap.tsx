@@ -13,7 +13,6 @@ import type {
   ZoneInput,
 } from '@bangkok/domain';
 import type { ContextCollection } from '../useSiteData';
-import type { MappedRoad } from '../roads';
 import { ORIGIN, toGeographic, toGeoJSON } from '@bangkok/geometry';
 import type { ProposalLayer } from '../scene/ProposalLayer';
 
@@ -37,7 +36,6 @@ interface Props {
   onPlot(plot: Ring): void;
   onReady(controls: MapControls): void;
   context?: ContextCollection | null;
-  mappedRoads?: MappedRoad[];
   contextBounds?: [number, number, number, number];
   zone?: ZoneInput;
   frontage?: FrontageInput[];
@@ -510,31 +508,6 @@ export function SiteMap(props: Props) {
       setReady(false);
     };
   }, [configuredStyle]);
-
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!ready || !map) return;
-    const markers = (props.mappedRoads ?? []).map((road) => {
-      const label = document.createElement('button');
-      label.type = 'button';
-      label.className = 'road-map-label';
-      label.textContent = road.name;
-      label.setAttribute('aria-label', `Inspect mapped road ${road.id}`);
-      label.title = `${road.name} · mapped centreline, legal width unknown`;
-      label.addEventListener('click', (event) => {
-        event.stopPropagation();
-        if (selectingRef.current) return;
-        setContextDetail({
-          kind: 'road',
-          name: road.name,
-          height: `OSM ${road.kind} centreline · about ${Math.round(road.distanceM)} m from the outline. ${road.widthM ? `Map width tag: ${road.widthM} m; ` : ''}Legal right-of-way and access rights are unverified. Display width is schematic.`,
-          url: road.sourceUrl,
-        });
-      });
-      return new maplibregl.Marker({ element: label }).setLngLat(road.point).addTo(map);
-    });
-    return () => markers.forEach((marker) => marker.remove());
-  }, [ready, props.mappedRoads]);
 
   useEffect(() => {
     if (!ready) return;
