@@ -34,6 +34,13 @@
   "licence": {
     "status": "not-specified",
     "catalogLabel": "License not specified",
+    "platformTerms": {
+      "title": "DGA Open Government License v1.0, 10 June 2021",
+      "url": "https://data.go.th/th/pages/dga-open-government-license",
+      "englishPdf": "https://data.go.th/uploads/page_images/2021-06-11-053225.908526Terms-and-Conditions-for-DGA-Open-Government-LicenseEN04062021.pdf",
+      "retrievedOn": "2026-11-23",
+      "scope": "The catalog footer links these general portal terms. They permit platform-data copying/publication/distribution with source and producer attribution, subject to exclusions including rights DGA lacks authority to license. Coverage of this independently served GIS extract is not confirmed; this is not a dataset-specific CC/ODbL licence."
+    },
     "note": "Public data access is confirmed by the official catalog; an explicit reuse licence is not specified. Do not describe this as ODbL, CC, cadastral evidence or legally definitive. Preserve attribution and resolve reuse terms before a distribution claim."
   },
   "accuracy": {

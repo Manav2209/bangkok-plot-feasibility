@@ -278,6 +278,49 @@ export function bounds(polygons: MultiPolygon) {
     maxY: Math.max(...vertices.map((p) => p[1])),
   };
 }
+
+/** Exact topological containment for an axis-aligned rectangle, including holes.
+ * Corners alone miss a notch crossing the rectangle. No polygon boundary may
+ * cross its open interior; touching the rectangle boundary is permitted.
+ */
+export function axisAlignedRectangleInside(
+  centre: Point,
+  width: number,
+  depth: number,
+  polygons: MultiPolygon,
+): boolean {
+  if (!(width > 0 && depth > 0)) return false;
+  const lo: Point = [centre[0] - width / 2, centre[1] - depth / 2];
+  const hi: Point = [centre[0] + width / 2, centre[1] + depth / 2];
+  const corners: Point[] = [lo, [hi[0], lo[1]], hi, [lo[0], hi[1]]];
+  return polygons.some((component) => {
+    if (!corners.every((corner) => pointInside(corner, [component]))) return false;
+    for (const ring of [component.outer, ...component.holes])
+      for (let i = 0; i < ring.length; i++) {
+        const a = ring[i],
+          b = ring[(i + 1) % ring.length];
+        let enter = 0,
+          exit = 1;
+        for (const axis of [0, 1] as const) {
+          const delta = b[axis] - a[axis];
+          if (Math.abs(delta) < 1e-12) {
+            if (a[axis] <= lo[axis] + EPS || a[axis] >= hi[axis] - EPS) {
+              enter = 1;
+              exit = 0;
+              break;
+            }
+          } else {
+            const t0 = (lo[axis] + EPS - a[axis]) / delta;
+            const t1 = (hi[axis] - EPS - a[axis]) / delta;
+            enter = Math.max(enter, Math.min(t0, t1));
+            exit = Math.min(exit, Math.max(t0, t1));
+          }
+        }
+        if (enter < exit) return false;
+      }
+    return true;
+  });
+}
 export function toGeoJSON(polygons: MultiPolygon) {
   return {
     type: 'Feature' as const,

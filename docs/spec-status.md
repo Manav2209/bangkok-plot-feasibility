@@ -86,17 +86,27 @@ the demo. Earlier handover requests for a title number were too restrictive for 
    constraints; unresolved statutory prerequisites prevent an overall legal feasibility pass.
 4. **Data rights/accuracy:** OSM context is ODbL. BMA's catalog does not specify explicit zone
    reuse terms or surveyed positional accuracy; a 1 m study guard is not a source accuracy claim.
-5. **Performance acceptance scope:** recorded production samples meet the initial-view,
-   ordinary-edit and 100-vertex edit targets and show no idle repaint. A short hardware camera-fit
-   transition exceeds 30 fps; it does not establish sustained performance for every interaction.
-   Reports in `docs/performance` retain actual device, conditions and measurement limits.
+5. **Performance acceptance scope:** the final milestone06 repeated audit meets all recorded
+   targets on the tested laptop, including continuous hardware pan/rotation. Earlier cold-load
+   and dense-edit misses are retained. Reports in `docs/performance` record the actual device,
+   conditions and limits; the result does not guarantee every device or scene.
 6. **Applicant-owned submission:** the actual assignment service/deadline, personal history,
    six setup answers, applicant-authored one-pager, original early transcripts, resume/project
    links and final receipt are not supplied. Nothing is fabricated or submitted in their place.
 
 ## Verification record
 
-Typecheck, production build, rule validation and **134 unit/property tests passed** (23 geometry,
+Milestone06 adds a dated imagery study, targeted rule/terms findings and a repeated production
+performance audit. See `milestone-06.md`, `research/site-evidence-06.md` and
+`research/coverage-audit-06.md`. The new observation is not a vacancy-today or access certificate.
+Current correctness checks passed: typecheck, production build, **140 unit/property tests**
+(28 geometry, 27 rules, 63 engine, 22 web) and **26 production browser flows**. The independent
+review also passes for the new dated study's two model concepts.
+The repeated audit exposed misses absent from the earlier single sample. After search optimization,
+all recorded targets passed; results are in `performance/acceptance-06.json`. Earlier timings below
+remain historical evidence rather than a guarantee for other devices or scenes.
+
+Milestone05 recorded typecheck, production build, rule validation and **134 unit/property tests passed** (23 geometry,
 27 rules,62 engine and22 scenario/road tests). **All25 production browser flows passed**, including
 rapid edits, worker reuse, share/persistence, two concepts, failure recovery, responsive controls,
 coverage notices, saved parking inputs, selectable parking geometry, first-use guidance and

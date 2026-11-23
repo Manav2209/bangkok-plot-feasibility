@@ -9,6 +9,33 @@ test.beforeEach(async ({ page }) => {
 });
 const numeric = (text: string) => Number(text.replaceAll(',', ''));
 
+test('loads the dated imagery case without inventing access or legal feasibility', async ({
+  page,
+}) => {
+  await page.getByText('Dated imagery study · 5 March 2026', { exact: true }).click();
+  await expect(
+    page.getByRole('link', { name: 'Capture-date metadata', exact: true }),
+  ).toHaveAttribute('href', /World_Imagery/);
+  await page.getByRole('button', { name: 'Load imagery study', exact: true }).click();
+  await expect(page.getByText(/Dated imagery study loaded:/)).toBeVisible();
+  await expect(page.getByTestId('zone-status')).toContainText('inside');
+  await expect(page.getByTestId('plot-area')).not.toHaveText('2,500');
+  await expect(page.getByTestId('gross-area')).not.toHaveText('—');
+  await expect(page.getByRole('button', { name: 'Frontage edge 1', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'false',
+  );
+  await expect(page.getByText('No overall compliance verdict', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: /OPTION B/ }).click();
+  await expect(page.getByTestId('gross-area')).not.toHaveText('—');
+  await page.screenshot({ path: 'test-results/dated-imagery-study-06.png' });
+  await page.getByRole('button', { name: 'Reset example', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Frontage edge 1', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+});
+
 test('loads real context, zone, two concepts and honest legal status without runtime errors', async ({
   page,
 }) => {

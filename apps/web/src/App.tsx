@@ -16,6 +16,7 @@ import { useSiteData } from './useSiteData';
 import { LocationSearch } from './ui/LocationSearch';
 import { ProjectControls } from './ui/ProjectControls';
 import { nearbyRoads } from './roads';
+import { imageryStudy } from './imageryStudy';
 import {
   defaultScenario,
   initialScenario,
@@ -242,6 +243,25 @@ export default function App() {
       setStorageMessage('Automatic copying is unavailable. Select and copy the link below.');
     }
   }
+  function loadImageryStudy() {
+    updatePlot(imageryStudy.plot);
+    setAssumptions(defaults);
+    setUse('condominium');
+    setRoads([]);
+    setFrontage([]);
+    setTransitDistanceM(undefined);
+    setResearchConstraints(true);
+    setProject({});
+    setSelected('compact');
+    setParkingPlanLevel(null);
+    setMode('proposal');
+    setThreeD(false);
+    controls?.view(false);
+    controls?.locate(imageryStudy.centre);
+    setStorageMessage(
+      `Dated imagery study loaded: unbuilt ground observed ${imageryStudy.label}. Road access, canal restrictions, property boundary and current condition remain unverified.`,
+    );
+  }
   return (
     <div className="app-shell">
       <header className="topbar">
@@ -359,6 +379,22 @@ export default function App() {
                   Undo
                 </button>
               </div>
+              <details className="imagery-study">
+                <summary>Dated imagery study · {imageryStudy.label}</summary>
+                <p className="field-hint">{imageryStudy.observation}</p>
+                <button onClick={loadImageryStudy}>Load imagery study</button>
+                <p className="field-hint">
+                  {imageryStudy.attribution}.{' '}
+                  <a href={imageryStudy.imageUrl} target="_blank" rel="noreferrer">
+                    Source image
+                  </a>{' '}
+                  ·{' '}
+                  <a href={imageryStudy.citationUrl} target="_blank" rel="noreferrer">
+                    Capture-date metadata
+                  </a>
+                  . Provider imagery can change; this record describes the inspected capture.
+                </p>
+              </details>
               <details className="coordinate-editor">
                 <summary>Boundary coordinates · keyboard editing</summary>
                 {plot.map((p, index) => (
@@ -907,6 +943,12 @@ export default function App() {
                 <small>Historical candidate · not a statutory allowance</small>
               </button>
             ))}
+            {design && (
+              <p className="checks-note">
+                Base reference ratios and gross modelled area only. No FAR incentive bonus or
+                parking-area deduction is applied.
+              </p>
+            )}
             <dl className="metrics-grid legal-metrics">
               <div>
                 <dt>Regulated floor area</dt>
@@ -1269,8 +1311,18 @@ export default function App() {
             <p>
               The neighbourhood is a bundled OpenStreetMap extract under ODbL, with original source
               IDs and tags. All context heights are labelled estimates. The zone comes from BMA's
-              2013 GIS; its publisher does not specify a redistribution licence. Current legal
-              status is a separate check.
+              2013 GIS. Its catalog leaves the dataset licence unspecified; the portal also links
+              general{' '}
+              <a
+                href="https://data.go.th/th/pages/dga-open-government-license"
+                target="_blank"
+                rel="noreferrer"
+              >
+                DGA reuse terms
+              </a>
+              . Their coverage of this independently served extract is not confirmed. Surveyed
+              positional accuracy is unknown; the 1 m study guard is an application assumption.
+              Current legal status is a separate check.
             </p>
             <p>
               The example is a 2,500 m² illustrative L-shaped outline near the research area. It is

@@ -12,6 +12,7 @@ import { assumptionsSchema, projectSchema } from '@bangkok/domain';
 import { screenProject } from './project-checks';
 import {
   area,
+  axisAlignedRectangleInside,
   bounds,
   clipRoadPlane,
   difference,
@@ -85,6 +86,13 @@ function compactRectangle(
     });
     const convex =
       !component.holes.length && (turns.every((t) => t >= -1e-8) || turns.every((t) => t <= 1e-8));
+    const winding = signedArea(component.outer) >= 0 ? 1 : -1;
+    const halfPlanes = convex
+      ? component.outer.map((p, i) => {
+          const q = component.outer[(i + 1) % component.outer.length];
+          return { p, nx: -(q[1] - p[1]) * winding, ny: (q[0] - p[0]) * winding };
+        })
+      : [];
     const ratios = [0.5, 1, 2, (box.maxX - box.minX) / (box.maxY - box.minY)];
     for (const x of [0.25, 0.5, 0.75])
       for (const y of [0.25, 0.5, 0.75]) {
@@ -94,6 +102,20 @@ function compactRectangle(
         ];
         if (!pointInside(centre, [component])) continue;
         for (const ratio of ratios) {
+          const rootRatio = Math.sqrt(ratio);
+          // A rectangle is inside a convex polygon iff its support along every inward
+          // edge normal fits. Compute that bound once, rather than walking the polygon
+          // for four corners in every bisection. Concave components/holes keep clipping.
+          const containedScale = convex
+            ? Math.min(
+                ...halfPlanes.map(({ p, nx, ny }) => {
+                  const support = (Math.abs(nx) * rootRatio + Math.abs(ny) / rootRatio) / 2;
+                  return support > 0
+                    ? (nx * (centre[0] - p[0]) + ny * (centre[1] - p[1])) / support
+                    : Infinity;
+                }),
+              )
+            : 0;
           let low = 0,
             high = Math.min(
               (box.maxX - box.minX) / Math.sqrt(ratio),
@@ -104,11 +126,10 @@ function compactRectangle(
             const scale = (low + high) / 2,
               width = scale * Math.sqrt(ratio),
               depth = scale / Math.sqrt(ratio);
-            const candidate = rectangle(centre, width, depth, 0);
             counter.tested++;
-            const fits =
-              candidate[0].outer.every((p) => pointInside(p, [component])) &&
-              (convex || area(difference(candidate, [component])) <= AREA_EPS);
+            const fits = convex
+              ? scale <= containedScale
+              : axisAlignedRectangleInside(centre, width, depth, [component]);
             if (fits) low = scale;
             else high = scale;
           }

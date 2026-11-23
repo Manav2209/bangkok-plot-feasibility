@@ -19,6 +19,9 @@ try {
     path.join(root, 'apps/web/src/scenario.ts'),
   );
   const { sources } = await server.ssrLoadModule(path.join(root, 'packages/rules/src/index.ts'));
+  const { imageryStudy } = await server.ssrLoadModule(
+    path.join(root, 'apps/web/src/imageryStudy.ts'),
+  );
   const { area, difference, intersection } = await server.ssrLoadModule(
     path.join(root, 'packages/geometry/src/index.ts'),
   );
@@ -69,10 +72,14 @@ try {
   for (const [name, input] of [
     ['illustrative-default', base],
     ['declared-access-study', declaredAccess],
+    [
+      'dated-unbuilt-ground-study',
+      { ...base, revision: 3, geographicPlot: imageryStudy.plot, roads: [], frontage: [] },
+    ],
   ]) {
     const result = calculate(input);
     assert.equal(result.zoneMembership, 'inside');
-    if (name === 'illustrative-default')
+    if (name === 'illustrative-default' || name === 'dated-unbuilt-ground-study')
       assert.equal(
         result.designs.length,
         2,
@@ -134,6 +141,7 @@ try {
       input,
       result: {
         status: result.status,
+        plotAreaM2: result.plotAreaM2,
         zoneMembership: result.zoneMembership,
         rulesetVersion: result.rulesetVersion,
         diagnostics: result.diagnostics,

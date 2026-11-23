@@ -23,6 +23,30 @@ const site = (): SiteInput => ({
   frontage: [{ edgeIndex: 0, roadId: 'road' }],
 });
 describe('reference envelope and independently checked concepts', () => {
+  it('keeps dense convex searches contained and stable under reversed vertex order', () => {
+    const input = site();
+    input.geographicPlot = Array.from({ length: 100 }, (_, i) =>
+      toGeographic([
+        Math.cos((i / 100) * Math.PI * 2) * 20,
+        Math.sin((i / 100) * Math.PI * 2) * 20,
+      ]),
+    );
+    input.roads = [];
+    input.frontage = [];
+    const forward = calculate(input);
+    const reverse = calculate({ ...input, geographicPlot: [...input.geographicPlot].reverse() });
+    expect(forward.designs.length).toBeGreaterThan(0);
+    expect(reverse.designs.map((d) => d.grossFloorAreaM2)).toEqual(
+      forward.designs.map((d) => d.grossFloorAreaM2),
+    );
+    for (const result of [forward, reverse])
+      for (const design of result.designs)
+        for (const floor of design.floors)
+          for (const slice of result.slices!.filter(
+            (s) => s.baseM < floor.topM && s.topM > floor.baseM,
+          ))
+            expect(area(difference(floor.polygons, slice.polygons))).toBeLessThanOrEqual(0.01);
+  });
   it('does not bypass the extra-large regime merely by remaining below 23m', () => {
     const input = site();
     input.geographicPlot = (

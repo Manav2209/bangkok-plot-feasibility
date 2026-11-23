@@ -25,9 +25,13 @@ A checked item below means the stated feature is implemented; it does not certif
 - [x] Recalculate live, cancel obsolete work and prevent stale result/input combinations.
 - [x] Save scenarios locally and reproduce inputs through versioned share links.
 - [x] Provide first-use guidance, legends, source inspection and failure/retry states.
-- [x] Pass the recorded typecheck, production build, rule validation and 134 unit/property tests.
-- [x] Pass all 25 recorded production browser flows and the independent design-review assertions.
+- [x] Pass typecheck, production build, rule validation and 140 unit/property tests.
+- [x] Pass all 26 production browser flows and independent design-review assertions.
 - [x] Record browser performance samples and inspect desktop/mobile screenshots.
+- [x] Add a geolocated study outline tied to a visually inspected capture dated 5 March 2026,
+      with two independently evaluated model concepts and visible access/current-condition limits.
+- [x] Record BMA corridor-width sources and general portal reuse terms without promoting
+      unsupported site-specific widths, licence claims or accuracy numbers.
 
 The two baseline concepts pass implemented study constraints. They are not two legally verified
 designs. In the more detailed declared-access case, one concept is accepted by the study and the
@@ -39,6 +43,8 @@ other is rejected because its ramp reservation cannot fit. The rejection is pres
       zone to a visually inspected, attributable and dated vacancy observation. The current example
       is illustrative and has no verified vacancy observation. Ownership and a title deed are not
       prerequisites for a demonstration.
+      The new dated study establishes visible unbuilt ground on its observation date; it does not
+      establish full vacancy/occupation, road access or today's condition for a replacement default.
 - [ ] **Establish the example's road evidence.** Identify the relevant frontage, legally relevant
       width/reference lines and any applicable access or widening restrictions. A mapped road,
       pavement measurement or user-confirmed study width does not supply this evidence.
@@ -51,9 +57,11 @@ other is rejected because its ramp reservation cannot fit. The rejection is pres
       design search if needed; do not manufacture a passing second option.
 - [ ] **Clarify zone-data reuse and accuracy.** The retrieved BMA catalog does not specify reuse
       terms or surveyed positional accuracy. The application's study guard is not an accuracy claim.
-- [ ] **Close the remaining performance evidence limits.** Existing samples meet the recorded
-      loading/edit targets, but the 100-vertex edit is near the limit and the short camera transition
-      does not establish sustained interaction performance across the requested device scope.
+- [x] **Measure the remaining performance targets on the recorded laptop.** After optimizing the
+      search, all targets in `performance/acceptance-06.json` passed: three cold loads below 5 s,
+      ordinary envelope p95 below 100 ms, 6/100-vertex edit p95 below 500 ms, continuous hardware
+      pan/rotation at least 30 frames in every complete measured second and no idle repaint.
+      Earlier misses remain documented; this is scoped device evidence, not a universal guarantee.
 
 The app must retain unknown results wherever evidence remains missing. It can be used as a
 reference study now, but full specification completion must not be claimed from passing tests alone.
@@ -81,7 +89,7 @@ not need to find land, interpret Thai regulations or obtain professional certifi
 ## Evidence
 
 - `spec-status.md`: detailed implementation and acceptance status.
-- `milestone-05.md`: latest substantive implementation and verification record.
+- `milestone-06.md`: latest substantive implementation and verification record.
 - `validation/design-review-05.json`: independent candidate checks, including rejections.
 - `research/public-demo-evidence.md` and `research/site-evidence-04.md`: site research and limits.
 - `research/legal-audit-05.md`: bounded statutory source audit and unresolved coverage.

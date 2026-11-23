@@ -63,6 +63,9 @@ editing. A licensed external MapLibre style can optionally be configured through
   Coverage notices distinguish missing surroundings, including partially uncovered map views.
 - First-use instructions explain the research workflow. Map controls wrap together; 2D/3D
   buttons remain exposed at laptop/mobile widths. Saving includes all project/parking inputs.
+- A separate dated imagery study links a visually inspected 5 March 2026 capture to an
+  illustrative inner outline and two model concepts. Loading it clears unsupported road inputs;
+  road access, current occupation and canal restrictions stay unresolved.
 
 ## Evidence and limitations
 
@@ -89,6 +92,8 @@ Sources and provenance:
 - [Vacant-site evidence follow-up](docs/research/site-evidence-04.md)
 - [Finite amendment and ramp audit](docs/research/legal-audit-05.md)
 - [Primary owner/bank site audit](docs/research/site-audit-05.md)
+- [Dated imagery study and official road-record follow-up](docs/research/site-evidence-06.md)
+- [Conditional FAR, denominator and portal-terms clarification](docs/research/coverage-audit-06.md)
 - [Authoritative zone and sample correction](docs/research/zone-gis-evidence.md)
 - [Context extraction notes](docs/research/context-data.md)
 - [Context attribution and licence](apps/web/public/data/context-LICENSE.md)
@@ -121,6 +126,11 @@ production browser measurement run uses `PLAYWRIGHT_MEASURE=1` and the `records 
 test; `PLAYWRIGHT_HARDWARE_GPU=1` removes the software-rendering flags. Reports record actual
 device/browser/renderer, network conditions, scope and limits. Large-bundle warnings and any
 unmet target remain visible rather than being described as passes.
+
+The repeated milestone-06 audit uses `PLAYWRIGHT_ACCEPTANCE_MEASURE=1` with
+`tests/browser/performance-acceptance.spec.ts`; use `PLAYWRIGHT_HARDWARE_GPU=1` for hardware
+camera evidence. The final local report meets its recorded targets, with earlier misses retained.
+Set `PLAYWRIGHT_BASE_URL` to verify an existing public deployment without starting a local server.
 
 ## Workspace and delivery
 

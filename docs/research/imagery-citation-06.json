@@ -1,0 +1,54 @@
+{
+  "retrievedOn": "2026-11-23",
+  "citationUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/9/query?f=pjson&where=1%3D1&geometry=100.61025,13.69628&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID,SRC_DATE,SRC_DATE2,SRC_RES,SRC_ACC,SAMP_RES,SRC_DESC,NICE_NAME,NICE_DESC,MinMapLevel,MaxMapLevel,DrawOrder,BlockName,ReleaseName&returnGeometry=false",
+  "imageUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=100.6095,13.6957,100.6108,13.6970&bboxSR=4326&imageSR=4326&size=256,256&format=jpg&f=image",
+  "citationLayer": 10,
+  "attributes": {
+    "OBJECTID": 5002983,
+    "SRC_DATE": 20260305,
+    "SRC_DATE2": 1772668800000,
+    "SRC_RES": 0.5,
+    "SRC_ACC": 8.47,
+    "SAMP_RES": 0.3,
+    "SRC_DESC": "WV02",
+    "NICE_NAME": "Vivid Advanced",
+    "NICE_DESC": "Vantor",
+    "MinMapLevel": 12,
+    "MaxMapLevel": 19,
+    "DrawOrder": 80,
+    "BlockName": "DYNAMIC_ESRI_Bangkok_26Q1",
+    "ReleaseName": "Raster Basemaps 2026.R06"
+  },
+  "exportExtent": {
+    "xmin": 100.6095,
+    "ymin": 13.695699999999999,
+    "xmax": 100.6108,
+    "ymax": 13.697,
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326
+    }
+  },
+  "exportWidth": 256,
+  "exportHeight": 256,
+  "observation": "Illustrative inner area of visible brown/unbuilt ground; no title, access or vacancy-today assertion",
+  "plotLonLat": [
+    [100.61007890625, 13.696390625],
+    [100.610353125, 13.696451562499998],
+    [100.610419140625, 13.696192578124998],
+    [100.610236328125, 13.696101171874998],
+    [100.610109375, 13.696162109374999]
+  ],
+  "imagePixelOutline": [
+    [114, 120],
+    [168, 108],
+    [181, 159],
+    [145, 177],
+    [120, 165]
+  ],
+  "imageSha256": "aea1b34eac713b60b337ea15b395fc926e7d44a49b5a14294a4e9e572e63250f",
+  "imageryRedistributed": false,
+  "vacancyTodayVerified": false,
+  "legalAccessVerified": false,
+  "cadastralBoundary": false
+}
