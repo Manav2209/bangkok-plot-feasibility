@@ -14,17 +14,21 @@ const numeric = (text: string) => Number(text.replaceAll(',', ''));
 test('aligns the example road and measures both designs from the same assumed boundary', async ({
   page,
 }) => {
-  await page.getByRole('button', { name: 'Try checked model example', exact: true }).click();
+  await page.getByRole('button', { name: 'Load simple example', exact: true }).click();
   await expect(page.getByTestId('core-model-status')).toHaveText('Pass · conditional model');
-  await expect(page.getByTestId('road-edge-gap')).toHaveText('3 m');
-  await expect(page.getByTestId('road-centreline-gap')).toHaveText('7 m');
+  await expect(page.getByText('4 vertices · irregular plots supported')).toBeVisible();
+  await expect(page.getByTestId('floor-count')).toHaveText('4');
+  await expect(page.getByTestId('road-edge-gap')).toHaveText('5 m');
+  await expect(page.getByTestId('road-centreline-gap')).toHaveText('9 m');
   await expect(page.getByTestId('road-clearance')).toContainText(
     'Model-to-mapped centreline offset: 0 m',
   );
   await expect(page.locator('.road-reference-warning')).toHaveCount(0);
+  await page.getByTestId('road-clearance').scrollIntoViewIfNeeded();
+  await page.screenshot({ path: 'test-results/simple-example-2d.png' });
   await page.getByRole('button', { name: /OPTION B/ }).click();
-  await expect(page.getByTestId('road-edge-gap')).toHaveText('3 m');
-  await expect(page.getByTestId('road-centreline-gap')).toHaveText('7 m');
+  await expect(page.getByTestId('road-edge-gap')).toHaveText('5 m');
+  await expect(page.getByTestId('road-centreline-gap')).toHaveText('9 m');
   await expect(page.getByTestId('core-model-status')).toHaveText('Pass · conditional model');
   await page.getByRole('button', { name: '3D', exact: true }).click();
   await page.getByTestId('road-clearance').scrollIntoViewIfNeeded();
@@ -56,7 +60,7 @@ test('puts measurements first while retaining expandable scope notes and visible
   await expect(page.locator('.study-notes')).toHaveAttribute('open', '');
   await expect(page.locator('.study-notes')).toContainText('Unconfirmed widths');
   await page.getByText('Study notes', { exact: false }).first().click();
-  await page.getByRole('button', { name: 'Try checked model example', exact: true }).click();
+  await page.getByRole('button', { name: 'Load simple example', exact: true }).click();
   await expect(page.locator('.core-overview')).toContainText('10 of 10 passed');
   await page.getByRole('button', { name: '3D', exact: true }).click();
   await page.locator('.results-panel').evaluate((panel) => {
@@ -95,7 +99,7 @@ test('checks both declared models and keeps missing road or height facts unknown
 }) => {
   await expect(page.getByTestId('core-model-status')).toHaveText('Inputs incomplete');
   await page.getByText('Core-rule model inputs', { exact: true }).click();
-  await page.getByRole('button', { name: 'Try checked model example', exact: true }).click();
+  await page.getByRole('button', { name: 'Load simple example', exact: true }).click();
   await expect(page.getByTestId('core-model-status')).toHaveText('Pass · conditional model');
   await expect(page.locator('[data-core-rule]')).toHaveCount(10);
   await expect(
@@ -308,10 +312,10 @@ test('changes use and confirms multiple road frontages with provenance', async (
   await expect
     .poll(async () => numeric(await page.getByTestId('gross-area').innerText()))
     .toBeGreaterThan(1000);
-  await page.getByRole('button', { name: 'Frontage edge 6', exact: true }).click();
-  await page.getByLabel('Road width edge 6', { exact: true }).fill('4');
+  await page.getByRole('button', { name: 'Frontage edge 4', exact: true }).click();
+  await page.getByLabel('Road width edge 4', { exact: true }).fill('4');
   await page.getByLabel('Confirm width for this study', { exact: true }).nth(1).check();
-  await expect(page.getByRole('button', { name: 'Frontage edge 6', exact: true })).toHaveAttribute(
+  await expect(page.getByRole('button', { name: 'Frontage edge 4', exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',
   );
@@ -391,11 +395,11 @@ test('copies a valid scenario when clipboard access succeeds', async ({ page }) 
 });
 
 test('rejects malformed share input instead of using unrelated local state', async ({ page }) => {
-  await page.getByLabel('Floors', { exact: true }).fill('4');
+  await page.getByLabel('Floors', { exact: true }).fill('3');
   await page.getByRole('button', { name: 'Save scenario', exact: true }).click();
   await page.goto('/#scenario=malformed');
   await page.reload();
-  await expect(page.getByLabel('Floors', { exact: true })).toHaveValue('6');
+  await expect(page.getByLabel('Floors', { exact: true })).toHaveValue('4');
   await expect(page.locator('.toast')).toContainText('This shared scenario is invalid');
 });
 
@@ -420,11 +424,11 @@ test('sums the selected design floor table and distinguishes model budgets from 
 test('rejects outside-zone edits without leaving stale designs visible', async ({ page }) => {
   await page.getByText('Boundary coordinates · keyboard editing', { exact: true }).click();
   const longitudes = await Promise.all(
-    Array.from({ length: 6 }, (_, i) =>
+    Array.from({ length: defaultScenario().plot.length }, (_, i) =>
       page.getByLabel(`Vertex ${i + 1} longitude`, { exact: true }).inputValue(),
     ),
   );
-  for (let i = 0; i < 6; i++)
+  for (let i = 0; i < longitudes.length; i++)
     await page
       .getByLabel(`Vertex ${i + 1} longitude`, { exact: true })
       .fill(String(Number(longitudes[i]) + 0.01));

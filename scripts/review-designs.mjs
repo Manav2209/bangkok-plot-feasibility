@@ -50,6 +50,22 @@ try {
   const z = JSON.parse(await readFile(path.join(root, 'apps/web/public/data/zone.geojson'), 'utf8'))
     .features[0].geometry.coordinates;
   const scenario = defaultScenario();
+  const demoMetric = [{ outer: scenario.plot.map(toMetric), holes: [] }];
+  for (const feature of context.features) {
+    if (feature.properties.kind !== 'building' || feature.geometry.type !== 'Polygon') continue;
+    const coordinates = feature.geometry.coordinates;
+    assert(
+      area(
+        intersection(demoMetric, [
+          {
+            outer: coordinates[0].map(toMetric),
+            holes: coordinates.slice(1).map((ring) => ring.map(toMetric)),
+          },
+        ]),
+      ) <= 0.01,
+      'Keep the simple example clear of bundled building footprints.',
+    );
+  }
   const base = {
     revision: 1,
     geographicPlot: scenario.plot,
@@ -182,8 +198,8 @@ try {
         );
         const roadEdgeGapM = centrelineGapM - demoRoad.assumedWidthM / 2;
         assert(
-          roadEdgeGapM >= 3 - 0.001,
-          'Every floor must remain behind the 3 m plot/road-edge buffer.',
+          roadEdgeGapM >= input.assumptions.setbackM - 0.001,
+          'Every floor must remain behind the chosen plot/road-edge buffer.',
         );
         assert(
           centrelineGapM >= 6 - 0.001,
@@ -204,7 +220,11 @@ try {
           d.coveredGround[0].outer.map(toGeographic),
           6,
         ).find((road) => road.id === demoRoad.sourceId);
-        assert(actualMapped && actualMapped.distanceM >= 7 - 0.001);
+        assert(
+          actualMapped &&
+            actualMapped.distanceM >=
+              input.assumptions.setbackM + demoRoad.assumedWidthM / 2 - 0.001,
+        );
         roadClearance = {
           assumedRowWidthM: demoRoad.assumedWidthM,
           roadEdgeGapM,

@@ -269,7 +269,7 @@ export function useStudyController() {
       },
     });
     setStorageMessage(
-      'Declared core-rule example loaded: 8 m straight public ROW at the plot edge, level datum and one fully counted new building. These are model inputs, not verified site facts.',
+      'Simple square example loaded: four floors, 5 m inset and an assumed 8 m straight public ROW. Core-rule declarations are model inputs, not verified site facts.',
     );
     setRevision((value) => value + 1);
   }

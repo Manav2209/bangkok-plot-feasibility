@@ -46,7 +46,8 @@ test('records repeated production edits and sustained camera interactions', asyn
   }
 
   const studies = [];
-  for (const vertices of [6, 100]) {
+  const ordinaryVertices = defaultScenario().plot.length;
+  for (const vertices of [ordinaryVertices, 100]) {
     const scenario = defaultScenario();
     if (vertices === 100) {
       scenario.plot = Array.from({ length: 100 }, (_, i) =>
@@ -81,22 +82,28 @@ test('records repeated production edits and sustained camera interactions', asyn
         envelopeMs.push(Number(diagnostic));
     }
     await page.getByText('Boundary coordinates · keyboard editing', { exact: true }).click();
-    const coordinate = page.getByLabel(`Vertex ${vertices === 6 ? 2 : 31} longitude`, {
-      exact: true,
-    });
+    const coordinate = page.getByLabel(
+      `Vertex ${vertices === ordinaryVertices ? 2 : 31} longitude`,
+      {
+        exact: true,
+      },
+    );
     const original = Number(await coordinate.inputValue());
     for (let index = 0; index < 20; index++) {
       boundaryMs.push(
         await measuredEdit(page, () =>
           coordinate.fill(
-            String(original + (index % 2 === 0 ? (vertices === 6 ? -0.000001 : 0.000001) : 0)),
+            String(
+              original +
+                (index % 2 === 0 ? (vertices === ordinaryVertices ? -0.000001 : 0.000001) : 0),
+            ),
           ),
         ),
       );
     }
     studies.push({
       vertices,
-      boundaryEditVertex: vertices === 6 ? 2 : 31,
+      boundaryEditVertex: vertices === ordinaryVertices ? 2 : 31,
       parameterEditMs: summary(parameterMs),
       boundaryEditMs: summary(boundaryMs),
       envelopeEngineMs: envelopeMs.length ? summary(envelopeMs) : null,

@@ -159,10 +159,11 @@ export function StudyDialogs({ study }: { study: StudyController }) {
               Current legal status is a separate check.
             </p>
             <p>
-              The example is a 2,500 m² illustrative L-shaped outline near the research area. It is
-              not a verified parcel or vacant-site finding. The reference envelope uses historical
-              candidates and the chosen study assumptions; it is not a verified maximum legal
-              envelope.
+              The example is a 2,500 m² illustrative square (50 × 50 m), beside a straight mapped
+              road and 75 m before its bend. It starts with four floors and a 5 m boundary inset. It
+              is not a verified parcel or vacant-site finding. The reference envelope uses
+              historical candidates and the chosen study assumptions; it is not a verified maximum
+              legal envelope.
             </p>
             <p>
               Gross modelled area is not yet regulated FAR area. Uncovered ground is not a finding

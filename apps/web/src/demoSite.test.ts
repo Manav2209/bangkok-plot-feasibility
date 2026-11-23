@@ -18,7 +18,17 @@ const context: ContextCollection = {
 describe('road-aligned illustrative example', () => {
   it('keeps the entire frontage on the straight segment and offsets its boundary by half the assumed width', () => {
     const scenario = defaultScenario();
+    expect(scenario.plot).toHaveLength(4);
     expect(area([{ outer: scenario.plot.map(toMetric), holes: [] }])).toBeCloseTo(2500, 5);
+    const ring = scenario.plot.map(toMetric);
+    for (let i = 0; i < ring.length; i++) {
+      const a = ring[i],
+        b = ring[(i + 1) % 4],
+        c = ring[(i + 2) % 4];
+      expect(Math.hypot(b[0] - a[0], b[1] - a[1])).toBeCloseTo(50, 5);
+      expect((b[0] - a[0]) * (c[0] - b[0]) + (b[1] - a[1]) * (c[1] - b[1])).toBeCloseTo(0, 4);
+    }
+    expect(scenario.assumptions).toMatchObject({ setbackM: 5, floors: 4 });
     const model = roadModels(
       scenario.plot,
       scenario.roads,
@@ -34,7 +44,7 @@ describe('road-aligned illustrative example', () => {
       const along =
         ((point[0] - a[0]) * (b[0] - a[0]) + (point[1] - a[1]) * (b[1] - a[1])) / length;
       expect(along).toBeGreaterThan(0);
-      expect(along).toBeLessThan(length);
+      expect(along).toBeLessThanOrEqual(length - 75 + 0.00001);
     }
     expect(scenario.roads[0].confirmed).toBe(false);
     expect(scenario.roads[0].widthProvenance).toBe('user');

@@ -43,10 +43,13 @@ export function InputsPanel({ study }: { study: StudyController }) {
           </p>
           <div className="example-card">
             <span className="overview-label">START WITH AN EXAMPLE</span>
-            <strong>A site. Two possibilities.</strong>
-            <p>Explore two designs with declared site inputs and an illustrative 8 m road.</p>
+            <strong>A simple site. Two possibilities.</strong>
+            <p>
+              A 50 × 50 m square beside a straight road. Start with four floors and a 5 m boundary
+              inset. The 8 m road width is illustrative.
+            </p>
             <button className="primary-button" onClick={loadCoreExample}>
-              Try checked model example <span aria-hidden="true">↗</span>
+              Load simple example <span aria-hidden="true">↗</span>
             </button>
           </div>
           <details className="getting-started">

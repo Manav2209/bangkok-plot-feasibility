@@ -17,11 +17,11 @@ export const defaultScenario = (): Scenario => ({
   rulesetVersion: RULESET_VERSION as Scenario['rulesetVersion'],
   use: 'condominium',
   plot: DEMO_PLOT,
-  assumptions: { setbackM: 3, floors: 6, floorHeightM: 3.2 },
+  assumptions: { setbackM: 5, floors: 4, floorHeightM: 3.2 },
   roads: [
     {
       id: 'frontage-0',
-      name: 'Aligned example · assumed 8 m road corridor',
+      name: 'Simple example · assumed 8 m road corridor',
       geometry: [DEMO_PLOT[0], DEMO_PLOT[1]],
       widthM: demoRoad.assumedWidthM,
       widthProvenance: 'user',
@@ -116,7 +116,12 @@ export function loadScenario(
       storage?.getItem(STORAGE_KEY) ??
       storage?.getItem('bangkok-plot:scenario:v2') ??
       storage?.getItem(LEGACY_STORAGE_KEY);
-    if (stored) return { scenario: decodeScenario(stored), message: '' };
+    if (stored)
+      return {
+        scenario: decodeScenario(stored),
+        message:
+          'Saved scenario restored. Select Reset example to load the current simple example.',
+      };
   } catch {
     return {
       scenario: defaultScenario(),

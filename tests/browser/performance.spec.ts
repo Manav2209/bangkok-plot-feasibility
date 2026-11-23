@@ -158,7 +158,7 @@ test('records production network, interaction, stress, camera and idle evidence'
     completedEditMs: edits,
     completedEditDriverMs: driverEdits,
     boundaryEdit: {
-      vertices: 6,
+      vertices: defaultScenario().plot.length,
       completedEditMs: boundaryEditMs,
       driverElapsedMs: boundaryDriverMs,
     },
