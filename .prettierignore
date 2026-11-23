@@ -3,3 +3,8 @@ dist
 node_modules
 .turbo
 PLAN.md
+apps/web/public/data/context.geojson
+apps/web/public/data/context-manifest.json
+docs/research/*-metadata.json
+docs/research/bmagis-*.json
+docs/research/y7-21.authoritative.geojson

@@ -8,13 +8,17 @@
   },
   "scripts": {
     "dev": "turbo run dev",
-    "build": "turbo run build",
+    "build": "turbo run build && node scripts/prepare-dist.mjs",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "check": "pnpm typecheck && pnpm test && pnpm build",
     "test:e2e": "playwright test",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "benchmark": "node scripts/benchmark.mjs",
+    "review:designs": "node scripts/review-designs.mjs",
+    "data:validate": "node scripts/validate-context.mjs && node scripts/validate-zone.mjs",
+    "source:check": "node scripts/check-public-source.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.65.1",

@@ -1,0 +1,50 @@
+{
+  "currentVersion": 11.5,
+  "folders": [],
+  "services": [
+    {
+      "name": "Basemap_Service/Basemap1000_TILE",
+      "type": "MapServer"
+    },
+    {
+      "name": "Basemap_Service/Basemap1000_Webmercater",
+      "type": "MapServer"
+    },
+    {
+      "name": "Basemap_Service/Basemap1000_WGS84",
+      "type": "MapServer"
+    },
+    {
+      "name": "Basemap_Service/Basemap_2562_WebMercator",
+      "type": "MapServer"
+    },
+    {
+      "name": "Basemap_Service/BASEMAP_2564_BMA",
+      "type": "MapServer"
+    },
+    {
+      "name": "Basemap_Service/CPUD_Basemap1000_TILE",
+      "type": "MapServer"
+    },
+    {
+      "name": "Basemap_Service/CPUD_Basemap1000",
+      "type": "MapServer"
+    },
+    {
+      "name": "Basemap_Service/CPUD_Basemap_2568_WebMercator",
+      "type": "MapServer"
+    },
+    {
+      "name": "Basemap_Service/CPUD_Basemap_2568",
+      "type": "FeatureServer"
+    },
+    {
+      "name": "Basemap_Service/CPUD_Basemap_2568",
+      "type": "MapServer"
+    },
+    {
+      "name": "Basemap_Service/CPUD_Bsemap1000Use_2568",
+      "type": "MapServer"
+    }
+  ]
+}

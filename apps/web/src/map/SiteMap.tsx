@@ -4,9 +4,18 @@ import type { GeoJSONSource, StyleSpecification } from 'maplibre-gl';
 import mapWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import { TerraDraw, TerraDrawPolygonMode, TerraDrawSelectMode } from 'terra-draw';
 import { TerraDrawMapLibreGLAdapter } from 'terra-draw-maplibre-gl-adapter';
-import type { CalculationResult, DesignResult, Ring } from '@bangkok/domain';
+import type {
+  CalculationResult,
+  DesignResult,
+  FrontageInput,
+  ParkingPlan,
+  Ring,
+  ZoneInput,
+} from '@bangkok/domain';
+import type { ContextCollection } from '../useSiteData';
+import type { MappedRoad } from '../roads';
 import { ORIGIN, toGeographic, toGeoJSON } from '@bangkok/geometry';
-import { ProposalLayer } from '../scene/ProposalLayer';
+import type { ProposalLayer } from '../scene/ProposalLayer';
 
 maplibregl.setWorkerUrl(mapWorkerUrl);
 
@@ -15,15 +24,28 @@ export interface MapControls {
   edit(): void;
   fit(): void;
   view(threeD: boolean): void;
+  frontage(): void;
+  locate(coordinates: [number, number]): void;
 }
 interface Props {
   plot: Ring;
   result: CalculationResult | null;
+  preview?: CalculationResult | null;
   design?: DesignResult;
   mode: 'existing' | 'envelope' | 'proposal';
   heightM: number;
   onPlot(plot: Ring): void;
   onReady(controls: MapControls): void;
+  context?: ContextCollection | null;
+  mappedRoads?: MappedRoad[];
+  contextBounds?: [number, number, number, number];
+  zone?: ZoneInput;
+  frontage?: FrontageInput[];
+  onFrontage?(edgeIndex: number): void;
+  overlay?: boolean;
+  activeRule?: string | null;
+  parkingPlan?: ParkingPlan;
+  parkingRamp?: import('@bangkok/domain').MultiPolygon;
 }
 
 const empty = { type: 'FeatureCollection' as const, features: [] };
@@ -68,7 +90,18 @@ export function SiteMap(props: Props) {
   const synchronizing = useRef(false);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [boundaryError, setBoundaryError] = useState<string | null>(null);
   const [drawing, setDrawing] = useState(false);
+  const [selectingFrontage, setSelectingFrontage] = useState(false);
+  const selectingRef = useRef(false);
+  const [outsideCoverage, setOutsideCoverage] = useState(false);
+  const [partialCoverage, setPartialCoverage] = useState(false);
+  const [contextDetail, setContextDetail] = useState<{
+    name: string;
+    height: string;
+    url: string;
+    kind?: 'road';
+  } | null>(null);
   const configuredStyle = import.meta.env.VITE_MAP_STYLE_URL;
 
   useEffect(() => {
@@ -78,7 +111,15 @@ export function SiteMap(props: Props) {
       map = new maplibregl.Map({
         container: container.current,
         style: configuredStyle || style,
-        center: toGeographic([25, 25]),
+        center: props.plot.length
+          ? props.plot.reduce(
+              (centre, p) => [
+                centre[0] + p[0] / props.plot.length,
+                centre[1] + p[1] / props.plot.length,
+              ],
+              [0, 0] as [number, number],
+            )
+          : ORIGIN,
         zoom: 18.4,
         pitch: 0,
         bearing: 0,
@@ -93,6 +134,30 @@ export function SiteMap(props: Props) {
       return;
     }
     mapRef.current = map;
+    if (new URLSearchParams(window.location.search).has('measure'))
+      map.on('render', () => {
+        performance.mark('plot-map-render');
+        const start = performance.getEntriesByName('plot-edit-start').at(-1),
+          current = latest.current;
+        if (
+          !start ||
+          !current.result ||
+          current.mode !== 'proposal' ||
+          !map.getLayer('proposal-2d')
+        )
+          return;
+        const features = map.queryRenderedFeatures({ layers: ['proposal-2d'] });
+        if (
+          features.length &&
+          features.every((f) => f.properties?.revision === current.result!.revision)
+        ) {
+          performance.measure('plot-edit-to-render', {
+            start: start.startTime,
+            end: performance.now(),
+          });
+          performance.clearMarks('plot-edit-start');
+        }
+      });
     map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'bottom-right');
     map.addControl(new maplibregl.ScaleControl({ unit: 'metric' }), 'bottom-left');
     const onError = () =>
@@ -114,6 +179,110 @@ export function SiteMap(props: Props) {
         });
       }
       map.addSource('envelope', { type: 'geojson', data: empty });
+      map.addSource('neighbourhood', {
+        type: 'geojson',
+        data: empty,
+        attribution:
+          '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a> · ODbL',
+      });
+      map.addSource('context-coverage', { type: 'geojson', data: empty });
+      map.addLayer({
+        id: 'context-coverage',
+        type: 'line',
+        source: 'context-coverage',
+        paint: { 'line-color': '#627786', 'line-dasharray': [2, 4], 'line-width': 1.5 },
+      });
+      map.addLayer({
+        id: 'context-road-casing',
+        type: 'line',
+        source: 'neighbourhood',
+        filter: ['==', ['get', 'kind'], 'road'],
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': '#768e9e',
+          'line-width': ['interpolate', ['linear'], ['zoom'], 15, 3, 19, 13],
+        },
+      });
+      map.addLayer({
+        id: 'context-roads',
+        type: 'line',
+        source: 'neighbourhood',
+        filter: ['==', ['get', 'kind'], 'road'],
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': '#fffdf5',
+          'line-width': ['interpolate', ['linear'], ['zoom'], 15, 1.5, 19, 9],
+        },
+      });
+      map.addLayer({
+        id: 'context-water',
+        type: 'line',
+        source: 'neighbourhood',
+        filter: ['==', ['get', 'kind'], 'waterway'],
+        paint: { 'line-color': '#8fbccf', 'line-width': 3 },
+      });
+      map.addLayer({
+        id: 'context-buildings',
+        type: 'fill-extrusion',
+        source: 'neighbourhood',
+        filter: ['==', ['get', 'kind'], 'building'],
+        paint: {
+          'fill-extrusion-color': '#bac5cc',
+          'fill-extrusion-height': ['coalesce', ['get', 'heightM'], 0],
+          'fill-extrusion-opacity': 0.65,
+        },
+      });
+      map.addSource('supported-zone', {
+        type: 'geojson',
+        data: empty,
+        attribution: 'Bangkok Metropolitan Administration · 2013 planning GIS',
+      });
+      map.addLayer({
+        id: 'zone-boundary',
+        type: 'line',
+        source: 'supported-zone',
+        paint: { 'line-color': '#8b5db5', 'line-width': 2.5, 'line-dasharray': [4, 2] },
+      });
+      map.addSource('frontages', { type: 'geojson', data: empty });
+      map.addLayer({
+        id: 'frontage-lines',
+        type: 'line',
+        source: 'frontages',
+        paint: { 'line-color': '#d08729', 'line-width': 6 },
+      });
+      map.addSource('rule-highlight', { type: 'geojson', data: empty });
+      map.addSource('parking-plan', { type: 'geojson', data: empty });
+      map.addLayer({
+        id: 'parking-plan-fill',
+        type: 'fill',
+        source: 'parking-plan',
+        paint: {
+          'fill-color': [
+            'match',
+            ['get', 'part'],
+            'stall',
+            '#397eae',
+            'aisle',
+            '#e7b760',
+            'ramp',
+            '#c4614c',
+            '#9f87b3',
+          ],
+          'fill-opacity': 0.8,
+        },
+      });
+      map.addLayer({
+        id: 'parking-plan-lines',
+        type: 'line',
+        source: 'parking-plan',
+        paint: { 'line-color': '#183d54', 'line-width': 1.2 },
+      });
+      map.addLayer({
+        id: 'rule-highlight',
+        type: 'fill',
+        source: 'rule-highlight',
+        paint: { 'fill-color': '#d08729', 'fill-opacity': 0.3 },
+      });
       map.addLayer({
         id: 'envelope-fill',
         type: 'fill',
@@ -126,9 +295,50 @@ export function SiteMap(props: Props) {
         source: 'envelope',
         paint: { 'line-color': '#168b79', 'line-width': 1.5, 'line-dasharray': [4, 3] },
       });
-      const layer = new ProposalLayer();
-      map.addLayer(layer);
-      layerRef.current = layer;
+      map.addSource('proposal-2d', { type: 'geojson', data: empty });
+      map.addLayer({
+        id: 'proposal-2d',
+        type: 'fill',
+        source: 'proposal-2d',
+        paint: { 'fill-color': '#168b79', 'fill-opacity': 0.65 },
+      });
+      map.addLayer({
+        id: 'proposal-2d-line',
+        type: 'line',
+        source: 'proposal-2d',
+        paint: { 'line-color': '#117966', 'line-width': 2 },
+      });
+      let loadingScene = false;
+      const loadScene = async () => {
+        if (layerRef.current || loadingScene || map.getPitch() <= 0) return;
+        loadingScene = true;
+        try {
+          const { ProposalLayer } = await import('../scene/ProposalLayer');
+          if (mapRef.current !== map) return;
+          const layer = new ProposalLayer();
+          map.addLayer(layer);
+          layerRef.current = layer;
+          const p = latest.current,
+            current = p.result ?? p.preview;
+          layer.update(
+            p.design,
+            current?.envelope ?? [],
+            p.mode,
+            p.heightM,
+            current?.slices,
+            p.overlay,
+          );
+        } catch {
+          setError(
+            'The 3D proposal could not load. The 2D geometry and measurements remain available.',
+          );
+        } finally {
+          loadingScene = false;
+        }
+      };
+      map.on('pitch', () => {
+        void loadScene();
+      });
       const draw = new TerraDraw({
         // Preserve projected WGS84 doubles; metric clipping applies its own 1 mm grid.
         adapter: new TerraDrawMapLibreGLAdapter({ map, coordinatePrecision: 17 }),
@@ -193,12 +403,16 @@ export function SiteMap(props: Props) {
       });
       latest.current.onReady({
         draw() {
+          selectingRef.current = false;
+          setSelectingFrontage(false);
           draw.clear();
           draw.setMode('polygon');
           setDrawing(true);
           map.easeTo({ pitch: 0, bearing: 0, duration: 300 });
         },
         edit() {
+          selectingRef.current = false;
+          setSelectingFrontage(false);
           draw.setMode('select');
           setDrawing(false);
           const feature = draw.getSnapshot().find((f) => f.geometry.type === 'Polygon');
@@ -215,6 +429,72 @@ export function SiteMap(props: Props) {
         view(threeD) {
           map.easeTo({ pitch: threeD ? 55 : 0, bearing: threeD ? -24 : 0, duration: 450 });
         },
+        frontage() {
+          draw.setMode('select');
+          draw.getSnapshot().forEach((feature) => {
+            if (feature.id !== undefined) draw.deselectFeature(feature.id);
+          });
+          selectingRef.current = true;
+          setSelectingFrontage(true);
+        },
+        locate(coordinates) {
+          map.flyTo({ center: coordinates, zoom: 18, duration: 700 });
+        },
+      });
+      map.on('click', (event) => {
+        if (selectingRef.current) {
+          const plot = latest.current.plot;
+          let nearest = -1,
+            distance = 14;
+          plot.forEach((a, i) => {
+            const b = plot[(i + 1) % plot.length],
+              p = map.project(a),
+              q = map.project(b);
+            const dx = q.x - p.x,
+              dy = q.y - p.y;
+            const t = Math.max(
+              0,
+              Math.min(
+                1,
+                ((event.point.x - p.x) * dx + (event.point.y - p.y) * dy) /
+                  (dx * dx + dy * dy || 1),
+              ),
+            );
+            const d = Math.hypot(event.point.x - (p.x + t * dx), event.point.y - (p.y + t * dy));
+            if (d < distance) {
+              distance = d;
+              nearest = i;
+            }
+          });
+          if (nearest >= 0) latest.current.onFrontage?.(nearest);
+          return;
+        }
+        const feature = map.queryRenderedFeatures(event.point, {
+          layers: ['context-buildings'],
+        })[0];
+        if (feature)
+          setContextDetail({
+            name: String(
+              feature.properties?.name || feature.properties?.sourceId || 'Mapped building',
+            ),
+            height: String(feature.properties?.heightLabel || 'Estimated height'),
+            url: String(feature.properties?.sourceUrl || 'https://www.openstreetmap.org'),
+          });
+        else {
+          const road = map.queryRenderedFeatures(event.point, {
+            layers: ['context-road-casing'],
+          })[0];
+          if (road)
+            setContextDetail({
+              kind: 'road',
+              name: String(
+                road.properties?.name || `Unnamed ${road.properties?.highway || 'road'}`,
+              ),
+              height:
+                'Mapped road centreline. Display width is a map style, not measured right-of-way. Legal width and access rights remain unverified.',
+              url: String(road.properties?.sourceUrl || 'https://www.openstreetmap.org'),
+            });
+        }
       });
       setReady(true);
     });
@@ -230,6 +510,75 @@ export function SiteMap(props: Props) {
       setReady(false);
     };
   }, [configuredStyle]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!ready || !map) return;
+    const markers = (props.mappedRoads ?? []).map((road) => {
+      const label = document.createElement('button');
+      label.type = 'button';
+      label.className = 'road-map-label';
+      label.textContent = road.name;
+      label.setAttribute('aria-label', `Inspect mapped road ${road.id}`);
+      label.title = `${road.name} · mapped centreline, legal width unknown`;
+      label.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (selectingRef.current) return;
+        setContextDetail({
+          kind: 'road',
+          name: road.name,
+          height: `OSM ${road.kind} centreline · about ${Math.round(road.distanceM)} m from the outline. ${road.widthM ? `Map width tag: ${road.widthM} m; ` : ''}Legal right-of-way and access rights are unverified. Display width is schematic.`,
+          url: road.sourceUrl,
+        });
+      });
+      return new maplibregl.Marker({ element: label }).setLngLat(road.point).addTo(map);
+    });
+    return () => markers.forEach((marker) => marker.remove());
+  }, [ready, props.mappedRoads]);
+
+  useEffect(() => {
+    if (!ready) return;
+    const p = props.parkingPlan;
+    (mapRef.current?.getSource('parking-plan') as GeoJSONSource | undefined)?.setData(
+      p
+        ? {
+            type: 'FeatureCollection',
+            features: [
+              { ...toGeoJSON(p.aisles), properties: { part: 'aisle' } },
+              { ...toGeoJSON(p.serviceReserve), properties: { part: 'service' } },
+              { ...toGeoJSON(p.stalls), properties: { part: 'stall' } },
+              { ...toGeoJSON(props.parkingRamp ?? []), properties: { part: 'ramp' } },
+            ],
+          }
+        : empty,
+    );
+  }, [ready, props.parkingPlan, props.parkingRamp]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    const box = props.contextBounds;
+    if (!ready || !map || !box) return;
+    const updateCoverage = () => {
+      const centre = map.getCenter();
+      const bounds = map.getBounds();
+      setOutsideCoverage(
+        centre.lng < box[0] || centre.lng > box[2] || centre.lat < box[1] || centre.lat > box[3],
+      );
+      setPartialCoverage(
+        bounds.getWest() < box[0] ||
+          bounds.getEast() > box[2] ||
+          bounds.getSouth() < box[1] ||
+          bounds.getNorth() > box[3],
+      );
+    };
+    updateCoverage();
+    map.on('moveend', updateCoverage);
+    map.on('resize', updateCoverage);
+    return () => {
+      map.off('moveend', updateCoverage);
+      map.off('resize', updateCoverage);
+    };
+  }, [ready, props.contextBounds]);
 
   useEffect(() => {
     const draw = drawRef.current;
@@ -248,10 +597,10 @@ export function SiteMap(props: Props) {
         },
       ]);
       if (added.some((feature) => !feature.valid)) {
-        setError(
+        setBoundaryError(
           `The boundary could not be loaded for editing: ${added.find((feature) => !feature.valid)?.reason ?? 'invalid boundary'}. Reset the example or draw a new plot.`,
         );
-      }
+      } else setBoundaryError(null);
     }
     published.current = JSON.stringify(props.plot);
     synchronizing.current = false;
@@ -260,7 +609,16 @@ export function SiteMap(props: Props) {
   useEffect(() => {
     if (!ready) return;
     const source = mapRef.current?.getSource('envelope') as GeoJSONSource | undefined;
-    source?.setData(props.result ? toGeoJSON(props.result.envelope) : empty);
+    const current = props.result ?? props.preview;
+    source?.setData(current ? toGeoJSON(current.envelope) : empty);
+    (mapRef.current?.getSource('proposal-2d') as GeoJSONSource | undefined)?.setData(
+      props.mode === 'proposal' && props.design
+        ? {
+            ...toGeoJSON(props.design.coveredGround),
+            properties: { revision: props.result?.revision ?? -1 },
+          }
+        : empty,
+    );
     mapRef.current?.setLayoutProperty(
       'envelope-fill',
       'visibility',
@@ -271,8 +629,88 @@ export function SiteMap(props: Props) {
       'visibility',
       props.mode === 'existing' ? 'none' : 'visible',
     );
-    layerRef.current?.update(props.design, props.result?.envelope ?? [], props.mode, props.heightM);
-  }, [ready, props.result, props.design, props.mode, props.heightM]);
+    layerRef.current?.update(
+      props.design,
+      current?.envelope ?? [],
+      props.mode,
+      props.heightM,
+      current?.slices,
+      props.overlay,
+    );
+    const affected = props.activeRule ? current?.affectedRegions?.[props.activeRule] : [];
+    (mapRef.current?.getSource('rule-highlight') as GeoJSONSource | undefined)?.setData(
+      affected?.length ? toGeoJSON(affected) : empty,
+    );
+  }, [
+    ready,
+    props.result,
+    props.preview,
+    props.design,
+    props.mode,
+    props.heightM,
+    props.overlay,
+    props.activeRule,
+  ]);
+
+  useEffect(() => {
+    if (!ready) return;
+    const map = mapRef.current!;
+    (map.getSource('neighbourhood') as GeoJSONSource)?.setData(props.context ?? empty);
+    const box = props.contextBounds;
+    (map.getSource('context-coverage') as GeoJSONSource)?.setData(
+      box
+        ? {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'Polygon',
+              coordinates: [
+                [
+                  [box[0], box[1]],
+                  [box[2], box[1]],
+                  [box[2], box[3]],
+                  [box[0], box[3]],
+                  [box[0], box[1]],
+                ],
+              ],
+            },
+          }
+        : empty,
+    );
+    if (map.getLayer('metric-grid'))
+      map.setLayoutProperty('metric-grid', 'visibility', props.context ? 'none' : 'visible');
+    const zone = props.zone;
+    (map.getSource('supported-zone') as GeoJSONSource)?.setData(
+      zone
+        ? {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'MultiPolygon',
+              coordinates: zone.boundaryLonLat.map((p) =>
+                [p.outer, ...p.holes].map((r) => [...r, r[0]]),
+              ),
+            },
+          }
+        : empty,
+    );
+    (map.getSource('frontages') as GeoJSONSource)?.setData({
+      type: 'FeatureCollection',
+      features: (props.frontage ?? [])
+        .filter((f) => f.edgeIndex < props.plot.length)
+        .map((f) => ({
+          type: 'Feature',
+          properties: { roadId: f.roadId },
+          geometry: {
+            type: 'LineString',
+            coordinates: [
+              props.plot[f.edgeIndex],
+              props.plot[(f.edgeIndex + 1) % props.plot.length],
+            ],
+          },
+        })),
+    });
+  }, [ready, props.context, props.contextBounds, props.zone, props.frontage, props.plot]);
 
   return (
     <div className="map-stage">
@@ -281,14 +719,60 @@ export function SiteMap(props: Props) {
         <span className="map-cross">⌖</span>
         <div>
           <strong>Phra Khanong research area</strong>
-          <span>Bangkok, Thailand · illustrative boundary</span>
+          <span>Bangkok · 2013 Y.7-21 · illustrative parcel</span>
         </div>
       </div>
       {!configuredStyle && (
         <div className="context-notice">
-          Coordinate grid · 20 m spacing
+          <span>
+            {props.context
+              ? outsideCoverage
+                ? 'Beyond bundled context coverage'
+                : 'Bundled OpenStreetMap context'
+              : 'Coordinate grid · 20 m spacing'}
+          </span>
           <br />
-          <span>Neighbourhood data is not connected</span>
+          <span>
+            {props.context
+              ? outsideCoverage
+                ? 'Missing features here do not indicate vacant land'
+                : partialCoverage
+                  ? 'View extends beyond coverage · missing features do not indicate vacant land'
+                  : 'Building heights are estimates · click to inspect'
+              : 'Neighbourhood data unavailable or loading'}
+          </span>
+        </div>
+      )}
+      {selectingFrontage && (
+        <div className="drawing-notice" role="status">
+          Click a plot edge to mark every road frontage. Use Edit boundary to finish.
+        </div>
+      )}
+      {props.parkingPlan && (
+        <div className="parking-plan-notice" role="status">
+          Level {props.parkingPlan.level}: {props.parkingPlan.stalls.length} schematic stalls ·{' '}
+          {props.parkingPlan.stallWidthM} × {props.parkingPlan.stallLengthM} m · aisle{' '}
+          {props.parkingPlan.aisleWidthM} m
+          <br />
+          Blue: stalls · amber: aisles · purple: service reserve · red: ramp reservation. Turning
+          and legal connection are unverified.
+        </div>
+      )}
+      {contextDetail && (
+        <div className="context-detail">
+          <button
+            onClick={() => setContextDetail(null)}
+            aria-label={
+              contextDetail.kind === 'road' ? 'Close road details' : 'Close building details'
+            }
+          >
+            ×
+          </button>
+          <strong>{contextDetail.name}</strong>
+          <p>{contextDetail.height}</p>
+          <a href={contextDetail.url} target="_blank" rel="noreferrer">
+            Open mapped source
+          </a>
         </div>
       )}
       {drawing && (
@@ -298,18 +782,36 @@ export function SiteMap(props: Props) {
           Choose Edit boundary to cancel drawing.
         </div>
       )}
-      {error && (
+      {(error || boundaryError) && (
         <div className="map-error" role="alert">
-          {error}
+          {error || boundaryError}
         </div>
       )}
       <div className="map-legend">
-        <span className="legend-boundary" />
-        Plot boundary
-        <span className="legend-inset" />
-        Assumed inset
-        <span className="legend-massing" />
-        Massing
+        <span className="legend-item">
+          <i className="legend-road" />
+          Road centreline
+        </span>
+        <span className="legend-item">
+          <i className="legend-zone" />
+          Zone boundary
+        </span>
+        <span className="legend-item">
+          <i className="legend-frontage" />
+          Selected frontage
+        </span>
+        <span className="legend-item">
+          <i className="legend-boundary" />
+          Plot boundary
+        </span>
+        <span className="legend-item">
+          <i className="legend-inset" />
+          Reference envelope
+        </span>
+        <span className="legend-item">
+          <i className="legend-massing" />
+          Massing
+        </span>
       </div>
     </div>
   );

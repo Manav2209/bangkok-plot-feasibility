@@ -24,7 +24,7 @@ or vacant demonstration parcel has been confirmed.
 - URL supplied in the agreed plan:
   https://webportal.bangkok.go.th/public/user_files_editor/354/DISTRICT_CPD/2556/1009.pdf
 - Provisional zone from the plan: ย.7-21.
-- Evidence status: not reverified or digitized in this milestone. The sample must not be assigned
+- Evidence status: official PDF retrieved during milestone 02; not digitized or matched to the sample. The sample must not be assigned
   to that zone without authoritative boundary evidence.
 
 ## Technical references inspected
@@ -39,6 +39,10 @@ or vacant demonstration parcel has been confirmed.
   reports some failing polygon tests; not chosen for the initial adapter.
 
 ## Next evidence tasks
+
+See `legal-baseline.md` and the versioned JSON ledger for the latest source inspection and
+historical candidate clauses. The 2026 draft consultation notice is recorded separately from
+enacted instruments. No current applicable legal baseline has been established.
 
 1. Connect the assignment service and obtain its actual deadline. No `time_left` or submission
    tools are available in this session; do not infer remaining time from the 48-hour allocation.

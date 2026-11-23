@@ -148,6 +148,136 @@ export function difference(subject: MultiPolygon, clip: MultiPolygon): MultiPoly
   );
   return fromTree(tree);
 }
+export function intersection(subject: MultiPolygon, clip: MultiPolygon): MultiPolygon {
+  const engine = new ClipperLib.Clipper();
+  engine.AddPaths(paths(subject), ClipperLib.PolyType.ptSubject, true);
+  engine.AddPaths(paths(clip), ClipperLib.PolyType.ptClip, true);
+  const tree = new ClipperLib.PolyTree();
+  engine.Execute(
+    ClipperLib.ClipType.ctIntersection,
+    tree,
+    ClipperLib.PolyFillType.pftNonZero,
+    ClipperLib.PolyFillType.pftNonZero,
+  );
+  return fromTree(tree);
+}
+export function union(polygons: MultiPolygon): MultiPolygon {
+  if (!polygons.length) return [];
+  const engine = new ClipperLib.Clipper();
+  engine.AddPaths(paths(polygons), ClipperLib.PolyType.ptSubject, true);
+  const tree = new ClipperLib.PolyTree();
+  engine.Execute(
+    ClipperLib.ClipType.ctUnion,
+    tree,
+    ClipperLib.PolyFillType.pftNonZero,
+    ClipperLib.PolyFillType.pftNonZero,
+  );
+  return fromTree(tree);
+}
+/** Conservative segment-distance exclusion. Circumscribed 64-gons plus 2 mm grid guard. */
+export function capsule(a: Point, b: Point, distanceM: number): MultiPolygon {
+  if (!Number.isFinite(distanceM) || distanceM < 0) throw new Error('Invalid edge distance.');
+  if (!distanceM) return [];
+  const length = Math.hypot(b[0] - a[0], b[1] - a[1]);
+  if (length < EPS) throw new Error('Zero-length boundary edge.');
+  const d = distanceM + 0.002;
+  const n: Point = [(-(b[1] - a[1]) / length) * d, ((b[0] - a[0]) / length) * d];
+  const circle = (p: Point): PolygonShape => ({
+    outer: Array.from({ length: 64 }, (_, i) => {
+      const angle = (i * Math.PI) / 32;
+      const radius = d / Math.cos(Math.PI / 64);
+      return [p[0] + Math.cos(angle) * radius, p[1] + Math.sin(angle) * radius] as Point;
+    }),
+    holes: [],
+  });
+  return [
+    {
+      outer: [
+        [a[0] + n[0], a[1] + n[1]],
+        [a[0] - n[0], a[1] - n[1]],
+        [b[0] - n[0], b[1] - n[1]],
+        [b[0] + n[0], b[1] + n[1]],
+      ],
+      holes: [],
+    },
+    circle(a),
+    circle(b),
+  ];
+}
+type PolygonShape = MultiPolygon[number];
+export function edgeInset(ring: Ring, distances: number[]): MultiPolygon {
+  if (distances.length !== ring.length) throw new Error('One setback is required per edge.');
+  return difference(
+    [{ outer: ring, holes: [] }],
+    ring.flatMap((a, i) => capsule(a, ring[(i + 1) % ring.length], distances[i])),
+  );
+}
+export function clipRoadPlane(
+  polygons: MultiPolygon,
+  a: Point,
+  b: Point,
+  minimumDistanceM: number,
+  winding: number,
+): MultiPolygon {
+  const length = Math.hypot(b[0] - a[0], b[1] - a[1]);
+  if (length < EPS) return [];
+  const t: Point = [(b[0] - a[0]) / length, (b[1] - a[1]) / length];
+  const n: Point = [-t[1] * Math.sign(winding), t[0] * Math.sign(winding)];
+  const reach =
+    Math.max(
+      1,
+      ...polygons.flatMap((p) => p.outer.map((v) => Math.hypot(v[0] - a[0], v[1] - a[1]))),
+    ) +
+    Math.abs(minimumDistanceM) +
+    1;
+  const point = (along: number, normal: number): Point => [
+    a[0] + t[0] * along + n[0] * normal,
+    a[1] + t[1] * along + n[1] * normal,
+  ];
+  return intersection(polygons, [
+    {
+      outer: [
+        point(-reach, minimumDistanceM),
+        point(reach, minimumDistanceM),
+        point(reach, reach),
+        point(-reach, reach),
+      ],
+      holes: [],
+    },
+  ]);
+}
+export function rotatePoint(point: Point, angle: number): Point {
+  return [
+    point[0] * Math.cos(angle) - point[1] * Math.sin(angle),
+    point[0] * Math.sin(angle) + point[1] * Math.cos(angle),
+  ];
+}
+export function pointInside(point: Point, polygons: MultiPolygon): boolean {
+  const inRing = (ring: Ring) => {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const a = ring[i],
+        b = ring[j];
+      if (onSegment(a, b, point)) return true;
+      if (
+        a[1] > point[1] !== b[1] > point[1] &&
+        point[0] < ((b[0] - a[0]) * (point[1] - a[1])) / (b[1] - a[1]) + a[0]
+      )
+        inside = !inside;
+    }
+    return inside;
+  };
+  return polygons.some((p) => inRing(p.outer) && !p.holes.some(inRing));
+}
+export function bounds(polygons: MultiPolygon) {
+  const vertices = polygons.flatMap((p) => p.outer);
+  return {
+    minX: Math.min(...vertices.map((p) => p[0])),
+    maxX: Math.max(...vertices.map((p) => p[0])),
+    minY: Math.min(...vertices.map((p) => p[1])),
+    maxY: Math.max(...vertices.map((p) => p[1])),
+  };
+}
 export function toGeoJSON(polygons: MultiPolygon) {
   return {
     type: 'Feature' as const,
@@ -171,4 +301,6 @@ export const SAMPLE_METRIC: Ring = [
   [35, 50],
   [0, 50],
 ];
-export const SAMPLE_PLOT = SAMPLE_METRIC.map(toGeographic);
+// Translated illustrative outline, wholly inside the sourced 2013 Y.7-21 GIS polygon.
+// This establishes historic zone geometry membership, not vacancy or a cadastral parcel.
+export const SAMPLE_PLOT = SAMPLE_METRIC.map(([x, y]) => toGeographic([x - 80, y - 30]));

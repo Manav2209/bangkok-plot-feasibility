@@ -7,10 +7,13 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "node --experimental-strip-types scripts/validate.ts"
   },
   "dependencies": {
-    "@bangkok/domain": "workspace:*"
+    "@bangkok/domain": "workspace:*",
+    "zod": "4.1.12"
   },
   "devDependencies": {
     "@bangkok/typescript-config": "workspace:*"

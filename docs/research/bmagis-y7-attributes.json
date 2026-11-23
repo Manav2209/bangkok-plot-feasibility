@@ -1,0 +1,783 @@
+{
+  "displayFieldName": "LUP_ZONE",
+  "fieldAliases": {
+    "LUP_USE": "รหัสการใช้ประโยชน์ที่ดินตามแผนผังเมืองรวม",
+    "LUP_ZONE": "ชื่อ/รหัสบริเวณ",
+    "LUP_SUBZON": "หมายเลขพื้นที่ของแต่ละบริเวณ",
+    "LUP_FAR": "อัตราส่วนพื้นที่อาคารต่อพื้นที่ดิน",
+    "LUP_OSR": "อัตราส่วนพื้นที่ว่างต่อพื้นที่อาคารรวม",
+    "LUP_F_SETB": "ที่ว่างด้านหน้าอาคาร",
+    "LUP_S_SETB": "ที่ว่างด้านข้างอาคาร",
+    "LUP_R_SETB": "ที่ว่างด้านหลังอาคาร",
+    "LUP_MIN_LO": "ขนาดแปลงที่ดินต่ำสุด",
+    "LUP_MAX_HE": "ความสูงสูงสุด",
+    "LUP_COLOUR": "สี",
+    "LUP_DEST": "การใช้ประโยชน์ที่ดินตามแผนผังเมืองรวม",
+    "LAW_URL": "ข้อกำหนดผังเมืองรวม",
+    "TABLE_URL": "ตารางสรุปการใช้ประโยชน์",
+    "SHAPE.AREA": "SHAPE.AREA",
+    "SHAPE.LEN": "SHAPE.LEN",
+    "OBJECTID": "OBJECTID",
+    "LUP_ID": "รหัสผัง"
+  },
+  "fields": [
+    {
+      "name": "LUP_USE",
+      "type": "esriFieldTypeInteger",
+      "alias": "รหัสการใช้ประโยชน์ที่ดินตามแผนผังเมืองรวม"
+    },
+    {
+      "name": "LUP_ZONE",
+      "type": "esriFieldTypeString",
+      "alias": "ชื่อ/รหัสบริเวณ",
+      "length": 5
+    },
+    {
+      "name": "LUP_SUBZON",
+      "type": "esriFieldTypeString",
+      "alias": "หมายเลขพื้นที่ของแต่ละบริเวณ",
+      "length": 10
+    },
+    {
+      "name": "LUP_FAR",
+      "type": "esriFieldTypeDouble",
+      "alias": "อัตราส่วนพื้นที่อาคารต่อพื้นที่ดิน"
+    },
+    {
+      "name": "LUP_OSR",
+      "type": "esriFieldTypeDouble",
+      "alias": "อัตราส่วนพื้นที่ว่างต่อพื้นที่อาคารรวม"
+    },
+    {
+      "name": "LUP_F_SETB",
+      "type": "esriFieldTypeDouble",
+      "alias": "ที่ว่างด้านหน้าอาคาร"
+    },
+    {
+      "name": "LUP_S_SETB",
+      "type": "esriFieldTypeDouble",
+      "alias": "ที่ว่างด้านข้างอาคาร"
+    },
+    {
+      "name": "LUP_R_SETB",
+      "type": "esriFieldTypeDouble",
+      "alias": "ที่ว่างด้านหลังอาคาร"
+    },
+    {
+      "name": "LUP_MIN_LO",
+      "type": "esriFieldTypeDouble",
+      "alias": "ขนาดแปลงที่ดินต่ำสุด"
+    },
+    {
+      "name": "LUP_MAX_HE",
+      "type": "esriFieldTypeDouble",
+      "alias": "ความสูงสูงสุด"
+    },
+    {
+      "name": "LUP_COLOUR",
+      "type": "esriFieldTypeString",
+      "alias": "สี",
+      "length": 100
+    },
+    {
+      "name": "LUP_DEST",
+      "type": "esriFieldTypeString",
+      "alias": "การใช้ประโยชน์ที่ดินตามแผนผังเมืองรวม",
+      "length": 100
+    },
+    {
+      "name": "LAW_URL",
+      "type": "esriFieldTypeString",
+      "alias": "ข้อกำหนดผังเมืองรวม",
+      "length": 100
+    },
+    {
+      "name": "TABLE_URL",
+      "type": "esriFieldTypeString",
+      "alias": "ตารางสรุปการใช้ประโยชน์",
+      "length": 100
+    },
+    {
+      "name": "SHAPE.AREA",
+      "type": "esriFieldTypeDouble",
+      "alias": "SHAPE.AREA"
+    },
+    {
+      "name": "SHAPE.LEN",
+      "type": "esriFieldTypeDouble",
+      "alias": "SHAPE.LEN"
+    },
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID"
+    },
+    {
+      "name": "LUP_ID",
+      "type": "esriFieldTypeInteger",
+      "alias": "รหัสผัง"
+    }
+  ],
+  "features": [
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๒๕",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 2735351.88255612,
+        "SHAPE.LEN": 9799.43338394332,
+        "OBJECTID": 51,
+        "LUP_ID": 586
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๒๓",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 2200560.2745069,
+        "SHAPE.LEN": 7784.4744199058805,
+        "OBJECTID": 43,
+        "LUP_ID": 383
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๓๐",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 1922959.31095312,
+        "SHAPE.LEN": 9710.63538206002,
+        "OBJECTID": 48,
+        "LUP_ID": 236
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๒๙",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 2292291.22915261,
+        "SHAPE.LEN": 8175.48990296249,
+        "OBJECTID": 71,
+        "LUP_ID": 430
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๒๘",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 1689888.65510576,
+        "SHAPE.LEN": 8115.0381176316605,
+        "OBJECTID": 79,
+        "LUP_ID": 380
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๒๒",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 5109470.686227,
+        "SHAPE.LEN": 10516.5833554191,
+        "OBJECTID": 83,
+        "LUP_ID": 303
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๒๗",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 1662339.08530035,
+        "SHAPE.LEN": 7167.585708084121,
+        "OBJECTID": 91,
+        "LUP_ID": 65
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๒๖",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 1371799.22333276,
+        "SHAPE.LEN": 5893.3215796434,
+        "OBJECTID": 92,
+        "LUP_ID": 125
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๒๑",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 3511368.5514672,
+        "SHAPE.LEN": 8701.20528263955,
+        "OBJECTID": 104,
+        "LUP_ID": 201
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๑๘",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 2444104.80570738,
+        "SHAPE.LEN": 8731.93035474385,
+        "OBJECTID": 106,
+        "LUP_ID": 90
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๒๐",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 975422.92063971,
+        "SHAPE.LEN": 4276.7170161711,
+        "OBJECTID": 113,
+        "LUP_ID": 113
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๑๙",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 2931070.41235341,
+        "SHAPE.LEN": 8816.48555368286,
+        "OBJECTID": 139,
+        "LUP_ID": 499
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๑๕",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 1244835.92118887,
+        "SHAPE.LEN": 5582.71889133155,
+        "OBJECTID": 175,
+        "LUP_ID": 139
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๑๗",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 2411762.82348517,
+        "SHAPE.LEN": 7206.254759039581,
+        "OBJECTID": 221,
+        "LUP_ID": 425
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๑๖",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 1065633.26722459,
+        "SHAPE.LEN": 4268.87330473461,
+        "OBJECTID": 230,
+        "LUP_ID": 424
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๑๓",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 2033820.52095809,
+        "SHAPE.LEN": 7186.7087455434,
+        "OBJECTID": 253,
+        "LUP_ID": 423
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๑๔",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 356028.176458205,
+        "SHAPE.LEN": 2463.06861787983,
+        "OBJECTID": 281,
+        "LUP_ID": 566
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๙",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 150017.873540255,
+        "SHAPE.LEN": 1652.1370245941403,
+        "OBJECTID": 313,
+        "LUP_ID": 349
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๑๒",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 1144090.07487426,
+        "SHAPE.LEN": 5181.804175236651,
+        "OBJECTID": 321,
+        "LUP_ID": 588
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๑๐",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 685385.74406231,
+        "SHAPE.LEN": 5146.20283397336,
+        "OBJECTID": 337,
+        "LUP_ID": 345
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๑๑",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 1823145.83928267,
+        "SHAPE.LEN": 6609.7012650224,
+        "OBJECTID": 323,
+        "LUP_ID": 585
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๘",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 317654.10723901,
+        "SHAPE.LEN": 2375.10651401954,
+        "OBJECTID": 381,
+        "LUP_ID": 212
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๗",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 945079.22276366,
+        "SHAPE.LEN": 4030.4812058454204,
+        "OBJECTID": 382,
+        "LUP_ID": 451
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๕",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 313180.808857975,
+        "SHAPE.LEN": 2749.77733699336,
+        "OBJECTID": 383,
+        "LUP_ID": 450
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๓",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 2332176.46257385,
+        "SHAPE.LEN": 8660.669442430431,
+        "OBJECTID": 415,
+        "LUP_ID": 492
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๔",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 2925983.89275665,
+        "SHAPE.LEN": 11718.047919439401,
+        "OBJECTID": 416,
+        "LUP_ID": 490
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๑",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 689592.60661068,
+        "SHAPE.LEN": 4219.38941515962,
+        "OBJECTID": 445,
+        "LUP_ID": 553
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๒",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 433385.631516865,
+        "SHAPE.LEN": 3029.9652136098503,
+        "OBJECTID": 493,
+        "LUP_ID": 28
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๖",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 3898265.08369951,
+        "SHAPE.LEN": 11398.2043448619,
+        "OBJECTID": 551,
+        "LUP_ID": 587
+      }
+    },
+    {
+      "attributes": {
+        "LUP_USE": 1120,
+        "LUP_ZONE": "ย.๗",
+        "LUP_SUBZON": "ย.๗-๒๔",
+        "LUP_FAR": 5.0,
+        "LUP_OSR": 6.0,
+        "LUP_F_SETB": 0.0,
+        "LUP_S_SETB": 0.0,
+        "LUP_R_SETB": 0.0,
+        "LUP_MIN_LO": 0.0,
+        "LUP_MAX_HE": 0.0,
+        "LUP_COLOUR": "เขตสีส้ม",
+        "LUP_DEST": "ที่ดินประเภทที่อยู่อาศัยหนาแน่นปานกลาง",
+        "LAW_URL": "https://drive.google.com/file/d/1HHTnLOXDBDplcghxPwzDfamRuUq1teQi/view?usp=sharing",
+        "TABLE_URL": "https://drive.google.com/file/d/1dyrwnPD7xkb5HqJSX4K2PHTDN5LTokYp/view?usp=sharing",
+        "SHAPE.AREA": 2841529.21675806,
+        "SHAPE.LEN": 10398.988645333,
+        "OBJECTID": 578,
+        "LUP_ID": 431
+      }
+    }
+  ]
+}

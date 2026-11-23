@@ -44,8 +44,25 @@ describe('massing accounting', () => {
         .filter((check) => check.id !== 'assumed-setback')
         .every((check) => check.status === 'unknown'),
     ).toBe(true);
-    expect(output.rulesetVersion).toBe('research-preview.1');
+    expect(output.rulesetVersion).toBe('research-preview.5');
     expect(output.status).not.toBe('pass');
+    for (const design of output.designs) {
+      expect(design.compliance).toBe('unknown');
+      expect(design.regulatedAreaM2).toBeNull();
+      expect(design.permeableAreaM2).toBeNull();
+      expect(
+        design.checks
+          .filter((check) => check.scope === 'statutory')
+          .every((check) => check.status === 'unknown'),
+      ).toBe(true);
+      expect(design.checks.find((check) => check.id === 'assumed-setback')).toMatchObject({
+        actual: 0,
+        required: 0,
+        status: 'pass',
+        scope: 'assumption',
+      });
+    }
+    expect(output.designs[0].checks).not.toBe(output.designs[1].checks);
   });
   it('returns only one concept when terraces would be identical', () => {
     const site = input();

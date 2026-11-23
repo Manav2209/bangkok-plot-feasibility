@@ -5,7 +5,7 @@ import {
   type Map,
 } from 'maplibre-gl';
 import * as THREE from 'three';
-import type { DesignResult, MultiPolygon, Point } from '@bangkok/domain';
+import type { DesignResult, EnvelopeSlice, MultiPolygon, Point } from '@bangkok/domain';
 import { ORIGIN, toGeographic } from '@bangkok/geometry';
 
 const origin = MercatorCoordinate.fromLngLat(ORIGIN);
@@ -55,16 +55,29 @@ export class ProposalLayer implements CustomLayerInterface {
     });
     this.group.clear();
   }
-  update(design: DesignResult | undefined, envelope: MultiPolygon, mode: string, heightM: number) {
+  update(
+    design: DesignResult | undefined,
+    envelope: MultiPolygon,
+    mode: string,
+    heightM: number,
+    slices?: EnvelopeSlice[],
+    overlay = false,
+  ) {
     this.clear();
     if (mode === 'existing') {
       this.map?.triggerRepaint();
       return;
     }
+    const envelopeFloors = (
+      slices?.length ? slices : [{ polygons: envelope, baseM: 0, topM: heightM }]
+    ).map((f) => ({ ...f, isEnvelope: true, use: undefined }));
+    const designFloors = (design?.floors ?? []).map((f) => ({ ...f, isEnvelope: false }));
     const floors =
       mode === 'envelope'
-        ? [{ polygons: envelope, baseM: 0, topM: heightM }]
-        : (design?.floors ?? []);
+        ? envelopeFloors
+        : overlay
+          ? [...designFloors, ...envelopeFloors]
+          : designFloors;
     for (const floor of floors) {
       for (const shape of shapes(floor.polygons)) {
         const geometry = new THREE.ExtrudeGeometry(shape, {
@@ -74,11 +87,11 @@ export class ProposalLayer implements CustomLayerInterface {
         const mesh = new THREE.Mesh(
           geometry,
           new THREE.MeshStandardMaterial({
-            color: mode === 'envelope' ? '#72a8cf' : '#168b79',
+            color: floor.isEnvelope ? '#72a8cf' : floor.use === 'parking' ? '#436d91' : '#168b79',
             roughness: 0.85,
-            transparent: mode === 'envelope',
-            opacity: mode === 'envelope' ? 0.23 : 1,
-            depthWrite: mode !== 'envelope',
+            transparent: floor.isEnvelope,
+            opacity: floor.isEnvelope ? 0.15 : 1,
+            depthWrite: !floor.isEnvelope,
             side: THREE.DoubleSide,
           }),
         );
@@ -86,7 +99,7 @@ export class ProposalLayer implements CustomLayerInterface {
         const lines = new THREE.LineSegments(
           new THREE.EdgesGeometry(geometry),
           new THREE.LineBasicMaterial({
-            color: mode === 'envelope' ? '#3676a5' : '#d9fff3',
+            color: floor.isEnvelope ? '#3676a5' : '#d9fff3',
             transparent: true,
             opacity: 0.8,
           }),

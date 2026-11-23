@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@bangkok/typescript-config": "workspace:*",
-    "@types/clipper-lib": "6.4.0"
+    "@types/clipper-lib": "6.4.0",
+    "fast-check": "4.3.0"
   }
 }

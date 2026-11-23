@@ -1,0 +1,540 @@
+{
+  "version": "research-preview.5",
+  "sources": [
+    {
+      "id": "bma-2013",
+      "title": "Bangkok comprehensive plan, B.E. 2556 (2013)",
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/76/law/tk10.pdf",
+      "locator": "Gazette 16 May 2013; clause 14, printed pages 27–29; definitions in clause 4",
+      "status": "located",
+      "note": "Historical official text inspected. Clause 14 supplies candidate Y.7 conditions; current applicability, site membership, amendments and exceptions remain unresolved.",
+      "issuer": "Royal Gazette; copy hosted by Bangkok Metropolitan Administration",
+      "retrievedOn": "2026-11-22",
+      "publishedOn": "2013-05-16",
+      "instrumentState": "historical"
+    },
+    {
+      "id": "phra-khanong-map",
+      "title": "BMA Phra Khanong district zoning map (2013)",
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/354/DISTRICT_CPD/2556/1009.pdf",
+      "locator": "Single-page district map; exact published polygon subsequently obtained from official BMA GIS",
+      "status": "located",
+      "note": "Official district map corroborated by BMA published GIS OBJECTID104/LUP_ID201, subzone Y.7-21. Whole-plot historical geometry membership is computed; cadastral boundaries, accuracy and current site applicability remain unresolved.",
+      "issuer": "Bangkok Metropolitan Administration",
+      "retrievedOn": "2026-11-22",
+      "instrumentState": "historical"
+    },
+    {
+      "id": "bma-draft-consultation-2026",
+      "title": "BMA fourth-revision draft consultation notice (2026)",
+      "url": "https://webportal.bangkok.go.th/cpud/page/sub/18974/1/2/info/541078",
+      "locator": "Notice describing the 10 August–9 November 2026 display and petition period",
+      "status": "located",
+      "note": "Evidence of a draft consultation, not enactment. It does not settle the complete applicable legal baseline as of 22 November 2026.",
+      "issuer": "BMA Department of City Planning and Urban Development",
+      "retrievedOn": "2026-11-22",
+      "instrumentState": "draft"
+    },
+    {
+      "id": "bma-building-2544",
+      "title": "Bangkok building-control ordinance B.E. 2544",
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/76/law/tk24.pdf",
+      "locator": "Clauses 49–55, 83–90; original ordinance, amendments not fully audited",
+      "status": "located",
+      "note": "Reference text inspected. Open-space, floor-dependent openings/setbacks, parking and access conditions need full applicability and amendment review.",
+      "issuer": "Bangkok Metropolitan Administration",
+      "retrievedOn": "2026-11-22",
+      "instrumentState": "historical"
+    },
+    {
+      "id": "mr55",
+      "title": "Ministerial Regulation No.55 (B.E.2543), consolidated government copy",
+      "url": "https://www.oic.go.th/FILEWEB/CABINFOCENTER71/DRAWER055/GENERAL/DATA0000/00000019.PDF",
+      "locator": "Clauses41–44,50–54; OCS consolidation footnotes identify58/61/66/68",
+      "status": "located",
+      "note": "More complete official consolidation identifies MR58/61/66/68. The study has no skywalk, grandfathered row building or qualifying rooftop object, so no such exclusion is granted. This source does not prove absence of later amendments or parcel applicability. Finite source audit: docs/research/legal-audit-05.md.",
+      "issuer": "Ministry of Interior; government-hosted consolidated copy",
+      "retrievedOn": "2026-11-23",
+      "instrumentState": "historical"
+    },
+    {
+      "id": "planning-act-2019",
+      "title": "Town Planning Act B.E.2562, continuation provision",
+      "url": "https://gov.bangkok.go.th/LegalDetail?id=da385b9a-0a61-4c8e-9efc-9fa303717b20",
+      "locator": "Section 111; BMA record gives effective date 25 November 2019",
+      "status": "verified",
+      "note": "Narrow conclusion: existing comprehensive plans continue pending replacement. Corroborated by the official BMA planning FAQ and 2026 draft consultation. This does not verify complete amendments, overlays or project compliance. Evidence chain: docs/research/legal-evidence-03.md section 8.",
+      "issuer": "Royal Gazette; official Bangkok government legal record",
+      "retrievedOn": "2026-11-22",
+      "effectiveDate": "2019-11-25",
+      "instrumentState": "current"
+    },
+    {
+      "id": "mr41-parking-reference",
+      "title": "BMA building-control manual: MR41 and MR7 parking guidance",
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/426/Manual/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1%E0%B8%AD%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%B3%E0%B8%AB%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B8%97%E0%B8%B5%E0%B9%88.pdf",
+      "locator": "Printed145–146: MR41clauses2–4 and MR7clause7",
+      "status": "located",
+      "note": "Official agency guidance locates 2.10m clear height to lowest soffit, circulation/turning and perpendicular/one-way interaction. Original MR41 Gazette and full amendment/application audit remain unresolved; numeric declarations and schematic geometry do not certify headroom or swept paths.",
+      "issuer": "Bangkok Metropolitan Administration",
+      "retrievedOn": "2026-11-23",
+      "instrumentState": "unknown"
+    },
+    {
+      "id": "mr33-amendments",
+      "title": "Ministerial Regulation33 with MR50 and MR69 amending instruments",
+      "url": "https://www.ocs.go.th/searchlaw/law-index/item/13926",
+      "locator": "Official OCS bundle: original MR33; MR50 pages21–23; MR69 pages30–38. Separate instruments, not an integrated consolidation.",
+      "status": "located",
+      "note": "High-rise and extra-large triggers are independent. MR50 replaces definitions and clauses2–8; MR69 adds emergency operating bays. Complete later amendment and parcel applicability audit remains open. See docs/research/legal-evidence-04.md.",
+      "issuer": "Office of the Council of State; Royal Gazette instruments",
+      "retrievedOn": "2026-11-23",
+      "instrumentState": "historical"
+    },
+    {
+      "id": "onep-eia-2023",
+      "title": "National EIA project notification (2023), ONEP official copy",
+      "url": "https://www.onep.go.th/wp-content/uploads/2024/01/2567-01-05-p240-mnre-announcement.pdf",
+      "locator": "Collective housing entry 31; project threshold screening, not approval",
+      "status": "located",
+      "note": "Official national source located. Unit count, statutory usable-area definition, amendments, other applicable categories and project-specific approvals remain unresolved. Do not substitute the 2025 Samui/Phangan local instrument.",
+      "issuer": "Ministry of Natural Resources and Environment; ONEP official copy",
+      "retrievedOn": "2026-11-22",
+      "instrumentState": "historical"
+    }
+  ],
+  "rules": [
+    {
+      "id": "legal-version",
+      "title": "Recognized comprehensive-plan baseline",
+      "kind": "evidence",
+      "evidence": "verified",
+      "implementation": "implemented",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["planning-act-2019"],
+      "explanation": "BMA identifies the 2013 comprehensive plan as the recognized planning baseline under continuation provisions. Partial amendments, overlays and site applicability remain separate checks.",
+      "originalThai": "ให้มีผลใช้บังคับได้ต่อไปจนกว่าจะมีประกาศกระทรวงมหาดไทยหรือข้อบัญญัติท้องถิ่น",
+      "interpretation": "Existing comprehensive plans continue pending replacement. This verifies a baseline, not complete applicable-law coverage.",
+      "legalVersion": "Town Planning Act B.E.2562; bounded baseline conclusion reviewed 22 November 2026",
+      "clause": "Section 111",
+      "dependencies": [],
+      "inputs": ["comprehensivePlanBaselineEstablished"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "evidence",
+      "exceptions": [],
+      "effect": "No geometry until the baseline is verified.",
+      "boundaryCases": [
+        "Missing evidence remains unknown.",
+        "Located historical sources alone cannot establish a pass."
+      ]
+    },
+    {
+      "id": "site-evidence",
+      "title": "Zone, parcel and vacancy",
+      "kind": "evidence",
+      "evidence": "unresolved",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["phra-khanong-map"],
+      "explanation": "The exact published 2013 zone polygon is bundled and checked against the entire outline. The sample is illustrative; parcel, vacancy, current applicability and overlays remain unresolved.",
+      "originalThai": null,
+      "interpretation": "Evaluate the whole plot against an authoritative boundary, with dated site evidence.",
+      "legalVersion": null,
+      "clause": null,
+      "dependencies": ["legal-version"],
+      "inputs": ["zoneMembershipVerified", "vacancyVerified", "overlaysVerified"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "review",
+      "exceptions": [],
+      "effect": "Gate site-dependent rules; preserve uncertain boundary status.",
+      "boundaryCases": [
+        "Missing evidence remains unknown.",
+        "Located historical sources alone cannot establish a pass."
+      ]
+    },
+    {
+      "id": "permitted-use",
+      "title": "Permitted building use",
+      "kind": "use",
+      "evidence": "unresolved",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["bma-2013"],
+      "explanation": "Condominium and office permission and applicable exceptions require separate review.",
+      "originalThai": null,
+      "interpretation": "Clause 14 is a candidate Y.7 source; use and size restrictions need complete interpretation.",
+      "legalVersion": null,
+      "clause": null,
+      "dependencies": ["legal-version", "site-evidence"],
+      "inputs": ["usePermissionVerified"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "review",
+      "exceptions": [],
+      "effect": "May exclude an otherwise geometrically possible use.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "floor-area-definition",
+      "title": "Regulated floor-area accounting",
+      "kind": "aggregate",
+      "evidence": "unresolved",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["bma-2013"],
+      "explanation": "Gross modelled floor area is known; statutory inclusions and exclusions are unresolved.",
+      "originalThai": null,
+      "interpretation": "Resolve the counting definition before deriving regulated FAR or OSR.",
+      "legalVersion": null,
+      "clause": null,
+      "dependencies": ["legal-version", "site-evidence"],
+      "inputs": ["floorAreaDefinitionVerified"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "review",
+      "exceptions": [],
+      "effect": "Produce a sourced inclusion/exclusion breakdown.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "far",
+      "title": "Maximum floor-area ratio",
+      "kind": "aggregate",
+      "evidence": "hypothesis",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["bma-2013"],
+      "explanation": "The historical Y.7 clause suggests FAR 5:1; applicability and accounting are unverified.",
+      "originalThai": "อัตราส่วนพื้นที่อาคารรวมต่อพื้นที่ดิน",
+      "interpretation": "Candidate clause 14 land-use condition (1); includes subdivision conditions.",
+      "legalVersion": "2013 historical instrument; current applicability unresolved",
+      "clause": "Clause 14, land-use condition (1), printed page 29",
+      "dependencies": ["legal-version", "site-evidence", "floor-area-definition"],
+      "inputs": ["regulatedFar"],
+      "params": {
+        "limit": 5
+      },
+      "paramUnits": {
+        "limit": "ratio"
+      },
+      "predicate": "at-most",
+      "exceptions": [
+        "Subdivision history and other building-control minima require separate review."
+      ],
+      "effect": "Set a regulated floor-area budget separately from the spatial envelope.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "open-space",
+      "title": "Minimum open-space ratio",
+      "kind": "aggregate",
+      "evidence": "hypothesis",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["bma-2013"],
+      "explanation": "The historical Y.7 clause suggests a 6% ratio to floor area; legal definitions and site applicability remain unresolved.",
+      "originalThai": "อัตราส่วนของที่ว่างต่อพื้นที่อาคารรวม",
+      "interpretation": "Candidate clause 14 condition (2), together with building-control minimums.",
+      "legalVersion": "2013 historical instrument; current applicability unresolved",
+      "clause": "Clause 14, land-use condition (2), printed page 29",
+      "dependencies": ["legal-version", "site-evidence", "floor-area-definition"],
+      "inputs": ["regulatedOpenSpaceRatio"],
+      "params": {
+        "limit": 0.06
+      },
+      "paramUnits": {
+        "limit": "ratio"
+      },
+      "predicate": "at-least",
+      "exceptions": [
+        "Subdivision history and other building-control minima require separate review."
+      ],
+      "effect": "Budget uncovered space against the verified denominator.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "uncovered-minimum",
+      "title": "Minimum uncovered ground",
+      "kind": "aggregate",
+      "evidence": "unresolved",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["bma-building-2544"],
+      "explanation": "Additional building-control minimum uncovered-space provisions have not been established.",
+      "originalThai": null,
+      "interpretation": "Do not substitute the OSR requirement for all uncovered-ground requirements.",
+      "legalVersion": null,
+      "clause": null,
+      "dependencies": ["legal-version", "site-evidence"],
+      "inputs": ["legalUncoveredM2"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "review",
+      "exceptions": [],
+      "effect": "Add an independently sourced ground-space minimum.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "permeability",
+      "title": "Permeable planting allocation",
+      "kind": "aggregate",
+      "evidence": "hypothesis",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["bma-2013"],
+      "explanation": "The historical clause suggests 50% of open space as permeable planting area; no allocation is currently modelled.",
+      "originalThai": "พื้นที่น้ําซึมผ่านได้",
+      "interpretation": "Candidate clause 14 condition (2); identify exactly what open space counts.",
+      "legalVersion": "2013 historical instrument; current applicability unresolved",
+      "clause": "Clause 14, land-use condition (2), printed page 29",
+      "dependencies": ["open-space"],
+      "inputs": ["permeableOpenSpaceRatio"],
+      "params": {
+        "limit": 0.5
+      },
+      "paramUnits": {
+        "limit": "ratio"
+      },
+      "predicate": "at-least",
+      "exceptions": [
+        "Subdivision history and other building-control minima require separate review."
+      ],
+      "effect": "Track explicit permeable allocation separately from uncovered ground.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "road-setback",
+      "title": "Road frontage setback",
+      "kind": "geometric",
+      "evidence": "unresolved",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["mr55", "bma-building-2544"],
+      "explanation": "Legally relevant road widths, all frontages, applicable setbacks and reference lines are unresolved.",
+      "originalThai": null,
+      "interpretation": "Research road-edge, centreline and right-of-way definitions for applicable building controls.",
+      "legalVersion": null,
+      "clause": null,
+      "dependencies": ["legal-version", "site-evidence"],
+      "inputs": ["frontagesVerified", "legalRoadWidthM", "frontageReferenceVerified"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "review",
+      "exceptions": [],
+      "effect": "Subtract sourced per-frontage exclusions.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "boundary-setback",
+      "title": "Side and rear setbacks",
+      "kind": "geometric",
+      "evidence": "unresolved",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["mr55", "bma-building-2544"],
+      "explanation": "A user-selected uniform inset is not a sourced boundary setback.",
+      "originalThai": null,
+      "interpretation": "Determine opening, height and building-type conditions and exceptions.",
+      "legalVersion": null,
+      "clause": null,
+      "dependencies": ["legal-version", "site-evidence"],
+      "inputs": ["edgeClassificationVerified", "buildingClassificationVerified"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "review",
+      "exceptions": [],
+      "effect": "Subtract per-edge exclusions at applicable heights.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "waterway-setback",
+      "title": "Waterway and overlay setbacks",
+      "kind": "geometric",
+      "evidence": "unresolved",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": [],
+      "explanation": "Waterway proximity and any other applicable spatial overlays have not been checked.",
+      "originalThai": null,
+      "interpretation": "Not applicable requires evidence that no relevant restriction affects this plot.",
+      "legalVersion": null,
+      "clause": null,
+      "dependencies": ["legal-version", "site-evidence"],
+      "inputs": ["waterwayApplicabilityVerified"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "review",
+      "exceptions": [],
+      "effect": "Use the sourced bank/reference geometry when applicable.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "height",
+      "title": "Absolute and road-relative height",
+      "kind": "geometric",
+      "evidence": "unresolved",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["mr55", "bma-building-2544"],
+      "explanation": "No statutory height cap or road-relative height plane is implemented.",
+      "originalThai": null,
+      "interpretation": "Determine the height measurement, reference line, factor and applicable exceptions.",
+      "legalVersion": null,
+      "clause": null,
+      "dependencies": ["road-setback", "classification"],
+      "inputs": ["heightLimitM", "roadHeightReferenceVerified"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "review",
+      "exceptions": [],
+      "effect": "Clip height slices against every applicable cap.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "classification",
+      "title": "Building classification",
+      "kind": "classification",
+      "evidence": "unresolved",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["mr33-amendments", "bma-building-2544"],
+      "explanation": "Located reference definitions independently trigger enhanced requirements at23m height or10000m² classification area. Research candidates are restricted below both using gross modelled area as a conservative study cap; statutory definitions, amendments and site applicability remain unverified.",
+      "originalThai": null,
+      "interpretation": "Research thresholds using independently measured height and regulated area.",
+      "legalVersion": null,
+      "clause": "MR33 clause1; MR50 replacement definitions and clauses2–8; MR69 clause29/1",
+      "dependencies": ["legal-version", "site-evidence"],
+      "inputs": ["classificationHeightM", "regulatedAreaM2"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "review",
+      "exceptions": [],
+      "effect": "Activate extra access, setback or review conditions.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "fire-access",
+      "title": "Fire and emergency access",
+      "kind": "access",
+      "evidence": "unresolved",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["bma-building-2544", "mr33-amendments"],
+      "explanation": "The public-front geometry proxy uses actual building facade and perimeter. Applicable non-fronting4+floor reference conditions can need12m open space; a generic6m buffer is insufficient. Connected routes, clear heights, turning, legal road status and enhanced-regime infrastructure remain unresolved.",
+      "originalThai": null,
+      "interpretation": "Check the applicable requirements and actual connected access geometry.",
+      "legalVersion": null,
+      "clause": "BMA52(6),53; amended MR33 clauses2–4 and29/1 for high-rise/extra-large",
+      "dependencies": ["classification", "road-setback"],
+      "inputs": ["fireAccessVerified"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "review",
+      "exceptions": [],
+      "effect": "Reserve access geometry and report unresolved access evidence.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "parking",
+      "title": "Parking requirements",
+      "kind": "access",
+      "evidence": "unresolved",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["bma-building-2544"],
+      "explanation": "Reference quantities and bounded perpendicular stall/aisle geometry are modelled. Individual2.4×5m stalls,6m aisles and service reserves do not establish ramps, swept paths, structural clearances, entrance location, legal connection or statutory parking approval.",
+      "originalThai": null,
+      "interpretation": "A massing with no verified parking provision cannot pass a parking requirement.",
+      "legalVersion": null,
+      "clause": "BMA83–90; perpendicular stall86(1), aisle88, corner entrance89, public-road connection90",
+      "dependencies": ["permitted-use", "floor-area-definition", "classification"],
+      "inputs": ["parkingProvisionVerified"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "review",
+      "exceptions": [],
+      "effect": "Reserve provision/circulation or explicitly leave feasibility unknown.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    },
+    {
+      "id": "environmental-review",
+      "title": "Environmental review triggers",
+      "kind": "classification",
+      "evidence": "unresolved",
+      "implementation": "unresolved",
+      "appliesTo": ["condominium", "office"],
+      "sourceIds": ["onep-eia-2023"],
+      "explanation": "Applicable environmental review thresholds and project-specific prerequisites are unresolved.",
+      "originalThai": null,
+      "interpretation": "A review trigger is a procedural requirement, not automatically a prohibition.",
+      "legalVersion": null,
+      "clause": null,
+      "dependencies": ["permitted-use", "classification"],
+      "inputs": ["environmentalReviewVerified"],
+      "params": {},
+      "paramUnits": {},
+      "predicate": "review",
+      "exceptions": [],
+      "effect": "Show triggered review and remaining evidence independently.",
+      "boundaryCases": [
+        "Below, exactly at, and above each sourced threshold.",
+        "Unknown applicability or a missing prerequisite remains unknown.",
+        "Evaluate the condition independently for each design."
+      ]
+    }
+  ]
+}

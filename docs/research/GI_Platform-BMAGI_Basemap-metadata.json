@@ -1,0 +1,354 @@
+{
+  "currentVersion": 11.5,
+  "cimVersion": "3.5.0",
+  "serviceDescription": "",
+  "mapName": "Layers",
+  "description": "",
+  "copyrightText": "",
+  "supportsDynamicLayers": true,
+  "layers": [
+    {
+      "id": 0,
+      "name": "สถานที่สำคัญ",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 4000,
+      "maxScale": 200,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPoint",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 1,
+      "name": "สถานีรถไฟ",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 4000,
+      "maxScale": 200,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPoint",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 2,
+      "name": "สถานีรถไฟฟ้า",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 4000,
+      "maxScale": 200,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPoint",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 3,
+      "name": "อาคาร",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 4000,
+      "maxScale": 200,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolygon",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 4,
+      "name": "เส้นขอบถนน",
+      "parentLayerId": -1,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolyline",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 5,
+      "name": "สิ่งก่อสร้าง",
+      "parentLayerId": -1,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolyline",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 6,
+      "name": "เส้นกึ่งกลางถนน",
+      "parentLayerId": -1,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolyline",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 7,
+      "name": "เส้นขอบทางพิเศษ",
+      "parentLayerId": -1,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolyline",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 8,
+      "name": "เส้นขอบทางยกระดับ",
+      "parentLayerId": -1,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 49000,
+      "maxScale": 200,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolyline",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 9,
+      "name": "เส้นทางรถไฟ",
+      "parentLayerId": -1,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolyline",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 10,
+      "name": "เส้นทางรถไฟฟ้า",
+      "parentLayerId": -1,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolyline",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 11,
+      "name": "เส้นทางน้ำ และเส้นขอบแหล่งน้ำ",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 20000,
+      "maxScale": 200,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolyline",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 12,
+      "name": "เส้นแนวเขตการปกครอง",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolyline",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 13,
+      "name": "พื้นที่ทางพิเศษ",
+      "parentLayerId": -1,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolygon",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 14,
+      "name": "พื้นที่ทางยกระดับ",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 25000,
+      "maxScale": 200,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolygon",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 15,
+      "name": "พื้นที่ถนน",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 25000,
+      "maxScale": 200,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolygon",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 16,
+      "name": "พื้นที่แหล่งน้ำ",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 25000,
+      "maxScale": 200,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolygon",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 17,
+      "name": "พื้นที่แขวงการปกครอง",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 100000,
+      "maxScale": 4000,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolygon",
+      "supportsDynamicLegends": true
+    },
+    {
+      "id": 18,
+      "name": "พื้นที่เขตการปกครอง",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 18000000,
+      "maxScale": 4001,
+      "type": "Feature Layer",
+      "geometryType": "esriGeometryPolygon",
+      "supportsDynamicLegends": true
+    }
+  ],
+  "tables": [],
+  "spatialReference": {
+    "wkid": 32647,
+    "latestWkid": 32647,
+    "xyTolerance": 0.001,
+    "zTolerance": 0.001,
+    "mTolerance": 0.001,
+    "falseX": -5120900,
+    "falseY": -9998100,
+    "xyUnits": 450445547.3910538,
+    "falseZ": -100000,
+    "zUnits": 10000,
+    "falseM": -100000,
+    "mUnits": 10000
+  },
+  "singleFusedMapCache": false,
+  "initialExtent": {
+    "xmin": 676080.301642472,
+    "ymin": 1524759.0340477948,
+    "xmax": 680477.6854372396,
+    "ymax": 1529243.7305171879,
+    "spatialReference": {
+      "wkid": 32647,
+      "latestWkid": 32647,
+      "xyTolerance": 0.001,
+      "zTolerance": 0.001,
+      "mTolerance": 0.001,
+      "falseX": -5120900,
+      "falseY": -9998100,
+      "xyUnits": 450445547.3910538,
+      "falseZ": -100000,
+      "zUnits": 10000,
+      "falseM": -100000,
+      "mUnits": 10000
+    }
+  },
+  "fullExtent": {
+    "xmin": 635379.9336,
+    "ymin": 1490971.2271,
+    "xmax": 720427.2665,
+    "ymax": 1558401.3419,
+    "spatialReference": {
+      "wkid": 32647,
+      "latestWkid": 32647,
+      "xyTolerance": 0.001,
+      "zTolerance": 0.001,
+      "mTolerance": 0.001,
+      "falseX": -5120900,
+      "falseY": -9998100,
+      "xyUnits": 450445547.3910538,
+      "falseZ": -100000,
+      "zUnits": 10000,
+      "falseM": -100000,
+      "mUnits": 10000
+    }
+  },
+  "datesInUnknownTimezone": false,
+  "minScale": 0,
+  "maxScale": 0,
+  "units": "esriMeters",
+  "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+  "documentInfo": {
+    "Title": "Untitled",
+    "Author": "Administrator",
+    "Comments": "",
+    "Subject": "",
+    "Category": "",
+    "Version": "10.1",
+    "AntialiasingMode": "None",
+    "TextAntialiasingMode": "Force",
+    "Keywords": ""
+  },
+  "supportsQueryDomains": true,
+  "capabilities": "Map,Query,Data",
+  "supportedQueryFormats": "JSON, geoJSON, PBF",
+  "exportTilesAllowed": false,
+  "referenceScale": 0.0,
+  "datumTransformations": [
+    {
+      "geoTransforms": [
+        {
+          "wkid": 108001,
+          "latestWkid": 1241,
+          "transformForward": true,
+          "name": "NAD_1927_To_NAD_1983_NADCON"
+        }
+      ]
+    },
+    {
+      "geoTransforms": [
+        {
+          "wkid": 108001,
+          "latestWkid": 1241,
+          "transformForward": false,
+          "name": "NAD_1927_To_NAD_1983_NADCON"
+        }
+      ]
+    }
+  ],
+  "supportsDatumTransformation": true,
+  "archivingInfo": {
+    "supportsHistoricMoment": false
+  },
+  "supportsClipping": true,
+  "supportsSpatialFilter": true,
+  "supportsTimeRelation": true,
+  "supportsQueryDataElements": true,
+  "mapUnits": {
+    "uwkid": 9001
+  },
+  "maxSelectionCount": 2000,
+  "maxRecordCount": 1000,
+  "maxImageHeight": 4096,
+  "maxImageWidth": 4096,
+  "supportedExtensions": "KmlServer"
+}

@@ -1,0 +1,231 @@
+{
+  "id": "y7-reference",
+  "version": "1.2",
+  "evidence": "hypothesis",
+  "notice": "Historical reference scenario; current amendments, exact zone and site applicability are unresolved. Numbers constrain a research study, not an allowed legal envelope.",
+  "sourceIds": ["bma-2013", "bma-building-2544", "mr55", "onep-eia-2023"],
+  "params": {
+    "straightRampMaxSlope": { "value": 15, "unit": "%", "ruleId": "parking" },
+    "curvedRampMaxSlope": { "value": 12, "unit": "%", "ruleId": "parking" },
+    "rampMaxFlightRise": { "value": 5, "unit": "m", "ruleId": "parking" },
+    "rampLandingLength": { "value": 6, "unit": "m", "ruleId": "parking" },
+    "curvedRampInnerRadius": { "value": 6, "unit": "m", "ruleId": "parking" },
+    "rampEntranceOffset": { "value": 6, "unit": "m", "ruleId": "parking" },
+    "parkingClearHeight": { "value": 2.1, "unit": "m", "ruleId": "parking" },
+    "extraLargeBuildingArea": { "value": 10000, "unit": "m²", "ruleId": "classification" },
+    "publicFrontPerimeterFraction": { "value": 0.125, "unit": "ratio", "ruleId": "fire-access" },
+    "publicFrontDistance": { "value": 20, "unit": "m", "ruleId": "fire-access" },
+    "nonFrontLowOpenWidth": { "value": 6, "unit": "m", "ruleId": "fire-access" },
+    "nonFrontHighOpenWidth": { "value": 12, "unit": "m", "ruleId": "fire-access" },
+    "nonFrontFloorTier": { "value": 3, "unit": "level", "ruleId": "fire-access" },
+    "nonFrontOpenLengthFraction": {
+      "value": 0.16666666666666666,
+      "unit": "ratio",
+      "ruleId": "fire-access"
+    },
+    "nonFrontAccessWidth": { "value": 6, "unit": "m", "ruleId": "fire-access" },
+    "nonFrontPassageHeight": { "value": 5, "unit": "m", "ruleId": "fire-access" },
+    "perpendicularStallWidth": { "value": 2.4, "unit": "m", "ruleId": "parking" },
+    "perpendicularStallLength": { "value": 5, "unit": "m", "ruleId": "parking" },
+    "perpendicularAisleWidth": { "value": 6, "unit": "m", "ruleId": "parking" },
+    "parkingAccessTrigger": {
+      "value": 15,
+      "unit": "spaces",
+      "ruleId": "parking"
+    },
+    "parkingPublicRoadMin": {
+      "value": 6,
+      "unit": "m",
+      "ruleId": "parking"
+    },
+    "oneWayDriveway": {
+      "value": 3.5,
+      "unit": "m",
+      "ruleId": "parking"
+    },
+    "twoWayDriveway": {
+      "value": 6,
+      "unit": "m",
+      "ruleId": "parking"
+    },
+    "far": {
+      "value": 5,
+      "unit": "ratio",
+      "ruleId": "far"
+    },
+    "osr": {
+      "value": 0.06,
+      "unit": "ratio",
+      "ruleId": "open-space"
+    },
+    "permeable": {
+      "value": 0.5,
+      "unit": "ratio",
+      "ruleId": "permeability"
+    },
+    "residentialUncovered": {
+      "value": 0.3,
+      "unit": "ratio",
+      "ruleId": "uncovered-minimum"
+    },
+    "officeUncovered": {
+      "value": 0.1,
+      "unit": "ratio",
+      "ruleId": "uncovered-minimum"
+    },
+    "boundaryLow": {
+      "value": 2,
+      "unit": "m",
+      "ruleId": "boundary-setback"
+    },
+    "boundaryHigh": {
+      "value": 3,
+      "unit": "m",
+      "ruleId": "boundary-setback"
+    },
+    "boundaryHeightTier": {
+      "value": 9,
+      "unit": "m",
+      "ruleId": "boundary-setback"
+    },
+    "boundaryFloorTier": {
+      "value": 3,
+      "unit": "level",
+      "ruleId": "boundary-setback"
+    },
+    "roadSmallWidth": {
+      "value": 6,
+      "unit": "m",
+      "ruleId": "road-setback"
+    },
+    "roadMediumWidth": {
+      "value": 10,
+      "unit": "m",
+      "ruleId": "road-setback"
+    },
+    "roadWideWidth": {
+      "value": 20,
+      "unit": "m",
+      "ruleId": "road-setback"
+    },
+    "roadCentrelineSmall": {
+      "value": 3,
+      "unit": "m",
+      "ruleId": "road-setback"
+    },
+    "roadCentrelineLarge": {
+      "value": 6,
+      "unit": "m",
+      "ruleId": "road-setback"
+    },
+    "roadWideSetback": {
+      "value": 2,
+      "unit": "m",
+      "ruleId": "road-setback"
+    },
+    "roadFraction": {
+      "value": 0.1,
+      "unit": "ratio",
+      "ruleId": "road-setback"
+    },
+    "roadHeightFactor": {
+      "value": 2,
+      "unit": "ratio",
+      "ruleId": "height"
+    },
+    "largeRoadBuildingFloors": {
+      "value": 2,
+      "unit": "level",
+      "ruleId": "road-setback"
+    },
+    "largeRoadBuildingHeight": {
+      "value": 8,
+      "unit": "m",
+      "ruleId": "road-setback"
+    },
+    "highRiseThreshold": {
+      "value": 23,
+      "unit": "m",
+      "ruleId": "classification"
+    },
+    "condoAreaWithoutAccess": {
+      "value": 10000,
+      "unit": "m²",
+      "ruleId": "permitted-use"
+    },
+    "condoExceptionRoadWidth": {
+      "value": 30,
+      "unit": "m",
+      "ruleId": "permitted-use"
+    },
+    "officeAreaWithoutAccess": {
+      "value": 1000,
+      "unit": "m²",
+      "ruleId": "permitted-use"
+    },
+    "officeExceptionRoadWidth": {
+      "value": 16,
+      "unit": "m",
+      "ruleId": "permitted-use"
+    },
+    "officeAreaMaximum": {
+      "value": 10000,
+      "unit": "m²",
+      "ruleId": "permitted-use"
+    },
+    "stationExceptionDistance": {
+      "value": 500,
+      "unit": "m",
+      "ruleId": "permitted-use"
+    },
+    "officeParkingTrigger": {
+      "value": 300,
+      "unit": "m²",
+      "ruleId": "parking"
+    },
+    "officeParkingAreaPerSpace": {
+      "value": 60,
+      "unit": "m²/space",
+      "ruleId": "parking"
+    },
+    "largeBuildingParkingAreaPerSpace": {
+      "value": 120,
+      "unit": "m²/space",
+      "ruleId": "parking"
+    },
+    "largeBuildingArea": {
+      "value": 2000,
+      "unit": "m²",
+      "ruleId": "classification"
+    },
+    "largeBuildingHeight": {
+      "value": 15,
+      "unit": "m",
+      "ruleId": "classification"
+    },
+    "largeBuildingIntermediateArea": {
+      "value": 1000,
+      "unit": "m²",
+      "ruleId": "classification"
+    },
+    "eiaResidentialArea": {
+      "value": 4000,
+      "unit": "m² usable",
+      "ruleId": "environmental-review"
+    },
+    "eiaResidentialUnits": {
+      "value": 80,
+      "unit": "units",
+      "ruleId": "environmental-review"
+    }
+  },
+  "designDefaults": {
+    "parkingSpaceAreaM2": 25,
+    "minWidthM": 6,
+    "minDepthM": 6,
+    "courtyardM": 8,
+    "coreFraction": 0.12,
+    "permeableFraction": 0.5,
+    "terraceStepM": 2
+  }
+}

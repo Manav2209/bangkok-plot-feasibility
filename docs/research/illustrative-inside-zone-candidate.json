@@ -1,0 +1,16 @@
+{
+  "offset": [-80, -30],
+  "distance": 85.44003745317531,
+  "margin": 10.744114493032304,
+  "anchor": [100.6095586006744, 13.697633653677455],
+  "plot": [
+    [100.6095586006744, 13.697633653677455],
+    [100.61011326553084, 13.697630044508534],
+    [100.61011511153838, 13.69790120335709],
+    [100.60988400093632, 13.697902707359342],
+    [100.60988523145382, 13.698083479942213],
+    [100.60956167631713, 13.698085585211853]
+  ],
+  "evidence": "Geometry-only illustrative candidate; vacancy, parcel boundaries and road frontage are NOT verified.",
+  "method": "Translation of existing 2500m² L-shape; 5m search grid; all vertices inside official polygon and minimum Euclidean segment-to-segment boundary clearance computed in EPSG:32647."
+}

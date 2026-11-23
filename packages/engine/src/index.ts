@@ -1,9 +1,15 @@
 import type { CalculationResult, DesignResult, MultiPolygon, SiteInput } from '@bangkok/domain';
-import { area, inset, toMetric, validateRing } from '@bangkok/geometry';
-import { RULESET_VERSION, unresolvedChecks } from '@bangkok/rules';
+import { area, difference, inset, toMetric, validateRing } from '@bangkok/geometry';
+import { complianceStatus, evaluateRules, RULESET_VERSION, unresolvedChecks } from '@bangkok/rules';
+import { calculateResearch } from './research';
 
 /** Deterministic geometry experiment. This intentionally cannot return a legal feasibility pass. */
-export function calculate(input: SiteInput): CalculationResult {
+export function calculate(input: SiteInput, prepared?: CalculationResult): CalculationResult {
+  if (input.researchConstraints) return calculateResearch(input, { prepared });
+  if (input.zone) {
+    const gate = calculateResearch({ ...input, researchConstraints: true }, { envelopeOnly: true });
+    if (gate.status === 'outside-zone') return gate;
+  }
   const start = performance.now();
   const result: CalculationResult = {
     revision: input.revision,
@@ -36,8 +42,8 @@ export function calculate(input: SiteInput): CalculationResult {
     );
     return finish();
   }
-  if (input.use !== 'condominium') {
-    result.diagnostics.push('Only the condominium massing experiment is available.');
+  if (!['condominium', 'office'].includes(input.use)) {
+    result.diagnostics.push('Choose condominium or office.');
     return finish();
   }
   if (
@@ -91,6 +97,32 @@ export function calculate(input: SiteInput): CalculationResult {
     }
     if (!floorGeometry.length) return null;
     const grossFloorAreaM2 = floorGeometry.reduce((sum, floor) => sum + floor.areaM2, 0);
+    const heightM = floorGeometry.at(-1)!.topM;
+    const outsideM2 = floorGeometry.reduce(
+      (sum, floor) => sum + area(difference(floor.polygons, result.envelope)),
+      0,
+    );
+    const checks = evaluateRules(input.use, {
+      modelledAreaM2: grossFloorAreaM2,
+      modelledHeightM: heightM,
+      modelledUncoveredM2: result.plotAreaM2 - area(footprint),
+      // Statutory quantities deliberately stay absent until sourced definitions exist.
+      regulatedAreaM2: null,
+      regulatedFar: null,
+      regulatedOpenSpaceRatio: null,
+      permeableOpenSpaceRatio: null,
+    });
+    checks.unshift({
+      id: 'assumed-setback',
+      title: 'Assumed boundary inset',
+      scope: 'assumption',
+      status: outsideM2 <= 0.01 ? 'pass' : 'fail',
+      actual: outsideM2,
+      required: 0,
+      unit: 'm² outside',
+      explanation: `Independently measured floor area outside the chosen ${setbackM} m uniform inset. A 0.01 m² clipping tolerance applies; this is a design assumption, not a statutory setback.`,
+      sourceIds: [],
+    });
     return {
       id,
       title: id === 'compact' ? 'Compact block' : 'Stepped terraces',
@@ -103,8 +135,12 @@ export function calculate(input: SiteInput): CalculationResult {
       footprintM2: area(footprint),
       grossFloorAreaM2,
       uncoveredM2: result.plotAreaM2 - area(footprint),
-      heightM: floorGeometry.at(-1)!.topM,
+      heightM,
       modelledFar: grossFloorAreaM2 / result.plotAreaM2,
+      regulatedAreaM2: null,
+      permeableAreaM2: null,
+      checks,
+      compliance: complianceStatus(checks),
     };
   }
   const compact = design('compact'),
@@ -116,16 +152,13 @@ export function calculate(input: SiteInput): CalculationResult {
     result.diagnostics.push(
       'These inputs produce only one distinct massing. Try at least three floors for terraces.',
     );
-  result.checks.unshift({
-    id: 'assumed-setback',
-    title: 'Assumed boundary inset',
-    status: 'pass',
-    actual: setbackM,
-    required: setbackM,
-    unit: 'm',
-    explanation:
-      'Applied geometrically to every plot edge. This checks the chosen assumption, not a statutory requirement.',
-    sourceIds: [],
-  });
+  // Kept for input-wide diagnostics; the UI uses the selected design's independent checks.
+  result.checks = result.designs[0]?.checks ?? unresolvedChecks();
   return finish();
+}
+
+export function calculateEnvelope(input: SiteInput): CalculationResult {
+  if (input.researchConstraints) return calculateResearch(input, { envelopeOnly: true });
+  const result = calculate(input);
+  return { ...result, designs: [] };
 }

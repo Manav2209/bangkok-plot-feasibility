@@ -10,3 +10,7 @@ coverage/
 test-results/
 playwright-report/
 .DS_Store
+artifacts/
+.sites-runtime/
+.sites-checkout/
+tmp/

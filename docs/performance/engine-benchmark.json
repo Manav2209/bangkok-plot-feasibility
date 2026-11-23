@@ -1,0 +1,93 @@
+{
+  "measuredAt": "2026-11-23T01:18:14.886Z",
+  "environment": {
+    "platform": "win32",
+    "release": "10.0.26300",
+    "cpu": "AMD Ryzen 3 5300U with Radeon Graphics         ",
+    "logicalCpus": 8,
+    "node": "v22.13.1",
+    "mode": "Node/Vite-loaded pure engine, no browser or GPU"
+  },
+  "contextFeatureCounts": {
+    "building": 1049,
+    "road": 178,
+    "waterway": 4
+  },
+  "limits": "Engine timings exclude worker startup, main-thread rendering and network. They are not full browser latency, initial-view or frame-rate measurements.",
+  "reports": [
+    {
+      "name": "ordinary-6-vertices",
+      "vertices": 6,
+      "samples": 20,
+      "wallMs": {
+        "median": 40.684400000000096,
+        "p95": 54.09619999999995,
+        "max": 63.44340000000011
+      },
+      "envelopeMs": {
+        "median": 3.474699999999757,
+        "p95": 6.076799999999821,
+        "max": 6.352900000000773
+      },
+      "designMs": {
+        "median": 37.148699999999735,
+        "p95": 47.980099999999766,
+        "max": 59.610499999999774
+      },
+      "searchTrials": 3888,
+      "designs": [
+        {
+          "id": "compact",
+          "title": "Compact block",
+          "gfaM2": 5801.9295839999995,
+          "floors": 6,
+          "legalCompliance": "unknown"
+        },
+        {
+          "id": "stepped",
+          "title": "Courtyard block",
+          "gfaM2": 5417.9295839999995,
+          "floors": 6,
+          "legalCompliance": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "stress-100-vertices",
+      "vertices": 100,
+      "samples": 20,
+      "wallMs": {
+        "median": 273.1286,
+        "p95": 311.7597999999998,
+        "max": 334.3667000000005
+      },
+      "envelopeMs": {
+        "median": 24.866700000000492,
+        "p95": 34.434400000000096,
+        "max": 38.32690000000002
+      },
+      "designMs": {
+        "median": 245.9447999999993,
+        "p95": 280.6953000000012,
+        "max": 295.9925000000003
+      },
+      "searchTrials": 4860,
+      "designs": [
+        {
+          "id": "compact",
+          "title": "Compact block",
+          "gfaM2": 9961.230384000006,
+          "floors": 6,
+          "legalCompliance": "unknown"
+        },
+        {
+          "id": "stepped",
+          "title": "Courtyard block",
+          "gfaM2": 9577.230384000004,
+          "floors": 6,
+          "legalCompliance": "unknown"
+        }
+      ]
+    }
+  ]
+}

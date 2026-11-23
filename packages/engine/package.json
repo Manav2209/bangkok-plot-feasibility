@@ -16,6 +16,7 @@
     "@bangkok/rules": "workspace:*"
   },
   "devDependencies": {
-    "@bangkok/typescript-config": "workspace:*"
+    "@bangkok/typescript-config": "workspace:*",
+    "fast-check": "4.3.0"
   }
 }

@@ -1,0 +1,46 @@
+{
+  "currentVersion": 11.5,
+  "folders": [],
+  "services": [
+    {
+      "name": "GI_Platform/BMAGI_Basemap_2562",
+      "type": "MapServer"
+    },
+    {
+      "name": "GI_Platform/BMAGI_Basemap_2564",
+      "type": "MapServer"
+    },
+    {
+      "name": "GI_Platform/BMAGI_Basemap",
+      "type": "MapServer"
+    },
+    {
+      "name": "GI_Platform/BMAGI_Planing_2024",
+      "type": "MapServer"
+    },
+    {
+      "name": "GI_Platform/BMAGI_Planing",
+      "type": "MapServer"
+    },
+    {
+      "name": "GI_Platform/BMAGI_Thematic",
+      "type": "MapServer"
+    },
+    {
+      "name": "GI_Platform/Export_Web_Map_Secured",
+      "type": "GPServer"
+    },
+    {
+      "name": "GI_Platform/ExportWebMap",
+      "type": "GPServer"
+    },
+    {
+      "name": "GI_Platform/ExportWebMapSecure2",
+      "type": "GPServer"
+    },
+    {
+      "name": "GI_Platform/ExportWebMapSecure",
+      "type": "GPServer"
+    }
+  ]
+}

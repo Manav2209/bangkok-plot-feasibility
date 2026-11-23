@@ -1,0 +1,1651 @@
+{
+ "currentVersion": 11.5,
+ "cimVersion": "3.5.0",
+ "id": 1,
+ "name": "แผนผังข้อกำหนดการใช้ประโยชน์ที่ดิน",
+ "type": "Feature Layer",
+ "description": "แผนผังข้อกำหนดการใช้ประโยชน์ที่ดินตามที่ได้จำแนกประเภทท้ายกฎกระทรวงให้ใช้บังครับผังเมืองรวมกรุงเทพมหานคร พ.ศ.2556",
+ "geometryType": "esriGeometryPolygon",
+ "sourceSpatialReference": {
+  "wkid": 32647,
+  "latestWkid": 32647,
+  "xyTolerance": 0.001,
+  "zTolerance": 0.001,
+  "mTolerance": 0.001,
+  "falseX": -5120900,
+  "falseY": -9998100,
+  "xyUnits": 10000,
+  "falseZ": 0,
+  "zUnits": 1,
+  "falseM": 0,
+  "mUnits": 1
+ },
+ "spatialReference": {
+  "wkid": 32647,
+  "latestWkid": 32647,
+  "xyTolerance": 0.001,
+  "zTolerance": 0.001,
+  "mTolerance": 0.001,
+  "falseX": -5120900,
+  "falseY": -9998100,
+  "xyUnits": 4.504455473910538E8,
+  "falseZ": -100000,
+  "zUnits": 10000,
+  "falseM": -100000,
+  "mUnits": 10000
+ },
+ "copyrightText": "สำนักผังเมืองกรุงเทพมหานคร",
+ "parentLayer": {
+  "id": 0,
+  "name": "ผังเมืองรวมกรุงเทพมหานคร"
+ },
+ "subLayers": [],
+ "minScale": 0,
+ "maxScale": 0,
+ "referenceScale": 0.0,
+ "drawingInfo": {
+  "renderer": {
+   "type": "uniqueValue",
+   "field1": "LUP_ZONE",
+   "uniqueValueGroups": [
+    {
+     "heading": "",
+     "classes": [
+      {
+       "label": "อยู่อาศัยหนาแน่นน้อย (ย.1-ย.4)",
+       "description": "อยู่อาศัยหนาแน่นน้อย (ย.1-ย.4)",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         255,
+         255,
+         0,
+         255
+        ],
+        "outline": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          255,
+          255,
+          255,
+          255
+         ],
+         "width": 0.4
+        }
+       },
+       "values": [
+        [
+         "ย.๑"
+        ],
+        [
+         "ย.๒"
+        ],
+        [
+         "ย.๓"
+        ],
+        [
+         "ย.๔"
+        ]
+       ]
+      },
+      {
+       "label": "อยู่อาศัยหนาแน่นปานกลาง (ย.5-ย.7)",
+       "description": "อยู่อาศัยหนาแน่นปานกลาง (ย.5-ย.7)",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         255,
+         152,
+         48,
+         255
+        ],
+        "outline": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          255,
+          255,
+          255,
+          255
+         ],
+         "width": 0.4
+        }
+       },
+       "values": [
+        [
+         "ย.๕"
+        ],
+        [
+         "ย.๖"
+        ],
+        [
+         "ย.๗"
+        ]
+       ]
+      },
+      {
+       "label": "อยู่อาศัยหนาแน่นมาก (ย.8-ย.9)",
+       "description": "อยู่อาศัยหนาแน่นมาก (ย.8-ย.9)",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         176,
+         88,
+         0,
+         255
+        ],
+        "outline": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          255,
+          255,
+          255,
+          255
+         ],
+         "width": 0.4
+        }
+       },
+       "values": [
+        [
+         "ย.๑๐"
+        ],
+        [
+         "ย.๘"
+        ],
+        [
+         "ย.๙"
+        ]
+       ]
+      },
+      {
+       "label": "พาณิชยกรรม (พ.1-พ5)",
+       "description": "พาณิชยกรรม (พ.1-พ5)",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         255,
+         33,
+         33,
+         255
+        ],
+        "outline": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          255,
+          255,
+          255,
+          255
+         ],
+         "width": 0.4
+        }
+       },
+       "values": [
+        [
+         "พ.๑"
+        ],
+        [
+         "พ.๒"
+        ],
+        [
+         "พ.๓"
+        ],
+        [
+         "พ.๔"
+        ],
+        [
+         "พ.๕"
+        ]
+       ]
+      },
+      {
+       "label": "อุตสาหกรรม (อ1-อ.2)",
+       "description": "อุตสาหกรรม (อ1-อ.2)",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         179,
+         97,
+         255,
+         255
+        ],
+        "outline": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          255,
+          255,
+          255,
+          255
+         ],
+         "width": 0.4
+        }
+       },
+       "values": [
+        [
+         "อ.๑"
+        ],
+        [
+         "อ.๒"
+        ]
+       ]
+      },
+      {
+       "label": "คลังสินค้า (อ.3)",
+       "description": "คลังสินค้า (อ.3)",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         255,
+         176,
+         255,
+         255
+        ],
+        "outline": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          255,
+          255,
+          255,
+          255
+         ],
+         "width": 0.4
+        }
+       },
+       "values": [
+        [
+         "อ.๓"
+        ]
+       ]
+      },
+      {
+       "label": " อนุรักษ์ชนบท และเกษตรกรรม (ก.1-ก.3)",
+       "description": " อนุรักษ์ชนบท และเกษตรกรรม (ก.1-ก.3)",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSBackwardDiagonal",
+        "color": [
+         0,
+         128,
+         0,
+         255
+        ],
+        "outline": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          255,
+          255,
+          255,
+          255
+         ],
+         "width": 1
+        }
+       },
+       "values": [
+        [
+         "ก.๓"
+        ],
+        [
+         "ก.๑"
+        ],
+        [
+         "ก.๒"
+        ]
+       ]
+      },
+      {
+       "label": "อนุรักษ์ส่งเสริมเอกลักษณ์วัฒนธรรมไทย (ศ.1-ศ.2)",
+       "description": "อนุรักษ์ส่งเสริมเอกลักษณ์วัฒนธรรมไทย (ศ.1-ศ.2)",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         255,
+         221,
+         209,
+         255
+        ],
+        "outline": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          255,
+          255,
+          255,
+          255
+         ],
+         "width": 0.4
+        }
+       },
+       "values": [
+        [
+         "ศ.๑"
+        ],
+        [
+         "ศ.๒"
+        ]
+       ]
+      },
+      {
+       "label": "ที่ดินประเภทชนบทและเกษตรกรรม( ก.4-ก.5)",
+       "description": "ที่ดินประเภทชนบทและเกษตรกรรม( ก.4-ก.5)",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         0,
+         128,
+         0,
+         255
+        ],
+        "outline": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          255,
+          255,
+          255,
+          255
+         ],
+         "width": 0.4
+        }
+       },
+       "values": [
+        [
+         "ก.๕"
+        ],
+        [
+         "ก.๔"
+        ]
+       ]
+      },
+      {
+       "label": "ราชการ การสาธารณูปโภค (ส.)",
+       "description": "ราชการ การสาธารณูปโภค (ส.)",
+       "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         0,
+         112,
+         255,
+         255
+        ],
+        "outline": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          101,
+          199,
+          234,
+          255
+         ],
+         "width": 0.4
+        }
+       },
+       "values": [
+        [
+         "ส."
+        ],
+        [
+         "ส"
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "uniqueValueInfos": [
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       255,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ย.๑",
+     "label": "อยู่อาศัยหนาแน่นน้อย (ย.1-ย.4)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       255,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ย.๒",
+     "label": "อยู่อาศัยหนาแน่นน้อย (ย.1-ย.4)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       255,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ย.๓",
+     "label": "อยู่อาศัยหนาแน่นน้อย (ย.1-ย.4)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       255,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ย.๔",
+     "label": "อยู่อาศัยหนาแน่นน้อย (ย.1-ย.4)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       152,
+       48,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ย.๕",
+     "label": "อยู่อาศัยหนาแน่นปานกลาง (ย.5-ย.7)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       152,
+       48,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ย.๖",
+     "label": "อยู่อาศัยหนาแน่นปานกลาง (ย.5-ย.7)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       152,
+       48,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ย.๗",
+     "label": "อยู่อาศัยหนาแน่นปานกลาง (ย.5-ย.7)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       176,
+       88,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ย.๑๐",
+     "label": "อยู่อาศัยหนาแน่นมาก (ย.8-ย.9)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       176,
+       88,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ย.๘",
+     "label": "อยู่อาศัยหนาแน่นมาก (ย.8-ย.9)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       176,
+       88,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ย.๙",
+     "label": "อยู่อาศัยหนาแน่นมาก (ย.8-ย.9)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       33,
+       33,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "พ.๑",
+     "label": "พาณิชยกรรม (พ.1-พ5)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       33,
+       33,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "พ.๒",
+     "label": "พาณิชยกรรม (พ.1-พ5)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       33,
+       33,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "พ.๓",
+     "label": "พาณิชยกรรม (พ.1-พ5)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       33,
+       33,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "พ.๔",
+     "label": "พาณิชยกรรม (พ.1-พ5)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       33,
+       33,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "พ.๕",
+     "label": "พาณิชยกรรม (พ.1-พ5)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       179,
+       97,
+       255,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "อ.๑",
+     "label": "อุตสาหกรรม (อ1-อ.2)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       179,
+       97,
+       255,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "อ.๒",
+     "label": "อุตสาหกรรม (อ1-อ.2)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       176,
+       255,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "อ.๓",
+     "label": "คลังสินค้า (อ.3)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSBackwardDiagonal",
+      "color": [
+       0,
+       128,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 1
+      }
+     },
+     "value": "ก.๓",
+     "label": " อนุรักษ์ชนบท และเกษตรกรรม (ก.1-ก.3)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSBackwardDiagonal",
+      "color": [
+       0,
+       128,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 1
+      }
+     },
+     "value": "ก.๑",
+     "label": " อนุรักษ์ชนบท และเกษตรกรรม (ก.1-ก.3)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSBackwardDiagonal",
+      "color": [
+       0,
+       128,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 1
+      }
+     },
+     "value": "ก.๒",
+     "label": " อนุรักษ์ชนบท และเกษตรกรรม (ก.1-ก.3)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       221,
+       209,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ศ.๑",
+     "label": "อนุรักษ์ส่งเสริมเอกลักษณ์วัฒนธรรมไทย (ศ.1-ศ.2)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       221,
+       209,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ศ.๒",
+     "label": "อนุรักษ์ส่งเสริมเอกลักษณ์วัฒนธรรมไทย (ศ.1-ศ.2)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       128,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ก.๕",
+     "label": "ที่ดินประเภทชนบทและเกษตรกรรม( ก.4-ก.5)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       128,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        255,
+        255,
+        255,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ก.๔",
+     "label": "ที่ดินประเภทชนบทและเกษตรกรรม( ก.4-ก.5)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       112,
+       255,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        101,
+        199,
+        234,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ส.",
+     "label": "ราชการ การสาธารณูปโภค (ส.)"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       0,
+       112,
+       255,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        101,
+        199,
+        234,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "ส",
+     "label": "ราชการ การสาธารณูปโภค (ส.)"
+    }
+   ],
+   "fieldDelimiter": ",",
+   "authoringInfo": {
+    "colorRamp": {
+     "type": "multipart",
+     "colorRamps": [
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        242,
+        252,
+        204,
+        255
+       ],
+       "toColor": [
+        242,
+        252,
+        204,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        188,
+        179,
+        252,
+        255
+       ],
+       "toColor": [
+        188,
+        179,
+        252,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        182,
+        188,
+        255
+       ],
+       "toColor": [
+        252,
+        182,
+        188,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        179,
+        230,
+        252,
+        255
+       ],
+       "toColor": [
+        179,
+        230,
+        252,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        215,
+        251,
+        255
+       ],
+       "toColor": [
+        252,
+        215,
+        251,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        179,
+        252,
+        224,
+        255
+       ],
+       "toColor": [
+        179,
+        252,
+        224,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        217,
+        197,
+        255
+       ],
+       "toColor": [
+        252,
+        217,
+        197,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        195,
+        252,
+        179,
+        255
+       ],
+       "toColor": [
+        195,
+        252,
+        179,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        242,
+        182,
+        252,
+        255
+       ],
+       "toColor": [
+        242,
+        182,
+        252,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        212,
+        217,
+        252,
+        255
+       ],
+       "toColor": [
+        212,
+        217,
+        252,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        182,
+        218,
+        255
+       ],
+       "toColor": [
+        252,
+        182,
+        218,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        212,
+        252,
+        250,
+        255
+       ],
+       "toColor": [
+        212,
+        252,
+        250,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        210,
+        219,
+        255
+       ],
+       "toColor": [
+        252,
+        210,
+        219,
+        255
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "scaleSymbols": true,
+  "transparency": 40,
+  "labelingInfo": [
+   {
+    "labelExpression": "[LUP_ZONE]",
+    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+    "removeDuplicates": "none",
+    "multiPart": "labelPerPart",
+    "deconflictionStrategy": "dynamic",
+    "repeatLabel": false,
+    "allowOverrun": true,
+    "stackLabel": false,
+    "useCodedValues": true,
+    "maxScale": 0,
+    "minScale": 50000,
+    "name": "Default",
+    "priority": 4,
+    "symbol": {
+     "type": "esriTS",
+     "color": [
+      0,
+      0,
+      0,
+      255
+     ],
+     "backgroundColor": null,
+     "borderLineColor": null,
+     "borderLineSize": null,
+     "verticalAlignment": "bottom",
+     "horizontalAlignment": "center",
+     "rightToLeft": false,
+     "angle": 0,
+     "xoffset": 0,
+     "yoffset": 0,
+     "kerning": true,
+     "haloColor": [
+      255,
+      255,
+      255,
+      255
+     ],
+     "haloSize": 2,
+     "font": {
+      "family": "Angsana New",
+      "size": 16,
+      "style": "normal",
+      "weight": "bold",
+      "decoration": "none"
+     }
+    }
+   }
+  ]
+ },
+ "defaultVisibility": false,
+ "extent": {
+  "xmin": 643529.4994,
+  "ymin": 1491241.3322,
+  "xmax": 709557.5863,
+  "ymax": 1543360.7234,
+  "spatialReference": {
+   "wkid": 32647,
+   "latestWkid": 32647,
+   "xyTolerance": 0.001,
+   "zTolerance": 0.001,
+   "mTolerance": 0.001,
+   "falseX": -5120900,
+   "falseY": -9998100,
+   "xyUnits": 4.504455473910538E8,
+   "falseZ": -100000,
+   "zUnits": 10000,
+   "falseM": -100000,
+   "mUnits": 10000
+  }
+ },
+ "hasAttachments": false,
+ "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+ "displayField": "LUP_ZONE",
+ "typeIdField": null,
+ "subtypeFieldName": null,
+ "subtypeField": null,
+ "defaultSubtypeCode": null,
+ "fields": [
+  {
+   "name": "LUP_USE",
+   "type": "esriFieldTypeInteger",
+   "alias": "รหัสการใช้ประโยชน์ที่ดินตามแผนผังเมืองรวม",
+   "domain": {
+    "type": "codedValue",
+    "name": "LUP_USE",
+    "description": "DESCRIPTION",
+    "codedValues": [
+     {
+      "name": "ที่อยู่อาศัยหนาแน่นน้อย",
+      "code": 1110
+     },
+     {
+      "name": "ที่อยู่อาศัยหนาแน่นปานกลาง",
+      "code": 1120
+     },
+     {
+      "name": "ที่อยู่อาศัยหนาแน่นมาก",
+      "code": 1130
+     },
+     {
+      "name": "พาณิชกรรม",
+      "code": 2000
+     },
+     {
+      "name": "อุตสาหกรรมและคลังสินค้า",
+      "code": 3200
+     },
+     {
+      "name": "คลังสินค้า",
+      "code": 3300
+     },
+     {
+      "name": "อนุรักษ์ชนบทและเกษตรกรรม",
+      "code": 8700
+     },
+     {
+      "name": "ชนบทและเกษตรกรรม",
+      "code": 8600
+     },
+     {
+      "name": "อนุรักษ์เพื่อส่งเสริมเอกลักษณ์ศิลปวัฒนธรรมไทย",
+      "code": 7200
+     },
+     {
+      "name": "สถาบันราชการ การสาธารณูปโภคและสาธารณูปการ",
+      "code": 6000
+     },
+     {
+      "name": "อื่น ๆ",
+      "code": 9998
+     }
+    ],
+    "mergePolicy": "esriMPTDefaultValue",
+    "splitPolicy": "esriSPTDefaultValue"
+   }
+  },
+  {
+   "name": "LUP_ZONE",
+   "type": "esriFieldTypeString",
+   "alias": "ชื่อ/รหัสบริเวณ",
+   "length": 5,
+   "domain": null
+  },
+  {
+   "name": "LUP_SUBZON",
+   "type": "esriFieldTypeString",
+   "alias": "หมายเลขพื้นที่ของแต่ละบริเวณ",
+   "length": 10,
+   "domain": null
+  },
+  {
+   "name": "LUP_FAR",
+   "type": "esriFieldTypeDouble",
+   "alias": "อัตราส่วนพื้นที่อาคารต่อพื้นที่ดิน",
+   "domain": null
+  },
+  {
+   "name": "LUP_OSR",
+   "type": "esriFieldTypeDouble",
+   "alias": "อัตราส่วนพื้นที่ว่างต่อพื้นที่อาคารรวม",
+   "domain": null
+  },
+  {
+   "name": "LUP_F_SETB",
+   "type": "esriFieldTypeDouble",
+   "alias": "ที่ว่างด้านหน้าอาคาร",
+   "domain": null
+  },
+  {
+   "name": "LUP_S_SETB",
+   "type": "esriFieldTypeDouble",
+   "alias": "ที่ว่างด้านข้างอาคาร",
+   "domain": null
+  },
+  {
+   "name": "LUP_R_SETB",
+   "type": "esriFieldTypeDouble",
+   "alias": "ที่ว่างด้านหลังอาคาร",
+   "domain": null
+  },
+  {
+   "name": "LUP_MIN_LO",
+   "type": "esriFieldTypeDouble",
+   "alias": "ขนาดแปลงที่ดินต่ำสุด",
+   "domain": null
+  },
+  {
+   "name": "LUP_MAX_HE",
+   "type": "esriFieldTypeDouble",
+   "alias": "ความสูงสูงสุด",
+   "domain": null
+  },
+  {
+   "name": "LUP_COLOUR",
+   "type": "esriFieldTypeString",
+   "alias": "สี",
+   "length": 100,
+   "domain": null
+  },
+  {
+   "name": "LUP_DEST",
+   "type": "esriFieldTypeString",
+   "alias": "การใช้ประโยชน์ที่ดินตามแผนผังเมืองรวม",
+   "length": 100,
+   "domain": null
+  },
+  {
+   "name": "LAW_URL",
+   "type": "esriFieldTypeString",
+   "alias": "ข้อกำหนดผังเมืองรวม",
+   "length": 100,
+   "domain": null
+  },
+  {
+   "name": "TABLE_URL",
+   "type": "esriFieldTypeString",
+   "alias": "ตารางสรุปการใช้ประโยชน์",
+   "length": 100,
+   "domain": null
+  },
+  {
+   "name": "SHAPE.AREA",
+   "type": "esriFieldTypeDouble",
+   "alias": "SHAPE.AREA",
+   "domain": null
+  },
+  {
+   "name": "SHAPE.LEN",
+   "type": "esriFieldTypeDouble",
+   "alias": "SHAPE.LEN",
+   "domain": null
+  },
+  {
+   "name": "OBJECTID",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID",
+   "domain": null
+  },
+  {
+   "name": "LUP_ID",
+   "type": "esriFieldTypeInteger",
+   "alias": "รหัสผัง",
+   "domain": null
+  },
+  {
+   "name": "SHAPE",
+   "type": "esriFieldTypeGeometry",
+   "alias": "SHAPE",
+   "domain": null
+  }
+ ],
+ "geometryField": {
+  "name": "SHAPE",
+  "type": "esriFieldTypeGeometry",
+  "alias": "SHAPE"
+ },
+ "indexes": [
+  {
+   "name": "R44_SDE_ROWID_UK",
+   "fields": "OBJECTID",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  },
+  {
+   "name": "A30_IX1",
+   "fields": "SHAPE",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  }
+ ],
+ "subtypes": [],
+ "relationships": [],
+ "canModifyLayer": true,
+ "canScaleSymbols": false,
+ "hasLabels": true,
+ "capabilities": "Map,Query,Data",
+ "maxRecordCount": 1000,
+ "maxSelectionCount": 2000,
+ "supportsStatistics": true,
+ "supportsExceedsLimitStatistics": true,
+ "supportsAdvancedQueries": true,
+ "supportedQueryFormats": "JSON, geoJSON, PBF",
+ "isDataVersioned": false,
+ "ownershipBasedAccessControlForFeatures": {"allowOthersToQuery": true},
+ "useStandardizedQueries": true,
+ "supportedSpatialRelationships": [
+  "esriSpatialRelIntersects",
+  "esriSpatialRelContains",
+  "esriSpatialRelCrosses",
+  "esriSpatialRelEnvelopeIntersects",
+  "esriSpatialRelIndexIntersects",
+  "esriSpatialRelOverlaps",
+  "esriSpatialRelTouches",
+  "esriSpatialRelWithin",
+  "esriSpatialRelRelation"
+ ],
+ "advancedQueryCapabilities": {
+  "useStandardizedQueries": true,
+  "supportsStatistics": true,
+  "supportsPercentileStatistics": true,
+  "supportsHavingClause": true,
+  "supportsOrderBy": true,
+  "supportsDistinct": true,
+  "supportsCountDistinct": true,
+  "supportsAdvancedQueryRelated": true,
+  "supportsQueryRelatedPagination": true,
+  "supportsPagination": true,
+  "supportsLod": false,
+  "supportsQueryWithLodSR": false,
+  "supportsTrueCurve": true,
+  "supportsQueryWithDatumTransformation": true,
+  "supportsReturningQueryExtent": true,
+  "supportsQueryWithDistance": true,
+  "supportsSqlExpression": true,
+  "supportsTimeRelation": true,
+  "supportsSqlFormat": false,
+  "supportsQueryAnalytic": true,
+  "supportsCurrentUserQueries": true
+ },
+ "supportsDatumTransformation": true,
+ "advancedQueryAnalyticCapabilities": {
+  "supportsLinearRegression": true,
+  "supportsAsync": false,
+  "supportsPercentileAnalytic": true
+ },
+ "dateFieldsTimeReference": null,
+ "preferredTimeReference": null,
+ "datesInUnknownTimezone": false,
+ "hasGeometryProperties": true,
+ "geometryProperties": {
+  "shapeAreaFieldName": "SHAPE.AREA",
+  "shapeLengthFieldName": "SHAPE.LEN",
+  "units": "esriMeters",
+  "mapUnits": {"uwkid": 9001}
+ },
+ "hasMetadata": false,
+ "isDataArchived": false,
+ "archivingInfo": {
+  "supportsQueryWithHistoricMoment": false,
+  "startArchivingMoment": -1
+ },
+ "supportsCoordinatesQuantization": true,
+ "supportsDynamicLegends": true
+}

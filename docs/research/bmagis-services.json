@@ -1,0 +1,84 @@
+{
+  "currentVersion": 11.5,
+  "folders": [
+    "APEC2022",
+    "Basemap_Service",
+    "BMA3D",
+    "BMA_DATA_CONNECT",
+    "BMA_MSD",
+    "BMA_Parcel",
+    "BMA_Property",
+    "BMACPUDCDC",
+    "Community",
+    "DOL",
+    "EXTERNAL",
+    "FDBMA",
+    "GI_Platform",
+    "HID",
+    "KPI2567",
+    "Plan4BKK",
+    "PM25",
+    "PWD",
+    "RISK",
+    "ROAD",
+    "Taxmap",
+    "TEST",
+    "test_mike",
+    "Thematic",
+    "Utilities"
+  ],
+  "services": [
+    {
+      "name": "BMAIndexIndian1975Map",
+      "type": "MapServer"
+    },
+    {
+      "name": "BMAIndexMap",
+      "type": "MapServer"
+    },
+    {
+      "name": "BMAIndexWGS1984Map",
+      "type": "MapServer"
+    },
+    {
+      "name": "ExportWebMap_1081",
+      "type": "GPServer"
+    },
+    {
+      "name": "ExportWebMap_115_3",
+      "type": "GPServer"
+    },
+    {
+      "name": "ExportWebMap_115_4",
+      "type": "GPServer"
+    },
+    {
+      "name": "ExportWebMap_MIKE2",
+      "type": "GPServer"
+    },
+    {
+      "name": "ExportWebMap_NEW_1081",
+      "type": "GPServer"
+    },
+    {
+      "name": "ExportWebMap_sync_NEW_1081",
+      "type": "GPServer"
+    },
+    {
+      "name": "ExportWebMap_Test",
+      "type": "GPServer"
+    },
+    {
+      "name": "ExportWebMap",
+      "type": "GPServer"
+    },
+    {
+      "name": "SampleWorldCities",
+      "type": "MapServer"
+    },
+    {
+      "name": "Test_Print_Map_service",
+      "type": "MapServer"
+    }
+  ]
+}

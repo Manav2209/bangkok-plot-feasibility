@@ -1,0 +1,54 @@
+{
+  "measuredAt": "2026-11-23T01:16:42.336Z",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "browser": "151.0.7922.34",
+  "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x0000164C) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "softwareRendering": false,
+  "network": {
+    "downloadMbps": 10,
+    "uploadMbps": 5,
+    "latencyMs": 40,
+    "coldBrowserContext": true
+  },
+  "initialUsableMs": 3527.9338000000002,
+  "completedEditMs": [
+    224.40000000596046, 249.30000001192093, 261.8999999910593, 223.20000000298023
+  ],
+  "completedEditDriverMs": [363.39600000000064, 430.7560999999996, 486.1749, 462.89190000000053],
+  "boundaryEdit": {
+    "vertices": 6,
+    "completedEditMs": 319.59999999403954,
+    "driverElapsedMs": 637.4516000000003
+  },
+  "stress": {
+    "vertices": 100,
+    "reloadMs": 1771.6616999999987,
+    "completedEditMs": 396.69999998807907,
+    "driverElapsedMs": 596.7571000000007,
+    "boundaryEditMs": 499.80000001192093,
+    "boundaryEditDriverMs": 727.7888000000003
+  },
+  "cameraFit": {
+    "renderedFrames": 48,
+    "spanMs": 845.1000000089407,
+    "fps": 55.61472015087299,
+    "scope": "One 500 ms camera-fit transition, actual MapLibre render events; not a sustained hardware certification."
+  },
+  "idle": {
+    "windowMs": 500,
+    "renderedFrames": 0
+  },
+  "targets": {
+    "initialUnder5s": true,
+    "ordinaryEditUnder500ms": true,
+    "stressEditUnder500ms": true,
+    "ordinaryBoundaryEditUnder500ms": true,
+    "stressBoundaryEditUnder500ms": true,
+    "cameraHardware30fps": true,
+    "idleNoRepaint": true
+  },
+  "limits": "completedEditMs measures the input handler to a MapLibre rendered frame whose proposal geometry carries the current calculation revision. Driver/action/polling elapsed times are retained separately. The stress reload includes document/assets/data. Camera evidence is a short transition; hardware target remains unverified for a software renderer."
+}

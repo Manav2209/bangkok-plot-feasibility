@@ -1,0 +1,64 @@
+{
+  "id": "bma-y7-21-2013-object104",
+  "title": "BMA 2013 comprehensive-plan zone Y.7-21",
+  "zoneCode": "ย.7-21",
+  "sourceZoneCode": "ย.๗-๒๑",
+  "geometryEvidence": "official-gis-extract",
+  "currentLegalApplicability": "unresolved",
+  "source": {
+    "provider": "Bangkok Metropolitan Administration, Department of City Planning and Urban Development",
+    "service": "https://cpudgiapp.bangkok.go.th/arcgis/rest/services/GI_Platform/BMAGI_Planing/MapServer",
+    "layer": 1,
+    "layerTitle": "แผนผังข้อกำหนดการใช้ประโยชน์ที่ดิน",
+    "query": "https://cpudgiapp.bangkok.go.th/arcgis/rest/services/GI_Platform/BMAGI_Planing/MapServer/1/query?f=geojson&objectIds=104&outFields=*&returnGeometry=true&outSR=4326",
+    "datasetCatalog": "https://data.go.th/th/dataset/lup_polygon?is_fullscreen=1",
+    "sourceObjectId": 104,
+    "sourceLupId": 201,
+    "planVersion": "Bangkok comprehensive plan B.E.2556 (2013)",
+    "datasetPublishedOn": "2013-05-16",
+    "retrievedOn": "2026-11-22",
+    "sourceCrs": "EPSG:32647",
+    "outputCrs": "EPSG:4326",
+    "processing": "ArcGIS server transformation to EPSG:4326; original returned feature and all properties preserved, no simplification. The bundled JSON was pretty-formatted; geometry and properties remain unchanged.",
+    "originalResponseSha256": "638ba04a48212309a6352694718708b0b1c59f97d89ff8cf233ad11cc009ff56"
+  },
+  "file": {
+    "path": "zone.geojson",
+    "sha256": "8a452154a6e8c81165715afea54fdf23ae6e265698a6a15157608f396b4dcd25",
+    "byteLength": 12498,
+    "featureCount": 1,
+    "outerRingVertices": 213,
+    "holeCount": 0
+  },
+  "attribution": "Source: Bangkok Metropolitan Administration, Department of City Planning and Urban Development (2013 plan GIS).",
+  "licence": {
+    "status": "not-specified",
+    "catalogLabel": "License not specified",
+    "note": "Public data access is confirmed by the official catalog; an explicit reuse licence is not specified. Do not describe this as ODbL, CC, cadastral evidence or legally definitive. Preserve attribution and resolve reuse terms before a distribution claim."
+  },
+  "accuracy": {
+    "sourceXYToleranceM": 0.001,
+    "positionalAccuracyM": null,
+    "cadastral": false,
+    "boundaryUncertaintyM": null,
+    "note": "The 0.001m source XY tolerance is a storage/topology parameter, not surveyed positional accuracy. No boundary uncertainty figure is published. This dated 2013 layer does not prove current legal applicability or parcel title."
+  },
+  "fieldInterpretation": {
+    "LUP_FAR": "5 in source; corroborate legal version, zone/site applicability and counting definitions before statutory evaluation.",
+    "LUP_OSR": "6 in source, interpreted as percent from the source legal clause, not ratio6.",
+    "zeroFields": ["LUP_F_SETB", "LUP_S_SETB", "LUP_R_SETB", "LUP_MIN_LO", "LUP_MAX_HE"],
+    "zeroFieldsMeaning": "Unspecified in this GIS record; never infer zero setback, zero height, unlimited height or absence of another applicable rule."
+  },
+  "existingIllustrativeSample": {
+    "originLonLat": [100.6103, 13.6979],
+    "plotAreaM2": 2500,
+    "zoneOverlapM2": 0,
+    "fullyContained": false,
+    "result": "All six original sample vertices lie outside this zone. Independent Clipper intersection in EPSG:32647 at 1mm grid gives zero overlap; choose a new evidenced default or explicitly retain outside-zone status."
+  },
+  "limitations": [
+    "No vacancy observation or legal road-width evidence is supplied by this zone layer.",
+    "No complete overlay or legal-amendment audit has been performed.",
+    "Do not substitute the bounding rectangle for the polygon."
+  ]
+}
