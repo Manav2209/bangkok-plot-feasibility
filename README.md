@@ -136,5 +136,7 @@ unmet target remain visible rather than being described as passes.
 Applicant history, one-pager, personal setup answers and original early transcripts must come
 from the applicant. No project history, submission receipt or compliance approval is invented.
 Source repository: [Manav2209/bangkok-plot-feasibility](https://github.com/Manav2209/bangkok-plot-feasibility).
-Source publication was authorized on 23 November 2026. Deployment remains deferred at the user's
-request. Current completion and remaining evidence gates are recorded in [spec status](docs/spec-status.md).
+Live app: [bangkok-plot-feasibility.vercel.app](https://bangkok-plot-feasibility.vercel.app/).
+The user deployed it on 23 November 2026; basic public checks are recorded in
+[Vercel deployment](docs/vercel-deployment.md). Current completion and remaining evidence gates
+are recorded in [spec status](docs/spec-status.md). Assignment submission remains deferred.

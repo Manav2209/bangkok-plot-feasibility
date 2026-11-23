@@ -3,13 +3,13 @@
 This record supports the applicant's final document. It is not an application submission and
 does not impersonate applicant-authored writing. The actual assignment service, server deadline
 and recorded submission have not been connected or verified in this session.
-Source publication was authorized on 23 November 2026. Deployment and submission remain
-deferred at the user's request.
+Source publication and Vercel deployment are complete. Assignment submission remains deferred.
 
 ## Seven sections
 
-1. **Live link:** hosting identity was prepared before deployment was deferred. No deployment
-   receipt or verified public app exists. The local app runs at http://127.0.0.1:5173.
+1. **Live link:** https://bangkok-plot-feasibility.vercel.app/. The user deployed the app on
+   23 November 2026. Public HTTPS and basic rendering/asset checks passed; verification limits
+   are recorded in `vercel-deployment.md`. The local app remains at http://127.0.0.1:5173.
 2. **Repository:** https://github.com/Manav2209/bangkok-plot-feasibility is the source destination.
    Publication was authorized on 23 November 2026; see the completion checklist for the verified
    outcome. A source push is separate from app deployment or assignment submission.

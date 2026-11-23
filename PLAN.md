@@ -1,6 +1,6 @@
 # Bangkok feasibility tool — execution plan
 
-Status: milestones 01–05 implement the local research tool, including real context, authoritative 2013 GIS, height slices, use/frontage-dependent designs, schematic parking/ramp reservations, building-frontage screening and independently re-evaluated candidates. Updated 23 November 2026. Current acceptance status: `docs/spec-status.md`; detailed scope: `docs/remaining-work-spec.md`; latest verification: `docs/milestone-05.md`. Legal/site evidence gates remain open. Source publication was authorized on 23 November 2026; deployment and submission remain deferred. The historical phases below are planning context, not instructions to deploy or submit now.
+Status: milestones 01–05 implement the research tool, including real context, authoritative 2013 GIS, height slices, use/frontage-dependent designs, schematic parking/ramp reservations, building-frontage screening and independently re-evaluated candidates. Updated 23 November 2026. Current acceptance status: `docs/spec-status.md`; detailed scope: `docs/remaining-work-spec.md`; latest implementation verification: `docs/milestone-05.md`. Legal/site evidence gates remain open. Source publication and Vercel deployment are complete; assignment submission remains deferred. See `docs/vercel-deployment.md` for public checks. The historical phases below are planning context, not instructions to submit now.
 
 This is an internal engineering plan and decision record. The applicant must author the assignment one-pager and personal answers.
 
@@ -282,4 +282,4 @@ Technical references checked during planning:
 - Terra Draw MapLibre integration: https://makewithmaplibre.com/plugins/terra-draw/
 - Clipper offset behaviour and input restrictions: https://angusj.com/clipper2/Docs/Units/Clipper.Offset/Classes/ClipperOffset/_Body.htm
 
-Current handover: use the local app at http://127.0.0.1:5173. Resolve verified vacant-parcel/frontage/overlay evidence and outstanding statutory definitions before claiming legally feasible default designs. Keep deployment and submission deferred.
+Current handover: use the public app at https://bangkok-plot-feasibility.vercel.app/ or the local app at http://127.0.0.1:5173. Resolve vacant-site/frontage/overlay evidence and outstanding statutory definitions before claiming legally feasible default designs. Vercel deployment and source publication are complete; assignment submission remains deferred. See `docs/vercel-deployment.md` for verification scope.

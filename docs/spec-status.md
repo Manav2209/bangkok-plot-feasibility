@@ -116,10 +116,11 @@ These are single-device samples, not sustained performance certification. Report
 elapsed times separately from input-handler-to-render latency. See `milestone-04.md` and the
 raw `performance` reports for scope and limits.
 
-The local app is available at http://127.0.0.1:5173. Deployment and submission are deferred at
-the user's request. Source publication to
-https://github.com/Manav2209/bangkok-plot-feasibility was authorized on 23 November 2026;
-the completion checklist records the verified publication outcome. No hosted app is claimed.
+The local app is available at http://127.0.0.1:5173. The public app is deployed at
+https://bangkok-plot-feasibility.vercel.app/. The user completed Vercel deployment on
+23 November 2026; public HTTPS, rendering and asset checks are recorded in `vercel-deployment.md`.
+Source is published at https://github.com/Manav2209/bangkok-plot-feasibility.
+Assignment submission remains deferred.
 Local functional checks are complete for the implemented reference-study scope; the
 substantive legal/site gates above remain open. Follow-up evidence is in
 `research/legal-evidence-04.md`, `research/legal-audit-05.md` and `research/site-audit-05.md`.

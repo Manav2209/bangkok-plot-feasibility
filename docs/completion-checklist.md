@@ -3,7 +3,8 @@
 Reviewed 23 November 2026 against the supplied draft, `spec-status.md` and the milestone evidence.
 
 **Overall: not everything is complete.** The local application has the main workflows implemented
-and tested. Site evidence and parts of statutory applicability remain open. Deployment is deferred.
+and tested. Site evidence and parts of statutory applicability remain open. The app is deployed
+on Vercel with basic public smoke checks complete.
 A checked item below means the stated feature is implemented; it does not certify legal feasibility.
 
 ## Implemented and tested
@@ -63,7 +64,9 @@ reference study now, but full specification completion must not be claimed from 
       confirmed implementation commit `4b1a3d525d06af0ace197b9202b0a07746bc932a` after the push.
       Application code, tests, bundled context and research documentation are included. Ignored
       scratch downloads, local environment files, dependencies and generated build outputs are excluded.
-- [ ] Deploy and verify the hosted application — deferred at the user's request.
+- [x] Deploy the application on Vercel — https://bangkok-plot-feasibility.vercel.app/.
+      The user deployed it; public HTTPS, page rendering, worker scripts and bundled data were
+      checked. See `vercel-deployment.md` for the verification scope and remaining metadata limits.
 - [ ] Complete any applicant-owned assignment documents and submission, if that delivery is pursued.
       Personal history and applicant-authored material cannot be invented. They do not block local
       development or use of the demonstration.

@@ -12,8 +12,8 @@ implementation and acceptance evidence are tracked in `spec-status.md` and `mile
 Authoritative 2013 zone GIS, real context, reference rule models, height slices, two bounded
 concept searches, parking-floor reservations, source inspection and versioned scenarios are
 now implemented. Verified vacant-parcel evidence and complete applicable statutory coverage
-remain open. Source publication was authorized on 23 November 2026. Deployment and submission
-remain deferred by the user.
+remain open. Source publication and Vercel deployment were completed on 23 November 2026.
+Deployment verification is recorded in `vercel-deployment.md`; assignment submission remains deferred.
 
 Milestone04 adds contrasting/clickable roads, first-use guidance, an exposed responsive camera
 toolbar, saved project-input fixes, individual schematic parking stalls/aisles/service reserves,
