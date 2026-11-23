@@ -52,6 +52,13 @@ does not certify present corridor geometry, continuing route access or frontage 
 No applicable 97/97-1 record was obtained. The 101 width must not be assigned to the current
 example or the imagery study.
 
+A follow-up aerial inspection along the in-zone section of Sukhumvit 101 did not establish
+a suitable vacant frontage. It showed buildings, vehicle aprons or obscuring trees. A suspected
+northern gap near `[100.6108, 13.6905]` was an occupied building/access setting. The point proposed
+for a larger eastern opening near `[100.6150, 13.69015]` was outside the supported zone. No new
+outline or capture-date claim was accepted from that follow-up; the March date above applies
+only to the separately verified imagery study.
+
 [BMA Property layer 7](https://cpudgiapp.bangkok.go.th/arcgis/rest/services/BMA_Property/BMA_Property2566/MapServer/7)
 describes public-way boundaries appearing on Department of Lands map sheets. A query around
 the imagery study returned canal polygons named Khlong Bang Nang Chin (record 11870) and

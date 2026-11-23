@@ -51,6 +51,11 @@ averaged 50.5/53.3 actual MapLibre render events per second; every complete meas
 had at least 46/51 respectively. Idle produced zero events over 2 seconds. The earlier failed
 measurements are not erased by this pass.
 
+An intermediate run after the convex-only optimization still recorded a 6.711-second cold load
+and 100-vertex parameter/boundary p95 of 686.3/513.8 ms. That intermediate summary is retained
+here; its full raw arrays were overwritten by the final audit. The initial pre-optimization raw
+report remains in `acceptance-06-before.json`.
+
 Typecheck, production build, 140 unit/property tests (28 geometry, 27 rules, 63 engine, 22 web),
 all 26 production browser flows and both provenance validators passed. A selector collision in
 the new disclosure was corrected; the final complete 26-flow run passed. The optional performance
@@ -64,3 +69,11 @@ recording reports its targets separately from behavioral test success.
 
 The stronger vacant-default, road/canal applicability, exhaustive current-rule and dataset-rights
 gates remain open. The user does not need to own land or interpret the regulations to use the tool.
+
+## Publication verification
+
+Implementation commit `6542c5904162d3cf2128ace90990be7a6afb37dd` was pushed to GitHub. Vercel
+reported successful deployment, and the live entry asset matches the local production build.
+The new dated-study and main map/design browser flows both passed against the public origin;
+see `vercel-deployment.md` and `screenshots/dated-imagery-study-06.png`. This is deployment and
+behavior evidence, not a legal/site evidence promotion.

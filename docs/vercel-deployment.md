@@ -35,12 +35,17 @@ both design choices, the map and 2D/3D controls. A separate unauthenticated HTTP
 URLs, both worker scripts, the application entry script and its stylesheet returned 200 with
 appropriate content types. The local production build also passed.
 
-The hosted asset names match the local build. The exact Vercel deployment ID and source SHA
-were not retrieved, so no stronger source-revision match is claimed. The installed CLI is not
-authenticated; CLI sign-in is unnecessary for the deployment the user already completed.
-The root configuration above supports future repository-root builds; the existing dashboard's
-root/build settings were not inspected. The recorded 25 browser flows were run against local
-production assets, not rerun against this public origin.
+Milestone06 was pushed as commit `6542c5904162d3cf2128ace90990be7a6afb37dd`. Its GitHub Vercel
+status is successful and links the [deployment record](https://vercel.com/manav-panchals-projects-1245cb4f/bangkok-plot-feasibility/6u8SkfjVrg6dSt2EU7SD4rpLkQet).
+The public origin serves `/assets/index-DfsgHQnZ.js`, matching the local production entry, and
+the delivered bundle contains the dated-study feature. Both the dated-study and main map/design
+browser flows passed against the public origin in fresh contexts. A screenshot is retained at
+`screenshots/dated-imagery-study-06.png`. All 26 browser flows passed locally; only these two were
+rerun on the public origin. No full remote-suite or public-network performance result is claimed.
+
+The installed CLI is not authenticated; CLI sign-in is unnecessary for the deployment the user
+already completed. The root configuration supports repository-root builds; the existing dashboard's
+root/build settings were not inspected. The Vercel success status confirms the pushed update built.
 
 ## Verification after deployment
 
