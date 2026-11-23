@@ -2,7 +2,9 @@
   "retrievedOn": "2026-11-23",
   "citationUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/9/query?f=pjson&where=1%3D1&geometry=100.61025,13.69628&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID,SRC_DATE,SRC_DATE2,SRC_RES,SRC_ACC,SAMP_RES,SRC_DESC,NICE_NAME,NICE_DESC,MinMapLevel,MaxMapLevel,DrawOrder,BlockName,ReleaseName&returnGeometry=false",
   "imageUrl": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=100.6095,13.6957,100.6108,13.6970&bboxSR=4326&imageSR=4326&size=256,256&format=jpg&f=image",
-  "citationLayer": 10,
+  "citationLayer": 9,
+  "matchingScaleLayer": 10,
+  "matchingScaleNote": "Both citation layers returned record 5002983 with the same capture date and source fields. Layer 10 was independently checked for the image export scale; citationUrl links the point query on layer 9.",
   "attributes": {
     "OBJECTID": 5002983,
     "SRC_DATE": 20260305,
