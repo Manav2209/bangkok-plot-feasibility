@@ -2,6 +2,15 @@
 
 Version 1.3 · 23 November 2026 · local implementation expanded through milestone 05; evidence gates open
 
+Scope correction after the issuer's Generalist Assignment PDF was supplied: this is an earlier
+project expansion, not the original hiring brief. The issuer requires accurate core rules and
+allowed 3D space for one Bangkok zone, two fitting designs, real context, live browser behavior
+and the seven-part public submission. It does not mandate a vacant parcel, title certification,
+professional legal opinion or permit-ready vehicle trajectories. Treat the stronger gates below
+as project research goals or prerequisites to stronger claims, not automatic submission blockers.
+Conversely, the draft's allowance for unresolved checks is our policy, not an explicit promise
+in the issuer's PDF that mostly-unknown regulatory outputs satisfy its real-execution requirement.
+
 This is the engineering specification for the work left after milestone 01. It supplements
 `PLAN.md` and the supplied draft specification. It is not an applicant submission or a legal
 opinion. A task is complete only when its acceptance evidence exists. Publishing and submission

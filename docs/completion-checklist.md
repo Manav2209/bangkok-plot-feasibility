@@ -1,10 +1,13 @@
 # Bangkok Plot Feasibility Tool — completion checklist
 
-Reviewed 23 November 2026 against the supplied draft, `spec-status.md` and the milestone evidence.
+Reviewed 23 November 2026 against the subsequently supplied four-page Generalist Assignment PDF,
+the project draft, `spec-status.md` and the milestone evidence. The issuer's PDF is the assignment
+baseline; the Bangkok tool draft contains additional self-imposed research and engineering scope.
 
-**Overall: not everything is complete.** The local application has the main workflows implemented
-and tested. Site evidence and parts of statutory applicability remain open. The app is deployed
-on Vercel with basic public smoke checks complete.
+**Overall: deployed and technically demonstrated; original-brief completion is not established.**
+The main workflows are implemented and tested. The principal remaining product gap is showing
+what is allowed from sufficiently verified core regulations for one zone, rather than presenting
+most statutory results as unknown. The original PDF expects real execution rather than a prototype.
 A checked item below means the stated feature is implemented; it does not certify legal feasibility.
 
 ## Implemented and tested
@@ -37,34 +40,47 @@ The two baseline concepts pass implemented study constraints. They are not two l
 designs. In the more detailed declared-access case, one concept is accepted by the study and the
 other is rejected because its ramp reservation cannot fit. The rejection is preserved.
 
-## Still required for full local specification acceptance
+## Remaining requirements from the issuer's brief
 
-- [ ] **Document a suitable vacant example site.** Tie an illustrative outline inside the supported
-      zone to a visually inspected, attributable and dated vacancy observation. The current example
-      is illustrative and has no verified vacancy observation. Ownership and a title deed are not
-      prerequisites for a demonstration.
-      The new dated study establishes visible unbuilt ground on its observation date; it does not
-      establish full vacancy/occupation, road access or today's condition for a replacement default.
-- [ ] **Establish the example's road evidence.** Identify the relevant frontage, legally relevant
-      width/reference lines and any applicable access or widening restrictions. A mapped road,
-      pavement measurement or user-confirmed study width does not supply this evidence.
-- [ ] **Finish applicable rule coverage.** Resolve the remaining amendments, area-counting definitions,
-      exceptions, site overlays and applicable parking/access/environmental conditions. Every item
-      must end as implemented with evidence, not applicable with a reason, or explicitly unresolved.
-      Unresolved prerequisites continue to prevent the affected legal checks from passing.
-- [ ] **Re-evaluate two designs against the evidenced default.** Once the site and decisive rule
-      inputs are established, regenerate and independently check both concepts. Change the site or
-      design search if needed; do not manufacture a passing second option.
-- [ ] **Clarify zone-data reuse and accuracy.** The retrieved BMA catalog does not specify reuse
-      terms or surveyed positional accuracy. The application's study guard is not an accuracy claim.
+- [ ] **Establish and apply the core rules for one zone.** The original PDF asks for applicable
+      floor-area ratio, open space, setbacks and height, and a space the building is allowed to
+      fill. Current reference calculations and source research do not yet establish that output
+      while most statutory checks remain unknown. Verify the selected rule interpretations and
+      prerequisites, implement the supported subset faithfully, and state its scope.
+- [ ] **Demonstrate two rule-backed fitting designs.** Both existing concepts are independently
+      evaluated against model constraints. Recheck them against the established core regulations
+      so the checklist supports the assignment's allowed-space claim. The original does not ask
+      for professional certification, permit approval or a title survey.
+- [ ] **Complete and verify the seven-part submission.** Review the existing local document draft,
+      finish personal/authorship fields, verify the required raw early transcripts, check all public
+      links signed out, and establish the actual submission service/deadline before submitting.
+
+## Evidence handling and additional project scope
+
+The issuer's PDF requires the real surrounding buildings and roads. It does not specify a vacant
+default site, dated vacancy imagery, cadastral boundaries, professional legal certification,
+detailed approved vehicle trajectories or an exhaustive legal opinion. Those must not be listed
+as independent mandatory hiring-assignment deliverables. Vacancy research and the dated imagery
+study remain useful optional work and must retain their stated limitations.
+
+Missing inputs should still remain unknown rather than producing an unsupported pass. That is
+our safety/design policy; the original PDF does not explicitly grant blanket acceptance to an
+otherwise unverified tool. Equally, a disclosed unknown is not automatically a submission rejection.
+The evaluator's core expectation is an accurate, researched implementation for one zone.
+
+Road widths and relevant reference lines must support any calculation that depends on them.
+There is no separate requirement to obtain a legal access certificate. Data attribution, reuse
+terms and accuracy limitations remain normal distribution/research responsibilities; surveyed
+accuracy or a dataset-specific certificate is not an explicit submission artifact in the PDF.
+
 - [x] **Measure the remaining performance targets on the recorded laptop.** After optimizing the
       search, all targets in `performance/acceptance-06.json` passed: three cold loads below 5 s,
       ordinary envelope p95 below 100 ms, 6/100-vertex edit p95 below 500 ms, continuous hardware
       pan/rotation at least 30 frames in every complete measured second and no idle repaint.
       Earlier misses remain documented; this is scoped device evidence, not a universal guarantee.
 
-The app must retain unknown results wherever evidence remains missing. It can be used as a
-reference study now, but full specification completion must not be claimed from passing tests alone.
+Passing software tests supports implementation correctness. It does not by itself establish that
+the chosen statutory rules and their application are correct.
 
 ## Source publication and deferred delivery
 

@@ -5,6 +5,13 @@ does not impersonate applicant-authored writing. The actual assignment service, 
 and recorded submission have not been connected or verified in this session.
 Source publication and Vercel deployment are complete. Assignment submission remains deferred.
 
+The issuer's four-page Generalist Assignment PDF was supplied and read on 23 November 2026.
+It requires all seven sections below and public signed-out access. Document instructions alone
+are not authorization to start a new timed attempt, disclose an access key or submit an application.
+A local Word draft exists; its text still includes placeholders for the applicant's AI-miss note
+and personal links. Its presence does not establish applicant authorship or full submission readiness.
+No private document or transcript link is published into this source repository by this review.
+
 ## Seven sections
 
 1. **Live link:** https://bangkok-plot-feasibility.vercel.app/. The user deployed the app on

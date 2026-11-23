@@ -1,8 +1,12 @@
 # Specification status and acceptance evidence
 
-Updated 23 November 2026. Functional implementation is substantially expanded; the complete
-legal/site/submission acceptance gates are not closed. This file distinguishes implementation
-from verified legal applicability. It must not be used to claim the whole assignment complete.
+Updated 23 November 2026 after reading the issuer's four-page Generalist Assignment PDF.
+That PDF, rather than the self-authored Bangkok tool draft, defines the original assignment.
+Functional implementation is substantially expanded. The main remaining product gap is a
+sufficiently verified implementation of the core regulations for one zone and the resulting
+allowed envelope/two fitting designs. A vacancy certificate, title survey, professional legal
+opinion and permit-ready engineering are not original-brief submission requirements.
+This file distinguishes implementation evidence from verified rule applicability.
 
 ## Implemented product requirements
 
@@ -66,33 +70,34 @@ statutory exclusions are not invented. Core/circulation and permeable area are a
 not detailed approved plans. Local search covers mapped names/addresses and coordinates,
 not a global commercial geocoder.
 
-## Evidence still required for complete acceptance
+## Original-brief priorities and documented limits
 
-The user does not need to own or supply a parcel. The original draft expressly permits an
-illustrative drawn boundary unless cadastral evidence exists. A demonstration needs an
-identifiable, geolocated outline, an attributable dated vacant-condition observation and
-honest frontage/road evidence; it must retain its illustrative status. A title survey is
-required only for a claim about actual legal property boundaries, not as a prerequisite to
-the demo. Earlier handover requests for a title number were too restrictive for that purpose.
+The user does not need to own or supply a parcel. The issuer's brief asks for a drawn plot,
+its location/zone, the road it faces, a building type and real surrounding buildings/roads.
+It does not mandate a vacant default or a cadastral/title survey. Dated vacancy evidence was
+added by the project draft. It remains useful optional research, not a separate original-brief
+submission gate. The main illustrative example and dated unbuilt-ground case remain labelled.
 
-1. **A real vacant default parcel:** the translated L shape is inside the authoritative 2013
-   GIS polygon with documented clearance, but is illustrative. Dated current vacancy, cadastral
-   boundary, legally relevant road reference/width and site overlays are not verified.
-2. **Complete current rule coverage:** recognized baseline continuation is supported. Partial
-   amendments, overlays, counting definitions, exceptions and project-specific access, parking
-   and environmental review need completion. These are substantive legal/engineering gaps,
-   not publication or UI polish tasks.
-3. **Two legally feasible default designs:** two candidates pass implemented research/design
-   constraints; unresolved statutory prerequisites prevent an overall legal feasibility pass.
+1. **Real-site context:** sourced zone geometry and surrounding buildings/roads are implemented.
+   The drawn boundaries remain illustrative. A mapped centreline or entered width cannot prove
+   a particular legal road reference; affected calculations must preserve that limitation.
+2. **Core regulatory correctness:** the brief expects researched FAR, open space, setbacks and
+   height for one zone. Baseline continuation is supported, but counting definitions and several
+   applicability conditions remain unresolved. The original does not demand an exhaustive legal
+   opinion; it does demand that the supported allowed-space calculations have a sound rule basis.
+3. **Two independently evaluated fitting designs:** geometric independence and model checking are
+   implemented. The remaining issue is the rule basis for the allowed-space claim, not obtaining
+   a professional compliance certificate. The PDF does not explicitly promise acceptance of
+   mostly-unknown statutory outputs, nor does it forbid every disclosed unknown.
 4. **Data rights/accuracy:** OSM context is ODbL. BMA's catalog does not specify explicit zone
    reuse terms or surveyed positional accuracy; a 1 m study guard is not a source accuracy claim.
 5. **Performance acceptance scope:** the final milestone06 repeated audit meets all recorded
    targets on the tested laptop, including continuous hardware pan/rotation. Earlier cold-load
    and dense-edit misses are retained. Reports in `docs/performance` record the actual device,
    conditions and limits; the result does not guarantee every device or scene.
-6. **Applicant-owned submission:** the actual assignment service/deadline, personal history,
-   six setup answers, applicant-authored one-pager, original early transcripts, resume/project
-   links and final receipt are not supplied. Nothing is fabricated or submitted in their place.
+6. **Applicant-owned submission:** a local Word draft exists, but its personal/authorship fields
+   and transcript completeness are not verified. The actual service/deadline and receipt have
+   not been verified. Text placeholders remain for the AI-miss note and personal links.
 
 ## Verification record
 
