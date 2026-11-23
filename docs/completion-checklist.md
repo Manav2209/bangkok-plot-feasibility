@@ -59,7 +59,10 @@ reference study now, but full specification completion must not be claimed from 
 
 ## Source publication and deferred delivery
 
-- [ ] Publish the source repository — authorized on 23 November 2026; push verification pending.
+- [x] Publish the source repository — pushed to `main` on 23 November 2026. GitHub's branch API
+      confirmed implementation commit `4b1a3d525d06af0ace197b9202b0a07746bc932a` after the push.
+      Application code, tests, bundled context and research documentation are included. Ignored
+      scratch downloads, local environment files, dependencies and generated build outputs are excluded.
 - [ ] Deploy and verify the hosted application — deferred at the user's request.
 - [ ] Complete any applicant-owned assignment documents and submission, if that delivery is pursued.
       Personal history and applicant-authored material cannot be invented. They do not block local
