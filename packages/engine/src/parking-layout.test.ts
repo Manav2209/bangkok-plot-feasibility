@@ -81,6 +81,19 @@ describe('schematic parking uses real contained and separated geometry', () => {
       ).stalls,
     ).toHaveLength(200);
   });
+  it('packs rotated floors after millimetre-grid clipping without leaking reserves outside', () => {
+    const angle = Math.atan2(0.4137251276513904, 0.9104018446542389);
+    const rotated = region.map((p) => ({
+      outer: p.outer.map((point) => rotatePoint(point, angle)),
+      holes: [],
+    }));
+    const clipped = intersection(rotated, rotated);
+    const plan = packParking(clipped, 0.2, 50);
+    expect(plan.stalls.length).toBeGreaterThan(0);
+    for (const geometry of [plan.stalls, plan.aisles, plan.serviceReserve])
+      expect(area(difference(geometry, clipped))).toBeLessThanOrEqual(0.01);
+    expect(area(intersection(plan.stalls, plan.serviceReserve))).toBeLessThanOrEqual(0.01);
+  });
   it('returns no perpendicular layout for a narrow floor rather than clipping stalls into slivers', () => {
     expect(
       packParking(

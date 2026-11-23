@@ -19,12 +19,34 @@ try {
     path.join(root, 'apps/web/src/scenario.ts'),
   );
   const { sources } = await server.ssrLoadModule(path.join(root, 'packages/rules/src/index.ts'));
+  const { referenceProfile } = await server.ssrLoadModule(
+    path.join(root, 'packages/rules/src/index.ts'),
+  );
   const { imageryStudy } = await server.ssrLoadModule(
     path.join(root, 'apps/web/src/imageryStudy.ts'),
   );
-  const { area, difference, intersection, union } = await server.ssrLoadModule(
-    path.join(root, 'packages/geometry/src/index.ts'),
+  const { area, difference, intersection, union, toMetric, toGeographic } =
+    await server.ssrLoadModule(path.join(root, 'packages/geometry/src/index.ts'));
+  const { demoRoad } = await server.ssrLoadModule(path.join(root, 'apps/web/src/demoSite.ts'));
+  const { nearbyRoads } = await server.ssrLoadModule(path.join(root, 'apps/web/src/roads.ts'));
+  const context = JSON.parse(
+    await readFile(path.join(root, 'apps/web/public/data/context.geojson'), 'utf8'),
   );
+  const mappedRoad = context.features.find((f) => f.properties.sourceId === demoRoad.sourceId);
+  assert(mappedRoad);
+  assert(
+    mappedRoad.geometry.coordinates.some(
+      (p, i, coordinates) =>
+        JSON.stringify(p) === JSON.stringify(demoRoad.segment[0]) &&
+        JSON.stringify(coordinates[i + 1]) === JSON.stringify(demoRoad.segment[1]),
+    ),
+  );
+  const roadStart = toMetric(demoRoad.segment[0]),
+    roadEnd = toMetric(demoRoad.segment[1]);
+  const roadLength = Math.hypot(roadEnd[0] - roadStart[0], roadEnd[1] - roadStart[1]);
+  const ux = (roadEnd[0] - roadStart[0]) / roadLength,
+    uy = (roadEnd[1] - roadStart[1]) / roadLength;
+  const roadDistance = (p) => -uy * (p[0] - roadStart[0]) + ux * (p[1] - roadStart[1]);
   const z = JSON.parse(await readFile(path.join(root, 'apps/web/public/data/zone.geojson'), 'utf8'))
     .features[0].geometry.coordinates;
   const scenario = defaultScenario();
@@ -115,6 +137,33 @@ try {
     }
     const designs = [];
     for (const d of result.designs) {
+      for (const [index, floor] of d.floors.entries()) {
+        assert.equal(floor.level, index + 1);
+        assert(Math.abs(floor.baseM - index * input.assumptions.floorHeightM) < 1e-8);
+        assert(Math.abs(floor.topM - (index + 1) * input.assumptions.floorHeightM) < 1e-8);
+        assert(Math.abs(floor.areaM2 - area(floor.polygons)) < 1e-8);
+        assert(area(difference(floor.polygons, result.plot)) <= 0.01);
+        const overlapping = result.slices.filter(
+          (slice) => slice.baseM < floor.topM && slice.topM > floor.baseM,
+        );
+        assert(overlapping.length > 0);
+        for (const slice of overlapping)
+          assert(area(difference(floor.polygons, slice.polygons)) <= 0.01);
+      }
+      const measuredArea = d.floors.reduce((sum, floor) => sum + area(floor.polygons), 0);
+      const measuredCover = area(union(d.floors.flatMap((floor) => floor.polygons)));
+      assert(Math.abs(d.footprintM2 - measuredCover) < 0.001);
+      assert(Math.abs(d.uncoveredM2 - (result.plotAreaM2 - measuredCover)) < 0.001);
+      assert(Math.abs(d.modelledFar - measuredArea / result.plotAreaM2) < 1e-8);
+      assert.equal(d.heightM, Math.max(...d.floors.map((floor) => floor.topM)));
+      const parkingArea = d.floors
+        .filter((floor) => floor.use === 'parking')
+        .reduce((sum, floor) => sum + area(floor.polygons), 0);
+      const usable =
+        (measuredArea - parkingArea) *
+        (1 - (input.assumptions.coreFraction ?? referenceProfile.designDefaults.coreFraction));
+      assert(Math.abs(d.usableAreaM2 - usable) < 0.001);
+      let roadClearance;
       if (name === 'declared-core-rules') {
         assert.equal(d.coreAssessment.status, 'pass');
         assert.equal(d.coreAssessment.checks.length, 10);
@@ -128,6 +177,41 @@ try {
         assert(uncovered + 0.01 >= 0.3 * Math.max(...d.floors.map((f) => area(f.polygons))));
         assert.equal(d.coreAssessment.countedModelAreaM2, total);
         assert(Math.abs(d.coreAssessment.uncoveredModelAreaM2 - uncovered) < 0.01);
+        const centrelineGapM = Math.min(
+          ...d.floors.flatMap((f) => f.polygons.flatMap((p) => p.outer.map(roadDistance))),
+        );
+        const roadEdgeGapM = centrelineGapM - demoRoad.assumedWidthM / 2;
+        assert(
+          roadEdgeGapM >= 3 - 0.001,
+          'Every floor must remain behind the 3 m plot/road-edge buffer.',
+        );
+        assert(
+          centrelineGapM >= 6 - 0.001,
+          'The applicable reference 6 m centreline setback must also hold.',
+        );
+        for (const f of d.floors)
+          for (const p of f.polygons)
+            for (const point of p.outer) {
+              const along = ux * (point[0] - roadStart[0]) + uy * (point[1] - roadStart[1]);
+              assert(
+                along >= 0 && along <= roadLength,
+                'Do not extrapolate the frontage beyond the mapped straight segment.',
+              );
+              assert(f.topM <= 2 * (roadDistance(point) + demoRoad.assumedWidthM / 2) + 0.001);
+            }
+        const actualMapped = nearbyRoads(
+          context,
+          d.coveredGround[0].outer.map(toGeographic),
+          6,
+        ).find((road) => road.id === demoRoad.sourceId);
+        assert(actualMapped && actualMapped.distanceM >= 7 - 0.001);
+        roadClearance = {
+          assumedRowWidthM: demoRoad.assumedWidthM,
+          roadEdgeGapM,
+          centrelineGapM,
+          mappedCentrelineGapM: actualMapped.distanceM,
+          surveyedRoadBoundary: false,
+        };
       }
       assert.equal(
         d.compliance,
@@ -166,6 +250,7 @@ try {
         },
         legalCompliance: d.compliance,
         coreAssessment: d.coreAssessment,
+        roadClearance,
         checks: d.checks,
       });
     }

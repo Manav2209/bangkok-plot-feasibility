@@ -63,7 +63,16 @@ export function packParking(
       aisles: MultiPolygon = [],
       serviceReserve: MultiPolygon = [];
     for (const component of local) {
-      const b = bounds([component]),
+      // Rotating millimetre-grid polygons can put a bounding-box corner just
+      // outside its source edge. Construct reserves 2 mm inside the bounds;
+      // keep the independent containment test rather than accepting leakage.
+      const rawBounds = bounds([component]);
+      const b = {
+          minX: rawBounds.minX + 0.002,
+          minY: rawBounds.minY + 0.002,
+          maxX: rawBounds.maxX - 0.002,
+          maxY: rawBounds.maxY - 0.002,
+        },
         depth = b.maxY - b.minY,
         span = b.maxX - b.minX;
       if (depth < length + aisle || span < width + aisle) continue;

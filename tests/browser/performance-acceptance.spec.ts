@@ -76,24 +76,27 @@ test('records repeated production edits and sustained camera interactions', asyn
           await expect(page.getByTestId('floor-count')).toHaveText(floors);
         }),
       );
-      const diagnostic = await page.locator('.results-panel').innerText();
-      const match = diagnostic.match(/Envelope\s+([\d.]+)\s*ms/);
-      if (match) envelopeMs.push(Number(match[1]));
+      const diagnostic = await page.locator('.results-panel').getAttribute('data-envelope-ms');
+      if (diagnostic !== null && Number.isFinite(Number(diagnostic)))
+        envelopeMs.push(Number(diagnostic));
     }
     await page.getByText('Boundary coordinates · keyboard editing', { exact: true }).click();
-    const coordinate = page.getByLabel(`Vertex ${vertices === 6 ? 1 : 31} longitude`, {
+    const coordinate = page.getByLabel(`Vertex ${vertices === 6 ? 2 : 31} longitude`, {
       exact: true,
     });
     const original = Number(await coordinate.inputValue());
     for (let index = 0; index < 20; index++) {
       boundaryMs.push(
         await measuredEdit(page, () =>
-          coordinate.fill(String(original + (index % 2 === 0 ? 0.000001 : 0))),
+          coordinate.fill(
+            String(original + (index % 2 === 0 ? (vertices === 6 ? -0.000001 : 0.000001) : 0)),
+          ),
         ),
       );
     }
     studies.push({
       vertices,
+      boundaryEditVertex: vertices === 6 ? 2 : 31,
       parameterEditMs: summary(parameterMs),
       boundaryEditMs: summary(boundaryMs),
       envelopeEngineMs: envelopeMs.length ? summary(envelopeMs) : null,

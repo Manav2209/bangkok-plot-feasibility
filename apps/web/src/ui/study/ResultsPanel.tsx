@@ -25,6 +25,8 @@ export function ResultsPanel({ study }: { study: StudyController }) {
         tabIndex={-1}
         className={`results-panel ${resultsCollapsed ? 'panel-collapsed' : ''}`}
         aria-busy={pending}
+        data-envelope-ms={result?.timingMs?.envelope}
+        data-design-ms={result?.timingMs?.designs}
       >
         <button
           className="panel-toggle"

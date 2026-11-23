@@ -14,6 +14,7 @@ export function MapWorkspace({ study }: { study: StudyController }) {
     setControls,
     siteData,
     frontage,
+    modelRoads,
     toggleFrontage,
     overlay,
     activeRule,
@@ -44,6 +45,7 @@ export function MapWorkspace({ study }: { study: StudyController }) {
           contextBounds={siteData.contextBounds}
           zone={siteData.zone}
           frontage={frontage}
+          modelRoads={modelRoads}
           onFrontage={toggleFrontage}
           overlay={overlay}
           activeRule={activeRule}

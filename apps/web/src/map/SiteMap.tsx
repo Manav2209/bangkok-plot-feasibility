@@ -13,6 +13,7 @@ import type {
   ZoneInput,
 } from '@bangkok/domain';
 import type { ContextCollection } from '../useSiteData';
+import type { RoadModel } from '../roadModels';
 import { ORIGIN, toGeographic, toGeoJSON } from '@bangkok/geometry';
 import type { ProposalLayer } from '../scene/ProposalLayer';
 
@@ -39,6 +40,7 @@ interface Props {
   contextBounds?: [number, number, number, number];
   zone?: ZoneInput;
   frontage?: FrontageInput[];
+  modelRoads?: RoadModel[];
   onFrontage?(edgeIndex: number): void;
   overlay?: boolean;
   activeRule?: string | null;
@@ -229,6 +231,20 @@ export function SiteMap(props: Props) {
           'fill-extrusion-height': ['coalesce', ['get', 'heightM'], 0],
           'fill-extrusion-opacity': 0.65,
         },
+      });
+      map.addSource('model-road-corridors', { type: 'geojson', data: empty });
+      map.addLayer({
+        id: 'model-road-corridors',
+        type: 'fill',
+        source: 'model-road-corridors',
+        paint: { 'fill-color': '#8da8b7', 'fill-opacity': 0.32, 'fill-outline-color': '#607f91' },
+      });
+      map.addSource('model-road-lines', { type: 'geojson', data: empty });
+      map.addLayer({
+        id: 'model-road-lines',
+        type: 'line',
+        source: 'model-road-lines',
+        paint: { 'line-color': '#607f91', 'line-width': 1.3, 'line-dasharray': [3, 3] },
       });
       map.addSource('supported-zone', {
         type: 'geojson',
@@ -511,6 +527,28 @@ export function SiteMap(props: Props) {
 
   useEffect(() => {
     if (!ready) return;
+    const map = mapRef.current!;
+    (map.getSource('model-road-corridors') as GeoJSONSource).setData({
+      type: 'FeatureCollection',
+      features: (props.modelRoads ?? []).map((model) => ({
+        ...toGeoJSON(model.section.corridor),
+        properties: { roadId: model.road.id },
+      })),
+    });
+    (map.getSource('model-road-lines') as GeoJSONSource).setData({
+      type: 'FeatureCollection',
+      features: (props.modelRoads ?? []).flatMap((model) =>
+        [model.section.centreline, model.section.farEdge].map((line) => ({
+          type: 'Feature' as const,
+          properties: { roadId: model.road.id },
+          geometry: { type: 'LineString' as const, coordinates: line.map(toGeographic) },
+        })),
+      ),
+    });
+  }, [ready, props.modelRoads]);
+
+  useEffect(() => {
+    if (!ready) return;
     const p = props.parkingPlan;
     (mapRef.current?.getSource('parking-plan') as GeoJSONSource | undefined)?.setData(
       p
@@ -764,6 +802,10 @@ export function SiteMap(props: Props) {
         <span className="legend-item">
           <i className="legend-road" />
           Road centreline
+        </span>
+        <span className="legend-item">
+          <i className="legend-road-corridor" />
+          Assumed road corridor
         </span>
         <span className="legend-item">
           <i className="legend-zone" />

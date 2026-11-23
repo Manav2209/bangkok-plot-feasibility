@@ -1,4 +1,38 @@
 /* Workspace hierarchy and shared study controls. */
+.road-clearance {
+  margin: 16px 0;
+  padding: 14px;
+  background: #f4f8fa;
+  border: 1px solid #d5e1e7;
+  border-radius: 10px;
+}
+.road-clearance > strong {
+  display: block;
+  margin: 8px 0;
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+.road-clearance > strong small {
+  display: inline;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+.road-clearance p {
+  margin: 8px 0 0;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: #526b7b;
+}
+.road-clearance .road-reference-warning {
+  color: #984429;
+  font-weight: 600;
+}
+.legend-road-corridor {
+  width: 16px;
+  height: 10px;
+  background: #bdcdd6;
+  border: 1px dashed #607f91;
+}
 button {
   border-radius: 8px;
 }

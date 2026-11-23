@@ -4,7 +4,8 @@ import {
   scenarioSchema,
   type Scenario,
 } from '@bangkok/domain';
-import { SAMPLE_PLOT, toMetric, validateRing } from '@bangkok/geometry';
+import { toMetric, validateRing } from '@bangkok/geometry';
+import { DEMO_PLOT, demoRoad } from './demoSite';
 import { RULESET_VERSION } from '@bangkok/rules';
 
 export const STORAGE_KEY = 'bangkok-plot:scenario:v3';
@@ -15,16 +16,17 @@ export const defaultScenario = (): Scenario => ({
   rulesetId: 'y7-reference',
   rulesetVersion: RULESET_VERSION as Scenario['rulesetVersion'],
   use: 'condominium',
-  plot: SAMPLE_PLOT,
+  plot: DEMO_PLOT,
   assumptions: { setbackM: 3, floors: 6, floorHeightM: 3.2 },
   roads: [
     {
       id: 'frontage-0',
-      name: 'Illustrative frontage — verify road boundary',
-      geometry: [SAMPLE_PLOT[0], SAMPLE_PLOT[1]],
-      widthM: 8,
+      name: 'Aligned example · assumed 8 m road corridor',
+      geometry: [DEMO_PLOT[0], DEMO_PLOT[1]],
+      widthM: demoRoad.assumedWidthM,
       widthProvenance: 'user',
       confirmed: false,
+      sourceUrl: demoRoad.sourceUrl,
     },
   ],
   frontage: [{ edgeIndex: 0, roadId: 'frontage-0' }],

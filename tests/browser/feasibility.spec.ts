@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { defaultScenario, scenarioUrl } from '../../apps/web/src/scenario';
+import { SAMPLE_PLOT } from '../../packages/geometry/src/index';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
@@ -9,6 +10,41 @@ test.beforeEach(async ({ page }) => {
   await expect(page.getByTestId('gross-area')).not.toHaveText('—');
 });
 const numeric = (text: string) => Number(text.replaceAll(',', ''));
+
+test('aligns the example road and measures both designs from the same assumed boundary', async ({
+  page,
+}) => {
+  await page.getByRole('button', { name: 'Try checked model example', exact: true }).click();
+  await expect(page.getByTestId('core-model-status')).toHaveText('Pass · conditional model');
+  await expect(page.getByTestId('road-edge-gap')).toHaveText('3 m');
+  await expect(page.getByTestId('road-centreline-gap')).toHaveText('7 m');
+  await expect(page.getByTestId('road-clearance')).toContainText(
+    'Model-to-mapped centreline offset: 0 m',
+  );
+  await expect(page.locator('.road-reference-warning')).toHaveCount(0);
+  await page.getByRole('button', { name: /OPTION B/ }).click();
+  await expect(page.getByTestId('road-edge-gap')).toHaveText('3 m');
+  await expect(page.getByTestId('road-centreline-gap')).toHaveText('7 m');
+  await expect(page.getByTestId('core-model-status')).toHaveText('Pass · conditional model');
+  await page.getByRole('button', { name: '3D', exact: true }).click();
+  await page.getByTestId('road-clearance').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(500);
+  await page.screenshot({ path: 'test-results/road-aligned-example.png' });
+});
+
+test('warns about old shared plot-to-road misalignment without silently moving a saved site', async ({
+  page,
+}) => {
+  const old = { ...defaultScenario(), plot: SAMPLE_PLOT };
+  old.roads = old.roads.map((road) => ({ ...road, geometry: [SAMPLE_PLOT[0], SAMPLE_PLOT[1]] }));
+  await page.goto(scenarioUrl(old, page.url()));
+  await expect(page.getByTestId('road-clearance')).toContainText(
+    'does not align with the mapped road',
+  );
+  await expect(page.getByTestId('plot-area')).toHaveText('2,500');
+  await page.getByRole('button', { name: 'Reset example', exact: true }).click();
+  await expect(page.locator('.road-reference-warning')).toHaveCount(0);
+});
 
 test('puts measurements first while retaining expandable scope notes and visible blocking errors', async ({
   page,
@@ -131,8 +167,10 @@ test('preserves declared core inputs in saves and shares and clears them after b
       recipient.getByLabel('Core basis: wholeSiteAndBuildings', { exact: true }),
     ).toBeChecked();
     await recipient.getByText('Boundary coordinates · keyboard editing', { exact: true }).click();
-    const longitude = recipient.getByLabel('Vertex 1 longitude', { exact: true });
-    await longitude.fill(String(Number(await longitude.inputValue()) + 0.00001));
+    // Move this convex corner inward so this test exercises invalidated facts,
+    // independently of the separate zone-crossing rejection tests.
+    const longitude = recipient.getByLabel('Vertex 2 longitude', { exact: true });
+    await longitude.fill(String(Number(await longitude.inputValue()) - 0.00001));
     await expect(recipient.getByTestId('core-model-status')).toHaveText('Inputs incomplete');
     await expect(
       recipient.getByLabel('Core basis: wholeSiteAndBuildings', { exact: true }),
@@ -235,9 +273,23 @@ test('edits a sample vertex and updates geometry and area', async ({ page }) => 
   await page.getByRole('button', { name: 'Boundary', exact: true }).click();
   await page.getByRole('button', { name: 'Edit boundary', exact: true }).click();
   const box = (await page.locator('.maplibregl-canvas').boundingBox())!;
-  const pixelsPerM = (512 * 2 ** 18.4) / (40_075_016.6856 * Math.cos((13.6979 * Math.PI) / 180));
-  const x = box.x + box.width / 2 - 32.5 * pixelsPerM,
-    y = box.y + box.height / 2 + (55 / 3) * pixelsPerM;
+  const plot = defaultScenario().plot;
+  const centre = plot.reduce(
+    (sum, p) => [sum[0] + p[0] / plot.length, sum[1] + p[1] / plot.length],
+    [0, 0],
+  );
+  const world = ([longitude, latitude]: number[]) => {
+    const phi = (latitude * Math.PI) / 180,
+      scale = 512 * 2 ** 18.4;
+    return [
+      ((longitude + 180) / 360) * scale,
+      ((1 - Math.log(Math.tan(phi) + 1 / Math.cos(phi)) / Math.PI) / 2) * scale,
+    ];
+  };
+  const vertex = world(plot[0]),
+    camera = world(centre);
+  const x = box.x + box.width / 2 + vertex[0] - camera[0],
+    y = box.y + box.height / 2 + vertex[1] - camera[1];
   await page.mouse.move(x, y);
   await page.mouse.down();
   await page.mouse.move(x - 20, y + 10, { steps: 10 });
@@ -612,6 +664,9 @@ test('keeps camera controls exposed and clickable at laptop and narrow widths', 
 test('screens a ramp, rejects a steep run, and preserves a valid declared reservation without legal approval', async ({
   page,
 }) => {
+  // This covers a long form, failure recovery, plan inspection, save and reload.
+  // Calculation latency is measured independently in the performance suite.
+  test.setTimeout(60_000);
   await page.getByText('Usability and landscape assumptions', { exact: true }).click();
   await page.getByLabel('Core / circulation fraction', { exact: true }).fill('0.2');
   await page.getByText('Parking, access and review inputs', { exact: true }).click();

@@ -8,15 +8,16 @@ import type {
   RoadInput,
   SiteInput,
 } from '@bangkok/domain';
-import { SAMPLE_PLOT } from '@bangkok/geometry';
 import type { MapControls } from './map/SiteMap';
 import { useCalculation } from './useCalculation';
 import { useSiteData } from './useSiteData';
 import { nearbyRoads } from './roads';
+import { roadModels } from './roadModels';
 import { imageryStudy } from './imageryStudy';
 import {
   defaultScenario,
   initialScenario,
+  loadScenario,
   parseScenario,
   scenarioUrl,
   STORAGE_KEY,
@@ -100,6 +101,10 @@ export function useStudyController() {
   useEffect(() => setRevision((n) => n + 1), [siteData.zone]);
   const { result, preview, pending, error } = useCalculation(input);
   const design = result?.designs.find((d) => d.id === selected) ?? result?.designs[0];
+  const modelRoads = useMemo(
+    () => roadModels(plot, roads, frontage, design, siteData.context),
+    [plot, roads, frontage, design, siteData.context],
+  );
   const updatePlot = useCallback((next: Ring) => {
     if (JSON.stringify(next) === JSON.stringify(plotRef.current)) return;
     markEdit();
@@ -113,6 +118,32 @@ export function useStudyController() {
     setPlot(next);
     setRevision((value) => value + 1);
   }, []);
+  useEffect(() => {
+    function openSharedScenario() {
+      if (!new URLSearchParams(window.location.hash.slice(1)).has('scenario')) return;
+      const loaded = loadScenario(window.location.hash);
+      const scenario = loaded.scenario;
+      updatePlot(scenario.plot);
+      setAssumptions(scenario.assumptions);
+      setUse(scenario.use);
+      setRoads(scenario.roads);
+      setFrontage(scenario.frontage);
+      setTransitDistanceM(scenario.transitDistanceM);
+      setResearchConstraints(scenario.researchConstraints);
+      setProject(scenario.project ?? {});
+      setSelected('compact');
+      setParkingPlanLevel(null);
+      setMode('proposal');
+      setThreeD(false);
+      setShareUrl('');
+      setStorageMessage(loaded.message);
+      setRevision((value) => value + 1);
+      controls?.view(false);
+      requestAnimationFrame(() => controls?.fit());
+    }
+    window.addEventListener('hashchange', openSharedScenario);
+    return () => window.removeEventListener('hashchange', openSharedScenario);
+  }, [controls, updatePlot]);
   function changed() {
     markEdit();
     setRevision((n) => n + 1);
@@ -183,9 +214,9 @@ export function useStudyController() {
     }
   }
   function reset() {
-    updatePlot(SAMPLE_PLOT);
-    setAssumptions(defaults);
     const sample = defaultScenario();
+    updatePlot(sample.plot);
+    setAssumptions(defaults);
     setUse(sample.use);
     setRoads(sample.roads);
     setFrontage(sample.frontage);
@@ -198,6 +229,7 @@ export function useStudyController() {
     setMode('proposal');
     setThreeD(false);
     controls?.view(false);
+    requestAnimationFrame(() => controls?.fit());
   }
   function save() {
     let scenario;
@@ -305,6 +337,7 @@ export function useStudyController() {
     setResultsCollapsed,
     siteData,
     mappedRoads,
+    modelRoads,
     setSelected,
     mode,
     setMode,

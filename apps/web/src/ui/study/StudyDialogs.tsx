@@ -88,6 +88,40 @@ export function StudyDialogs({ study }: { study: StudyController }) {
               checks use the cited editions and your explicit model declarations. A vacant-site
               certificate is not required to explore a hypothetical proposal.
             </p>
+            <h3>How measurements work</h3>
+            <ul>
+              <li>
+                Plot coordinates are projected into UTM zone 47N metres. Polygon area is calculated
+                from the boundary; holes are subtracted.
+              </li>
+              <li>
+                Total floor area is the sum of the actual floor polygons. Parking floors remain
+                counted. No FAR bonus or area deduction is claimed.
+              </li>
+              <li>
+                Uncovered ground is plot area minus the union of all modeled overhead cover.
+                Planting is an allocation within that ground, not a site inspection.
+              </li>
+              <li>
+                Road clearance is the shortest perpendicular distance from any modeled floor to the
+                declared near road boundary. The assumed centreline is half the entered road width
+                outside that boundary. The shaded corridor uses the same geometry.
+              </li>
+              <li>
+                Height comes from floor elevations in metres. The 3D view extrudes those same floor
+                polygons between their base and top elevations; it does not estimate dimensions from
+                screen pixels.
+              </li>
+              <li>
+                Estimated usable area excludes reserved parking floors and then deducts the chosen
+                core/circulation fraction. It is not a verified lettable-area measurement.
+              </li>
+              <li>
+                Clipping uses a 1 mm numeric grid; containment checks allow 0.01 m² of numerical
+                tolerance. Displayed values are rounded. These tolerances describe computation, not
+                survey accuracy.
+              </li>
+            </ul>
             <h3>Source register</h3>
             {sources.map((source) => (
               <article className="source-card" key={source.id}>

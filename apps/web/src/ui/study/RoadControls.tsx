@@ -1,6 +1,7 @@
 import type { StudyController } from '../../useStudyController';
 import { number } from './format';
 import type { RoadInput } from '@bangkok/domain';
+import { RoadClearance } from './RoadClearance';
 
 export function RoadControls({ study }: { study: StudyController }) {
   const {
@@ -28,6 +29,7 @@ export function RoadControls({ study }: { study: StudyController }) {
           Mark every road-facing edge. Width is the legal right-of-way, not lane count. The research
           model assumes the plot edge meets that right-of-way.
         </p>
+        <RoadClearance study={study} />
         <details className="nearby-roads">
           <summary>Nearby mapped roads · {mappedRoads.length}</summary>
           <p className="field-hint">

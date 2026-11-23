@@ -1,6 +1,7 @@
 import ClipperLib from 'clipper-lib';
 import proj4 from 'proj4';
 import type { MultiPolygon, Point, Ring } from '@bangkok/domain';
+export { roadSection, frontageClearance, mappedRoadOffset, type RoadSection } from './road-section';
 
 // WGS84 / UTM zone 47N. Metres, with a translated origin to keep arithmetic local.
 export const ORIGIN: Point = [100.6103, 13.6979];
