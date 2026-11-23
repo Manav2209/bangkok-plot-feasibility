@@ -1,7 +1,16 @@
 import type { StudyController } from '../../useStudyController';
 
 export function StudyHeader({ study }: { study: StudyController }) {
-  const { setDrawer, save, share } = study;
+  const { setDrawer, save, share, setInputsCollapsed, setResultsCollapsed } = study;
+  function navigate(section: string) {
+    if (section === 'site-inputs') setInputsCollapsed(false);
+    if (section === 'design-results') setResultsCollapsed(false);
+    requestAnimationFrame(() => {
+      const target = document.getElementById(section);
+      target?.scrollIntoView({ block: 'start' });
+      target?.focus({ preventScroll: true });
+    });
+  }
   return (
     <>
       <header className="topbar">
@@ -23,6 +32,11 @@ export function StudyHeader({ study }: { study: StudyController }) {
           </button>
         </div>
       </header>
+      <nav className="workspace-navigation" aria-label="Workspace sections">
+        <button onClick={() => navigate('site-inputs')}>Site inputs</button>
+        <button onClick={() => navigate('site-view')}>Map view</button>
+        <button onClick={() => navigate('design-results')}>Design results</button>
+      </nav>
     </>
   );
 }

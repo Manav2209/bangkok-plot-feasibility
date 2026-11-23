@@ -91,7 +91,12 @@ export function CoreModelResults({ assessment }: { assessment: DesignResult['cor
   const passed = assessment.checks.filter((c) => c.status === 'pass').length;
   const unknown = assessment.checks.filter((c) => c.status === 'unknown').length;
   return (
-    <section className="core-results" aria-label="Source-based core model checks">
+    <section
+      id="core-checks"
+      className="core-results"
+      data-status={assessment.status}
+      aria-label="Source-based core model checks"
+    >
       <div className="section-heading">
         <h2>Core rule checks</h2>
         <span className="pending-tag" data-testid="core-model-status">
@@ -116,7 +121,12 @@ export function CoreModelResults({ assessment }: { assessment: DesignResult['cor
       {assessment.checks.map((check) => {
         const rule = coreRuleProfile.rules.find((rule) => rule.id === check.id)!;
         return (
-          <details className="check core-check" data-core-rule={check.id} key={check.id}>
+          <details
+            className="check core-check"
+            data-core-rule={check.id}
+            data-status={check.status}
+            key={check.id}
+          >
             <summary>
               <span>{check.title}</span>
               <small>

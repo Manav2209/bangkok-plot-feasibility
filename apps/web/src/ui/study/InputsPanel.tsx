@@ -18,7 +18,11 @@ export function InputsPanel({ study }: { study: StudyController }) {
   } = study;
   return (
     <>
-      <aside className={`site-panel ${inputsCollapsed ? 'panel-collapsed' : ''}`}>
+      <aside
+        id="site-inputs"
+        tabIndex={-1}
+        className={`site-panel ${inputsCollapsed ? 'panel-collapsed' : ''}`}
+      >
         <button
           className="panel-toggle"
           aria-expanded={!inputsCollapsed}
@@ -37,13 +41,14 @@ export function InputsPanel({ study }: { study: StudyController }) {
           <p className="intro">
             Explore how a boundary shapes a building. Start with the example or draw your own.
           </p>
-          <p className="field-hint">
-            Try the declared 8 m road model to see both designs checked against the cited core
-            rules. Its road and site conditions are illustrative inputs.
-          </p>
-          <button className="primary-button" onClick={loadCoreExample}>
-            Try checked model example
-          </button>
+          <div className="example-card">
+            <span className="overview-label">START WITH AN EXAMPLE</span>
+            <strong>A site. Two possibilities.</strong>
+            <p>Explore two designs with declared site inputs and an illustrative 8 m road.</p>
+            <button className="primary-button" onClick={loadCoreExample}>
+              Try checked model example <span aria-hidden="true">↗</span>
+            </button>
+          </div>
           <details className="getting-started">
             <summary>First time? Start here</summary>
             <ol>
@@ -76,9 +81,9 @@ export function InputsPanel({ study }: { study: StudyController }) {
             onLocate={(point) => controls?.locate(point)}
           />
           <PlotControls study={study} />
-          <RoadControls study={study} />{' '}
+          <RoadControls study={study} />
           <ProjectControls value={project} onChange={updateProject} />
-          <AssumptionControls study={study} />{' '}
+          <AssumptionControls study={study} />
           <div className="scope-note">
             <span className="note-icon">i</span>
             <div>

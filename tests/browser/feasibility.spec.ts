@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { defaultScenario, scenarioUrl } from '../../apps/web/src/scenario';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
@@ -8,6 +9,50 @@ test.beforeEach(async ({ page }) => {
   await expect(page.getByTestId('gross-area')).not.toHaveText('—');
 });
 const numeric = (text: string) => Number(text.replaceAll(',', ''));
+
+test('puts measurements first while retaining expandable scope notes and visible blocking errors', async ({
+  page,
+}) => {
+  await expect(page.getByTestId('gross-area')).toBeInViewport();
+  await expect(page.locator('.study-notes')).not.toHaveAttribute('open');
+  await expect(page.locator('.core-overview')).toContainText('10 need more information');
+  await page.getByText('Study notes', { exact: false }).first().click();
+  await expect(page.locator('.study-notes')).toHaveAttribute('open', '');
+  await expect(page.locator('.study-notes')).toContainText('Unconfirmed widths');
+  await page.getByText('Study notes', { exact: false }).first().click();
+  await page.getByRole('button', { name: 'Try checked model example', exact: true }).click();
+  await expect(page.locator('.core-overview')).toContainText('10 of 10 passed');
+  await page.getByRole('button', { name: '3D', exact: true }).click();
+  await page.locator('.results-panel').evaluate((panel) => {
+    panel.scrollTop = 0;
+  });
+  await page.screenshot({ path: 'test-results/ui-polish-desktop.png' });
+  await page.getByLabel('Floors', { exact: true }).fill('0');
+  await expect(
+    page.getByText('Use finite, supported design assumptions', { exact: false }),
+  ).toBeVisible();
+});
+
+test('navigates narrow layouts without replacing a shared scenario', async ({ page }) => {
+  await page.setViewportSize({ width: 775, height: 900 });
+  await page.goto(scenarioUrl(defaultScenario(), page.url()));
+  await expect(page.getByTestId('gross-area')).not.toHaveText('—');
+  const sharedURL = page.url();
+  await page.getByRole('button', { name: 'Design results', exact: true }).click();
+  await expect(page.locator('#design-results')).toBeFocused();
+  expect(page.url()).toBe(sharedURL);
+  await page.getByRole('button', { name: 'Site inputs', exact: true }).click();
+  await expect(page.locator('#site-inputs')).toBeFocused();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('button', { name: 'Map view', exact: true }).click();
+  await expect(page.locator('#site-view')).toBeFocused();
+  await expect(page.getByRole('button', { name: '3D', exact: true })).toBeInViewport();
+  await page.getByRole('button', { name: 'Design results', exact: true }).click();
+  await expect(page.locator('#design-results')).toBeFocused();
+  expect(page.url()).toBe(sharedURL);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+  await page.screenshot({ path: 'test-results/ui-polish-mobile.png' });
+});
 
 test('checks both declared models and keeps missing road or height facts unknown', async ({
   page,

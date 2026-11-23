@@ -15,6 +15,7 @@ export function RuleChecks({ study }: { study: StudyController }) {
         {(design?.checks ?? result?.checks)?.map((check) => (
           <details
             data-scope={check.scope}
+            data-status={check.status}
             data-rule-id={check.id}
             className="check"
             key={check.id}

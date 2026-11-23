@@ -3,13 +3,18 @@ import { number } from './format';
 
 export function DesignMetrics({ study }: { study: StudyController }) {
   const { design, activeRule, setActiveRule } = study;
+  const description = !design
+    ? 'Draw a valid plot to generate a massing.'
+    : design.id === 'compact'
+      ? 'A compact building arranged within the calculated envelope.'
+      : design.title.includes('Courtyard')
+        ? 'A building arranged around an open central courtyard.'
+        : 'A building with upper floors that step back.';
   return (
     <>
-      <p className="design-description">
-        {design?.description ?? 'Draw a valid plot to generate a massing.'}
-      </p>
+      <p className="design-description">{description}</p>
       <div className="hero-metric">
-        <span>Gross modelled floor area</span>
+        <span>Total floor area (model)</span>
         <div>
           <strong data-testid="gross-area">{number(design?.grossFloorAreaM2)}</strong>
           <span>m²</span>
@@ -42,8 +47,8 @@ export function DesignMetrics({ study }: { study: StudyController }) {
       </dl>
       {design?.usableAreaM2 !== undefined && (
         <p className="field-hint">
-          Estimated usable capacity: {number(design.usableAreaM2)} m² after assumed
-          core/circulation. Allocated permeable ground: {number(design.modelledPermeableM2)} m².
+          Estimated usable area: {number(design.usableAreaM2)} m² after assumed core/circulation.
+          Allocated permeable ground: {number(design.modelledPermeableM2)} m².
         </p>
       )}
       {(design?.budgets ?? []).map((budget) => (

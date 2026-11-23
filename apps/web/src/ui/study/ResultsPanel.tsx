@@ -5,6 +5,7 @@ import { ParkingSummary } from './ParkingSummary';
 import { FloorBreakdown } from './FloorBreakdown';
 import { RuleChecks } from './RuleChecks';
 import { CoreModelResults } from '../CoreModel';
+import { StudyNotes } from './StudyNotes';
 
 export function ResultsPanel({ study }: { study: StudyController }) {
   const {
@@ -20,6 +21,8 @@ export function ResultsPanel({ study }: { study: StudyController }) {
   return (
     <>
       <aside
+        id="design-results"
+        tabIndex={-1}
         className={`results-panel ${resultsCollapsed ? 'panel-collapsed' : ''}`}
         aria-busy={pending}
       >
@@ -76,22 +79,26 @@ export function ResultsPanel({ study }: { study: StudyController }) {
               {error}
             </div>
           )}
-          {result?.diagnostics.map((message) => (
-            <div className="state-message" role="status" key={message}>
-              {message}
+          {!result?.designs.length && <StudyNotes study={study} />}
+          {design?.coreAssessment && (
+            <div className="core-overview" data-status={design.coreAssessment.status}>
+              <div>
+                <span className="overview-label">CORE MODEL CHECKS</span>
+                <strong>
+                  {design.coreAssessment.status === 'pass'
+                    ? `${design.coreAssessment.checks.filter((check) => check.status === 'pass').length} of ${design.coreAssessment.checks.length} passed`
+                    : design.coreAssessment.status === 'fail'
+                      ? 'Review failed checks'
+                      : `${design.coreAssessment.checks.filter((check) => check.status === 'unknown').length} need more information`}
+                </strong>
+              </div>
+              <p>Declared-model assessment · site approval remains unresolved.</p>
             </div>
-          ))}
-          {result?.search && (
-            <p className="field-hint">
-              Search: {result.search.tested.toLocaleString()} bounded trials ·{' '}
-              {result.search.outcome}.{' '}
-              {result.timingMs &&
-                `Envelope ${number(result.timingMs.envelope, 1)} ms; designs ${number(result.timingMs.designs, 1)} ms.`}
-            </p>
           )}
           <DesignMetrics study={study} />
+          {!!result?.designs.length && <StudyNotes study={study} />}
           <ParkingSummary study={study} />
-          <FloorBreakdown study={study} />{' '}
+          <FloorBreakdown study={study} />
           <div className="open-space">
             <div>
               <span>Uncovered ground</span>
@@ -109,7 +116,7 @@ export function ResultsPanel({ study }: { study: StudyController }) {
             </p>
           </div>
           <CoreModelResults assessment={design?.coreAssessment} />
-          <RuleChecks study={study} />{' '}
+          <RuleChecks study={study} />
           <button className="research-button" onClick={() => setDrawer(true)}>
             Open research & limitations
           </button>

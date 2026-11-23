@@ -31,7 +31,7 @@ export function MapWorkspace({ study }: { study: StudyController }) {
   } = study;
   return (
     <>
-      <main className="map-panel">
+      <main id="site-view" tabIndex={-1} className="map-panel">
         <SiteMap
           plot={plot}
           result={result}

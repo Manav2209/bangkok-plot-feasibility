@@ -6,9 +6,10 @@
   font-size: 16px;
   font-weight: 400;
   --ink: #193447;
-  --muted: #627786;
+  --muted: #526b7b;
   --line: #dfe7eb;
   --green: #117966;
+  --header-height: 68px;
 }
 * {
   box-sizing: border-box;
@@ -74,7 +75,7 @@ h2 {
   margin: 0;
 }
 .topbar {
-  height: 76px;
+  height: var(--header-height);
   padding: 0 28px;
   display: flex;
   align-items: center;
@@ -141,12 +142,12 @@ h2 {
 .workspace {
   display: grid;
   grid-template-columns: 300px minmax(320px, 1fr) 330px;
-  height: calc(100dvh - 76px);
-  min-height: 670px;
+  height: calc(100dvh - var(--header-height));
+  min-height: 540px;
 }
 .panel-toggle {
   width: 100%;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
   font-size: 0.8rem;
 }
 .panel-collapsed .panel-content {
@@ -362,7 +363,7 @@ h2 {
 }
 .site-panel,
 .results-panel {
-  padding: 30px 24px;
+  padding: 24px;
   overflow-y: auto;
   background: #fff;
   scrollbar-width: thin;
@@ -379,7 +380,7 @@ h2 {
   color: #70818d;
 }
 .site-panel h1 {
-  font-size: 2.15rem;
+  font-size: 1.95rem;
   line-height: 1.22;
   letter-spacing: -1.1px;
   font-weight: 650;
@@ -389,7 +390,7 @@ h2 {
   font-size: 0.92rem;
   color: var(--muted);
   line-height: 1.65;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 .panel-section {
   padding: 22px 0;
@@ -919,7 +920,8 @@ input[type='range'] {
 }
 .checks-note {
   font-size: 0.75rem;
-  color: #8b969e;
+  color: #526b7b;
+  line-height: 1.6;
   margin: 7px 0 15px;
 }
 .check {
