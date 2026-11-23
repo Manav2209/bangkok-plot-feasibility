@@ -53,7 +53,7 @@ export interface CheckResult {
   unit?: string;
   explanation: string;
   sourceIds: string[];
-  scope: 'assumption' | 'statutory';
+  scope: 'assumption' | 'statutory' | 'core-model';
   prerequisiteIds?: string[];
   measurementBasis?: 'modelled-proxy' | 'verified' | 'assumption';
 }
@@ -70,6 +70,14 @@ export interface DesignAssumptions {
   fireAccessRingM?: number;
 }
 export interface ProjectInputs {
+  coreBasis?: {
+    wholeSiteAndBuildings?: boolean;
+    aggregationAccountedFor?: boolean;
+    allFloorsAndCoverCounted?: boolean;
+    publicRoadReferences?: boolean;
+    matchingHeightDatum?: boolean;
+    officeOperationAreaM2?: number;
+  };
   ramp?: ParkingRampInputs;
   residentialUnits?: number;
   residentialUnitsOver60M2?: number;
@@ -171,6 +179,13 @@ export interface DesignResult {
   permeableAreaM2: number | null;
   checks: CheckResult[];
   compliance: 'unknown' | 'fail' | 'pass';
+  coreAssessment?: {
+    status: 'pass' | 'fail' | 'unknown';
+    checks: CheckResult[];
+    countedModelAreaM2: number;
+    uncoveredModelAreaM2: number;
+    scope: string;
+  };
   usableAreaM2?: number;
   modelledPermeableM2?: number;
   budgets?: Budget[];

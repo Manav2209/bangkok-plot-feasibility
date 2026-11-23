@@ -10,6 +10,31 @@ import {
 } from './scenario';
 
 describe('versioned, validated scenarios', () => {
+  it('preserves the core basis and migrates older links without inventing declarations', () => {
+    const scenario = defaultScenario();
+    scenario.project = {
+      coreBasis: {
+        wholeSiteAndBuildings: true,
+        aggregationAccountedFor: true,
+        allFloorsAndCoverCounted: true,
+        publicRoadReferences: true,
+        matchingHeightDatum: false,
+        officeOperationAreaM2: 1500,
+      },
+    };
+    expect(
+      loadScenario(new URL(scenarioUrl(scenario, 'https://example.test')).hash).scenario.project,
+    ).toEqual(scenario.project);
+    const old = { ...defaultScenario(), rulesetVersion: 'research-preview.5' };
+    expect(parseScenario(old).rulesetVersion).toBe('research-preview.6');
+    expect(parseScenario(old).project?.coreBasis).toBeUndefined();
+    expect(() =>
+      parseScenario({ ...scenario, project: { coreBasis: { legalApproval: true } } }),
+    ).toThrow();
+    expect(() =>
+      parseScenario({ ...scenario, project: { coreBasis: { officeOperationAreaM2: 0 } } }),
+    ).toThrow();
+  });
   it('round trips optional project assertions without promoting them to legal evidence', () => {
     const scenario = defaultScenario();
     scenario.project = {
@@ -79,7 +104,7 @@ describe('versioned, validated scenarios', () => {
     };
     const result = parseScenario(JSON.parse(JSON.stringify(s)));
     expect(result.project).toEqual(s.project);
-    expect(result.rulesetVersion).toBe('research-preview.5');
+    expect(result.rulesetVersion).toBe('research-preview.6');
   });
   it('rejects invalid runs and injected ramp approval flags', () => {
     const s = defaultScenario();

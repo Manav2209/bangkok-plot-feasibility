@@ -1,10 +1,13 @@
 {
   "id": "y7-reference",
-  "version": "1.2",
+  "version": "1.3",
   "evidence": "hypothesis",
   "notice": "Historical reference scenario; current amendments, exact zone and site applicability are unresolved. Numbers constrain a research study, not an allowed legal envelope.",
   "sourceIds": ["bma-2013", "bma-building-2544", "mr55", "onep-eia-2023"],
   "params": {
+    "aroundLow": { "value": 1, "unit": "m", "ruleId": "boundary-setback" },
+    "aroundHigh": { "value": 2, "unit": "m", "ruleId": "boundary-setback" },
+    "aroundHeightTier": { "value": 15, "unit": "m", "ruleId": "boundary-setback" },
     "straightRampMaxSlope": { "value": 15, "unit": "%", "ruleId": "parking" },
     "curvedRampMaxSlope": { "value": 12, "unit": "%", "ruleId": "parking" },
     "rampMaxFlightRise": { "value": 5, "unit": "m", "ruleId": "parking" },

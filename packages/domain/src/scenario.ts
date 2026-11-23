@@ -14,6 +14,16 @@ export const assumptionsSchema = z.strictObject({
 });
 export const projectSchema = z
   .strictObject({
+    coreBasis: z
+      .strictObject({
+        wholeSiteAndBuildings: z.boolean().optional(),
+        aggregationAccountedFor: z.boolean().optional(),
+        allFloorsAndCoverCounted: z.boolean().optional(),
+        publicRoadReferences: z.boolean().optional(),
+        matchingHeightDatum: z.boolean().optional(),
+        officeOperationAreaM2: z.number().positive().max(1000000).optional(),
+      })
+      .optional(),
     ramp: z
       .strictObject({
         kind: z.enum(['straight', 'curved']).optional(),
@@ -56,6 +66,7 @@ export const scenarioSchema = z.strictObject({
     'research-preview.3',
     'research-preview.4',
     'research-preview.5',
+    'research-preview.6',
   ]),
   use: z.enum(['condominium', 'office']),
   plot: plotSchema,

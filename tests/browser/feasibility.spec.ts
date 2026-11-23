@@ -9,6 +9,97 @@ test.beforeEach(async ({ page }) => {
 });
 const numeric = (text: string) => Number(text.replaceAll(',', ''));
 
+test('checks both declared models and keeps missing road or height facts unknown', async ({
+  page,
+}) => {
+  await expect(page.getByTestId('core-model-status')).toHaveText('Inputs incomplete');
+  await page.getByText('Core-rule model inputs', { exact: true }).click();
+  await page.getByRole('button', { name: 'Try checked model example', exact: true }).click();
+  await expect(page.getByTestId('core-model-status')).toHaveText('Pass · conditional model');
+  await expect(page.locator('[data-core-rule]')).toHaveCount(10);
+  await expect(
+    page.locator('[data-core-rule] summary small').filter({ hasText: 'Pass (model)' }),
+  ).toHaveCount(10);
+  await page.getByRole('button', { name: /OPTION B/ }).click();
+  await expect(page.getByTestId('core-model-status')).toHaveText('Pass · conditional model');
+  await expect(
+    page.locator('[data-core-rule] summary small').filter({ hasText: 'Pass (model)' }),
+  ).toHaveCount(10);
+  await page.getByRole('button', { name: '3D', exact: true }).click();
+  await expect(page.getByRole('button', { name: '3D', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await page.getByTestId('core-model-status').scrollIntoViewIfNeeded();
+  await page.screenshot({ path: 'test-results/core-model-3d.png' });
+  await page.getByLabel('Core basis: matchingHeightDatum', { exact: true }).uncheck();
+  await expect(page.locator('[data-core-rule="core-road-height"] summary')).toContainText(
+    'Unknown',
+  );
+  await expect(page.locator('[data-core-rule="core-far"] summary')).toContainText('Pass (model)');
+  await page.getByLabel('Core basis: matchingHeightDatum', { exact: true }).check();
+  await page.getByLabel('Confirm width for this study', { exact: true }).uncheck();
+  await expect(page.locator('[data-core-rule="core-road-setback"] summary')).toContainText(
+    'Unknown',
+  );
+  await expect(page.getByText('No overall compliance verdict', { exact: true })).toBeVisible();
+  await page.getByLabel('Confirm width for this study', { exact: true }).check();
+  await expect(page.getByTestId('core-model-status')).toHaveText('Pass · conditional model');
+  await page.getByRole('button', { name: 'Frontage edge 1', exact: true }).click();
+  await expect(
+    page.getByLabel('Core basis: publicRoadReferences', { exact: true }),
+  ).not.toBeChecked();
+  await expect(page.locator('[data-core-rule="core-road-setback"] summary')).toContainText(
+    'Unknown',
+  );
+});
+
+test('preserves declared core inputs in saves and shares and clears them after boundary edits', async ({
+  page,
+  browser,
+}) => {
+  await page.getByText('Core-rule model inputs', { exact: true }).click();
+  await page.getByRole('button', { name: 'Load declared 8 m road example', exact: true }).click();
+  await expect(page.getByTestId('core-model-status')).toHaveText('Pass · conditional model');
+  await page.getByRole('button', { name: 'Save scenario', exact: true }).click();
+  await page.reload();
+  await expect(page.getByTestId('core-model-status')).toHaveText('Pass · conditional model');
+  await page.evaluate(() =>
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: {
+        writeText: async () => {
+          throw new Error('denied');
+        },
+      },
+    }),
+  );
+  await page.getByRole('button', { name: 'Copy link', exact: true }).click();
+  const url = await page.getByLabel('Scenario URL').inputValue();
+  const fresh = await browser.newContext();
+  try {
+    const recipient = await fresh.newPage();
+    await recipient.goto(url);
+    await expect(recipient.getByTestId('core-model-status')).toHaveText('Pass · conditional model');
+    await recipient.getByText('Core-rule model inputs', { exact: true }).click();
+    await expect(
+      recipient.getByLabel('Core basis: wholeSiteAndBuildings', { exact: true }),
+    ).toBeChecked();
+    await recipient.getByText('Boundary coordinates · keyboard editing', { exact: true }).click();
+    const longitude = recipient.getByLabel('Vertex 1 longitude', { exact: true });
+    await longitude.fill(String(Number(await longitude.inputValue()) + 0.00001));
+    await expect(recipient.getByTestId('core-model-status')).toHaveText('Inputs incomplete');
+    await expect(
+      recipient.getByLabel('Core basis: wholeSiteAndBuildings', { exact: true }),
+    ).not.toBeChecked();
+    await expect(
+      recipient.getByLabel('Confirm width for this study', { exact: true }),
+    ).not.toBeChecked();
+  } finally {
+    await fresh.close();
+  }
+});
+
 test('loads the dated imagery case without inventing access or legal feasibility', async ({
   page,
 }) => {

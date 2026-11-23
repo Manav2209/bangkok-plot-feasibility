@@ -1368,7 +1368,8 @@ input[type='range'] {
   z-index: 3;
 }
 .nearby-roads,
-.imagery-study {
+.imagery-study,
+.core-basis {
   margin: 14px 0;
   font-size: 0.875rem;
 }
@@ -1391,7 +1392,8 @@ input[type='range'] {
   margin: 8px 0;
 }
 .nearby-roads summary,
-.imagery-study summary {
+.imagery-study summary,
+.core-basis summary {
   cursor: pointer;
   font-weight: 600;
 }

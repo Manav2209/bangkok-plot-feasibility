@@ -1,0 +1,123 @@
+{
+  "id": "y7-base-controls",
+  "version": "1.0",
+  "reviewedOn": "2026-11-23",
+  "scope": "Conditional numeric assessment of one new low-rise model on the declared complete construction site. All generated floors and overhead cover counted; no area deductions, FAR bonuses, rooftop objects, omitted structures or blank-wall/consent exceptions. Existing-site, waterway, overlay, parking/fire and permit reviews remain separate.",
+  "baselineUrl": "https://gov.bangkok.go.th/OrganizationInfo/efb96a02-e038-4172-8de2-004754f5e479?categoryId=e339c29a-ee36-41ac-803c-80d8ce46d5cf",
+  "rules": [
+    {
+      "id": "core-far",
+      "title": "FAR · counted model floors",
+      "parameterKeys": ["far"],
+      "sourceIds": ["bma-2013", "planning-act-2019"],
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/76/law/y10.pdf",
+      "clause": "2013 plan clauses 4 and 14; printed pages 1–2, 29",
+      "thai": "ไม่เกิน ๕ : ๑",
+      "interpretation": "Count all modeled floors of every modeled building over the whole construction site. Base FAR at most 5. Already-used subdivision aggregation must be absent or fully included. No bonus or deduction is claimed."
+    },
+    {
+      "id": "core-osr",
+      "title": "OSR · uncovered space / counted floors",
+      "parameterKeys": ["osr"],
+      "sourceIds": ["bma-2013"],
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/76/law/y10.pdf",
+      "clause": "2013 plan clauses 4 and 14(2); printed pages 1–2, 29",
+      "thai": "ไม่น้อยกว่าร้อยละหก",
+      "interpretation": "Qualifying unroofed construction-site space divided by all counted modeled floor area must be at least 6%. All overhead cover is included in the covered-projection union."
+    },
+    {
+      "id": "core-uncovered-bma",
+      "title": "Uncovered ground · plot-area minimum",
+      "parameterKeys": ["residentialUncovered", "officeUncovered"],
+      "sourceIds": ["bma-building-2544"],
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/76/law/tk24.pdf",
+      "clause": "BMA 2544 clauses 5(36) and 52; printed pages 3, 15",
+      "thai": "พื้นที่ดินที่ใช้เป็นที่ตั้งอาคาร",
+      "interpretation": "Residential: at least 30% of construction-site plot area; nonresidential: 10%. Use strict unroofed ground and no unmodeled overhead covers. This denominator differs from MR55 clause 33."
+    },
+    {
+      "id": "core-uncovered-national",
+      "title": "Uncovered ground · largest-floor minimum",
+      "parameterKeys": ["residentialUncovered", "officeUncovered"],
+      "sourceIds": ["mr55"],
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/426/mr43-55-upd68.pdf",
+      "clause": "MR55 clauses 1 and 33; PDF pages 3, 7",
+      "thai": "พื้นที่ชั้นใดชั้นหนึ่งที่มากที่สุดของอาคาร",
+      "interpretation": "Residential 30% / nonresidential 10% of the largest floor. Evaluate independently of the Bangkok plot-based minimum. The inspected ordinary-building definition does not establish a generic 2 m eaves exception."
+    },
+    {
+      "id": "core-planting",
+      "title": "Permeable planting · allocated model area",
+      "parameterKeys": ["permeable"],
+      "sourceIds": ["bma-2013"],
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/76/law/y10.pdf",
+      "clause": "2013 plan clause 14(2); printed page 29",
+      "thai": "ไม่น้อยกว่าร้อยละห้าสิบของพื้นที่ว่าง",
+      "interpretation": "Allocate at least 50% of qualifying open space to permeable planting. Paving, parking and pools do not automatically qualify. This tests the declared allocation, not a physical landscaping inspection."
+    },
+    {
+      "id": "core-boundary",
+      "title": "Boundary openings · floor/height setbacks",
+      "parameterKeys": ["boundaryLow", "boundaryHigh", "boundaryHeightTier", "boundaryFloorTier"],
+      "sourceIds": ["mr55", "bma-building-2544"],
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/426/mr43-55-upd68.pdf",
+      "clause": "MR55 clause 50, printed page 11; BMA 2544 clause 54, printed page 16",
+      "thai": "ผนังของอาคารที่มีหน้าต่าง ประตู ช่องระบายอากาศหรือช่องแสง",
+      "interpretation": "Treat all faces as having openings. Enforce 2 m up to whole-building height 9 m, 3 m above 9 m and below 23 m, and the stricter Bangkok third-floor tier. No blank-wall, boundary-building or neighbor-consent exception."
+    },
+    {
+      "id": "core-around",
+      "title": "All-around open space",
+      "parameterKeys": ["aroundLow", "aroundHigh", "aroundHeightTier"],
+      "sourceIds": ["bma-building-2544"],
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/76/law/tk24.pdf",
+      "clause": "BMA 2544 clause 55; printed page 16",
+      "thai": "ที่ว่างโดยรอบอาคาร",
+      "interpretation": "Whole-building height up to 15 m: at least 1 m around the building; above 15 m: at least 2 m. All modeled building extents are included; no small-house exception is claimed."
+    },
+    {
+      "id": "core-road-setback",
+      "title": "Public-road setback",
+      "parameterKeys": [
+        "roadSmallWidth",
+        "roadMediumWidth",
+        "roadWideWidth",
+        "roadCentrelineSmall",
+        "roadCentrelineLarge",
+        "roadFraction",
+        "roadWideSetback",
+        "largeBuildingArea"
+      ],
+      "sourceIds": ["mr55", "bma-building-2544"],
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/426/mr43-55-upd68.pdf",
+      "clause": "MR55 clause 41, printed page 9; BMA 2544 clause 50, printed page 15",
+      "thai": "กึ่งกลางถนนสาธารณะ",
+      "interpretation": "For specified uses / over 2 floors / over 8 m, and large buildings under BMA clause 50: ROW under 10 m requires 6 m from centreline; 10–20 m requires ROW/10 from the near boundary; over 20 m requires 2 m. No residential exception is granted. Smaller ordinary buildings on ROW under 6 m use 3 m from centreline. Conversion requires a straight uniform public ROW whose near boundary coincides with the selected plot edge. The generator uses a conservative plot-derived area bound before candidate area is known."
+    },
+    {
+      "id": "core-road-height",
+      "title": "Public-road height plane",
+      "parameterKeys": ["roadHeightFactor"],
+      "sourceIds": ["mr55", "bma-building-2544"],
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/426/mr43-55-upd68.pdf",
+      "clause": "MR55 clause 44, printed page 9; BMA 2544 clause 49, printed page 14",
+      "thai": "เขตด้านตรงข้ามของถนนสาธารณะ",
+      "interpretation": "Every building point must satisfy H <= 2(s + ROW). Require compatible road/site height datum and straight uniform ROW with parallel opposite boundary. Intersect every declared frontage conservatively; do not grant wider-road/corner or rooftop-object exceptions."
+    },
+    {
+      "id": "core-use",
+      "title": "Y.7 use and size condition",
+      "parameterKeys": [
+        "condoAreaWithoutAccess",
+        "officeAreaWithoutAccess",
+        "officeAreaMaximum",
+        "officeExceptionRoadWidth"
+      ],
+      "sourceIds": ["bma-2013"],
+      "url": "https://webportal.bangkok.go.th/public/user_files_editor/76/law/y10.pdf",
+      "clause": "2013 plan clause 14(11), (13); printed pages 27–29",
+      "thai": "การอยู่อาศัยประเภทอาคารอยู่อาศัยรวม",
+      "interpretation": "Condominium modeled total below 10,000 m² stays below the collective-housing size condition. Office operation area is distinct from working-room/lettable area and includes related outdoor activity. Over 1,000 and at most 10,000 m² requires a qualifying access exception; this core model only supports the declared >=16 m public-ROW route, not an unverified station-distance exception."
+    }
+  ]
+}

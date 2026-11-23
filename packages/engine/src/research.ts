@@ -10,6 +10,7 @@ import type {
 } from '@bangkok/domain';
 import { assumptionsSchema, projectSchema } from '@bangkok/domain';
 import { screenProject } from './project-checks';
+import { assessCoreModel } from './core-checks';
 import {
   area,
   axisAlignedRectangleInside,
@@ -340,6 +341,15 @@ export function calculateResearch(
   const supportedHeight = v('highRiseThreshold') - 0.001;
   const maxFloors = Math.min(floors, Math.floor(supportedHeight / floorHeightM));
   const maxHeight = maxFloors * floorHeightM;
+  // The BMA road rule also covers large buildings at low height. Before the
+  // search knows the final floor area, conservatively use its plot-derived bound.
+  const potentiallyLargeArea =
+    Math.min(
+      v('far') * result.plotAreaM2,
+      maxFloors *
+        result.plotAreaM2 *
+        (1 - v(input.use === 'condominium' ? 'residentialUncovered' : 'officeUncovered')),
+    ) > v('largeBuildingArea');
   if (floors * floorHeightM >= v('highRiseThreshold'))
     result.diagnostics.push(
       'High-rise requirements are unresolved. Research candidates are restricted below 23 m; this is a supported-study limit, not a legal height cap.',
@@ -384,6 +394,7 @@ export function calculateResearch(
         const large =
           floors > v('largeRoadBuildingFloors') ||
           maxHeight > v('largeRoadBuildingHeight') ||
+          potentiallyLargeArea ||
           input.use === 'office';
         const roadDistance = large
           ? width < v('roadMediumWidth')
@@ -463,6 +474,9 @@ export function calculateResearch(
   const areaBudget = Math.min(
     v('far') * result.plotAreaM2,
     useArea,
+    input.use === 'office'
+      ? (input.project?.coreBasis?.officeOperationAreaM2 ?? Infinity)
+      : Infinity,
     v('extraLargeBuildingArea') - AREA_EPS,
   );
   if (Math.min(v('far') * result.plotAreaM2, useArea) >= v('extraLargeBuildingArea'))
@@ -557,6 +571,12 @@ export function calculateResearch(
       0,
     );
     const screening = screenProject(input, generated, total, uncovered);
+    const coreAssessment = assessCoreModel(
+      input,
+      generated,
+      result.zoneMembership,
+      screening.parking.groundAllowanceM2,
+    );
     const researchChecks = [
       modelCheck(
         'model-study-classification',
@@ -614,9 +634,10 @@ export function calculateResearch(
       ),
     ];
     researchChecks.push(...screening.checks);
-    if (researchChecks.some((c) => c.status === 'fail')) {
-      rejectedChecks.push(researchChecks);
-      (result.rejectedCandidates ??= []).push({ id, title, checks: researchChecks });
+    if (researchChecks.some((c) => c.status === 'fail') || coreAssessment.status === 'fail') {
+      const rejected = [...researchChecks, ...coreAssessment.checks];
+      rejectedChecks.push(rejected);
+      (result.rejectedCandidates ??= []).push({ id, title, checks: rejected });
       return null;
     }
     const legalChecks = evaluateRules(input.use, {
@@ -679,6 +700,7 @@ export function calculateResearch(
             ? 'Upper floors recede within every overlapping height slice.'
             : 'A perimeter block with a real courtyard void.',
       floors: screening.floors,
+      coreAssessment,
       coveredGround: covered,
       footprintM2: footprint,
       grossFloorAreaM2: total,

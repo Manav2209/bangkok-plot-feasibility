@@ -22,7 +22,7 @@ try {
   const { imageryStudy } = await server.ssrLoadModule(
     path.join(root, 'apps/web/src/imageryStudy.ts'),
   );
-  const { area, difference, intersection } = await server.ssrLoadModule(
+  const { area, difference, intersection, union } = await server.ssrLoadModule(
     path.join(root, 'packages/geometry/src/index.ts'),
   );
   const z = JSON.parse(await readFile(path.join(root, 'apps/web/public/data/zone.geojson'), 'utf8'))
@@ -69,8 +69,22 @@ try {
     },
   };
   const cases = [];
+  const declaredCore = {
+    ...structuredClone(base),
+    roads: base.roads.map((r) => ({ ...r, confirmed: true })),
+    project: {
+      coreBasis: {
+        wholeSiteAndBuildings: true,
+        aggregationAccountedFor: true,
+        allFloorsAndCoverCounted: true,
+        publicRoadReferences: true,
+        matchingHeightDatum: true,
+      },
+    },
+  };
   for (const [name, input] of [
     ['illustrative-default', base],
+    ['declared-core-rules', declaredCore],
     ['declared-access-study', declaredAccess],
     [
       'dated-unbuilt-ground-study',
@@ -79,7 +93,11 @@ try {
   ]) {
     const result = calculate(input);
     assert.equal(result.zoneMembership, 'inside');
-    if (name === 'illustrative-default' || name === 'dated-unbuilt-ground-study')
+    if (
+      name === 'illustrative-default' ||
+      name === 'dated-unbuilt-ground-study' ||
+      name === 'declared-core-rules'
+    )
       assert.equal(
         result.designs.length,
         2,
@@ -97,6 +115,20 @@ try {
     }
     const designs = [];
     for (const d of result.designs) {
+      if (name === 'declared-core-rules') {
+        assert.equal(d.coreAssessment.status, 'pass');
+        assert.equal(d.coreAssessment.checks.length, 10);
+        assert(d.coreAssessment.checks.every((c) => c.status === 'pass'));
+        // Independent arithmetic: do not reuse the core evaluator's measurements.
+        const total = d.floors.reduce((n, f) => n + area(f.polygons), 0);
+        const uncovered = result.plotAreaM2 - area(union(d.floors.flatMap((f) => f.polygons)));
+        assert(total <= 5 * result.plotAreaM2 + 0.01);
+        assert(uncovered + 0.01 >= 0.06 * total);
+        assert(uncovered + 0.01 >= 0.3 * result.plotAreaM2);
+        assert(uncovered + 0.01 >= 0.3 * Math.max(...d.floors.map((f) => area(f.polygons))));
+        assert.equal(d.coreAssessment.countedModelAreaM2, total);
+        assert(Math.abs(d.coreAssessment.uncoveredModelAreaM2 - uncovered) < 0.01);
+      }
       assert.equal(
         d.compliance,
         'unknown',
@@ -133,6 +165,7 @@ try {
           ramp: d.parking?.ramp,
         },
         legalCompliance: d.compliance,
+        coreAssessment: d.coreAssessment,
         checks: d.checks,
       });
     }
@@ -159,7 +192,7 @@ try {
     sourceReferences: sources,
     cases,
   };
-  const destination = path.join(root, 'docs/validation/design-review-05.json');
+  const destination = path.join(root, 'test-results/design-review-07.json');
   await mkdir(path.dirname(destination), { recursive: true });
   await writeFile(destination, JSON.stringify(report, null, 2) + '\n');
   console.log(

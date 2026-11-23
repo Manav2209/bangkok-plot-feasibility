@@ -4,6 +4,7 @@ import { ledgerSchema, type RuleLedger } from './schema';
 
 export { ledgerSchema, type RuleLedger } from './schema';
 export { referenceProfile, referenceProfileSchema, referenceValue } from './profile';
+export { coreRuleProfile, coreRuleProfileSchema } from './core';
 export const ledger = ledgerSchema.parse(ledgerData);
 export const RULESET_VERSION = ledger.version;
 export const sources = ledger.sources;

@@ -1,5 +1,8 @@
 import { z } from 'zod';
 const keys = [
+  'aroundLow',
+  'aroundHigh',
+  'aroundHeightTier',
   'straightRampMaxSlope',
   'curvedRampMaxSlope',
   'rampMaxFlightRise',

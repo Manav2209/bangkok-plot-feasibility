@@ -44,7 +44,7 @@ describe('massing accounting', () => {
         .filter((check) => check.id !== 'assumed-setback')
         .every((check) => check.status === 'unknown'),
     ).toBe(true);
-    expect(output.rulesetVersion).toBe('research-preview.5');
+    expect(output.rulesetVersion).toBe('research-preview.6');
     expect(output.status).not.toBe('pass');
     for (const design of output.designs) {
       expect(design.compliance).toBe('unknown');
